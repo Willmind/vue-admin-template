@@ -91,7 +91,7 @@
                             <a class="li-a">
                                 {{item.text}}
                             </a>
-                            <Icon size="16" @click="closeTag(index)" type="md-close" />
+                            <Icon  size="16"  @click="closeTag(index)" type="md-close" />
                         </li>
                     </ul>
                     <!-- 标签栏相关功能 -->
@@ -652,7 +652,7 @@ a {
     transition: none;
 }
 .li-a {
-    max-width: 80px;
+    max-width: 100px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
