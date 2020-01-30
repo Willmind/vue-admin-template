@@ -222,19 +222,15 @@
 
 
             handleEdit(index, row) {
-                console.log(index, row);
+
             },
             handleDelete(index, row) {
-                console.log(index, row);
                 this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$message({
-                        type: 'success',
-                        message: '删除成功!'
-                    });
+                    this.del(row)
                 }).catch(() => {
 
                     this.$message({
@@ -244,8 +240,25 @@
                 });
 
             },
-
-
+            del(row) {
+                console.log(row);
+                axios.post("/users/delDormInteriorList", {
+                    cid: row.cid
+                }).then((response) => {
+                    if (response.msg == "操作成功") {
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        });
+                        this.getDataList()
+                    } else {
+                        this.$message({
+                            type: 'error',
+                            message: '操作失败!'
+                        });
+                    }
+                })
+            },
 
 
             refresh() {
@@ -257,13 +270,11 @@
                 this.dialogFormVisible = true
             },
             addCheck() {
-                console.log(this.addForm);
+
             },
             getDataList() {
-                console.log(111)
                 axios.post("/users/dormitoryInteriorList").then((response) => {
-                    console.log(response.result);
-                    this.tableData=response.result
+                    this.tableData = response.result
                 })
             }
         },
