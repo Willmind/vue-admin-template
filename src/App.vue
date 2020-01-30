@@ -16,6 +16,9 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+body .el-table th.gutter{
+    display: table-cell!important;
+}
 li, ul, p, div, body, html, table {
     margin: 0;
     padding: 0;

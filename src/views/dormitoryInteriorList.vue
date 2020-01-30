@@ -7,8 +7,8 @@
             </div>
             <!--            搜索条件-->
             <div class="check">
-                <el-input size="mini" v-model="searchParams.buildingNum"  prefix-icon="el-icon-office-building" placeholder="栋数"></el-input>
-                <el-input size="mini" v-model="searchParams.domNum"  prefix-icon="el-icon-office-building" placeholder="宿舍号"></el-input>
+                <el-input size="mini" v-model="searchParams.buildingNum" prefix-icon="el-icon-office-building" placeholder="栋数"></el-input>
+                <el-input size="mini" v-model="searchParams.domNum" prefix-icon="el-icon-office-building" placeholder="宿舍号"></el-input>
                 <el-date-picker
                     style="margin-left: 5px;"
                     size="mini"
@@ -23,39 +23,69 @@
                 <el-button size="mini" icon="el-icon-refresh-left" @click="refresh">重置</el-button>
             </div>
             <!--            表格-->
-            <div>
+            <div class="tableForm">
                 <el-table
+                    :cell-style="cellStyle"
+                    :header-cell-style="rowClass"
                     border
                     :data="tableData"
                     style="width: 100%">
                     <el-table-column
-                        prop="date"
-                        label="日期"
-                        width="180">
+                        type="selection"
+                        width="55">
                     </el-table-column>
                     <el-table-column
-                        prop="name"
-                        label="姓名"
-                        width="180">
+                        prop="time"
+                        label="检查时间"
+                    >
                     </el-table-column>
                     <el-table-column
-                        prop="address"
-                        label="地址">
+                        prop="checkPerson"
+                        label="检查人员"
+                    >
+                    </el-table-column>
+                    <el-table-column
+                        prop="buildingNum"
+                        label="栋数"
+                    >
+                    </el-table-column>
+                    <el-table-column
+                        prop="domNum"
+                        label="宿舍号"
+                    >
+                    </el-table-column>
+                    <el-table-column
+                        prop="score"
+                        label="分数"
+                    >
+                    </el-table-column>
+                    <el-table-column label="操作" width="150">
+                        <template slot-scope="scope">
+                            <el-button
+                                size="mini"
+                                @click="handleEdit(scope.$index, scope.row)">编辑
+                            </el-button>
+                            <el-button
+                                size="mini"
+                                type="danger"
+                                @click="handleDelete(scope.$index, scope.row)">删除
+                            </el-button>
+                        </template>
                     </el-table-column>
                 </el-table>
             </div>
         </div>
 
-        <el-dialog  title="宿舍内务检查新增" :visible.sync="dialogFormVisible">
-            <el-form  label-width="100px">
+        <el-dialog width="75%" title="宿舍内务检查新增" :visible.sync="dialogFormVisible">
+            <el-form label-width="100px">
                 <el-row>
-                    <el-col span="12">
+                    <el-col :span="12">
                         <el-form-item label="栋数">
                             <el-input prefix-icon="el-icon-office-building" v-model="addForm.buildingNum" placeholder="请输入栋数"></el-input>
                         </el-form-item>
                     </el-col>
 
-                    <el-col span="12">
+                    <el-col :span="12">
                         <el-form-item label="宿舍号">
                             <el-input prefix-icon="el-icon-office-building" v-model="addForm.domNum" placeholder="请输入宿舍号"></el-input>
                         </el-form-item>
@@ -65,13 +95,13 @@
                 </el-row>
 
                 <el-row>
-                    <el-col span="12">
+                    <el-col :span="12">
                         <el-form-item label="检查人员">
                             <el-input prefix-icon="el-icon-user" v-model="addForm.checkPerson" placeholder="请输入检查人员"></el-input>
                         </el-form-item>
                     </el-col>
 
-                    <el-col span="12">
+                    <el-col :span="12">
                         <el-form-item label="检查时间">
 
                             <el-date-picker
@@ -90,11 +120,11 @@
                 </el-row>
 
                 <el-row>
-                    <el-col span="12">
+                    <el-col :span="12">
                         <el-form-item label="评分">
                             <el-rate style="margin-top: 9px;"
-                                v-model="addForm.rate"
-                                :colors="colors">
+                                     v-model="addForm.rate"
+                                     :colors="colors">
                             </el-rate>
                         </el-form-item>
                     </el-col>
@@ -102,14 +132,15 @@
                 </el-row>
 
                 <el-row>
-                    <el-col >
+                    <el-col>
                         <el-form-item label="备注">
                             <el-input
                                 type="textarea"
-                                :rows="3"
+                                :rows="4"
                                 placeholder="请输入内容"
                                 v-model="addForm.textarea">
-                            </el-input>                        </el-form-item>
+                            </el-input>
+                        </el-form-item>
                     </el-col>
 
                 </el-row>
@@ -118,7 +149,7 @@
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                <el-button type="primary" @click="addCheck">确 定</el-button>
             </div>
         </el-dialog>
 
@@ -135,40 +166,24 @@
         components: {},
         data() {
             return {
-                addForm:{
-                    textarea:'',
-                    rate:'',
-                    time:'',
-                    checkPerson:'',
-                    buildingNum:'',
-                    domNum:'',
+                addForm: {
+                    textarea: '',
+                    rate: '',
+                    time: '',
+                    checkPerson: '',
+                    buildingNum: '',
+                    domNum: '',
                 },
 
-                colors: ['#99A9BF', '#F7BA2A', '#FF9900'] , // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
+                colors: ['#99A9BF', '#F7BA2A', '#FF9900'], // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
                 searchParams: {
-                    time:'',
-                    domNum:'',
+                    time: '',
+                    domNum: '',
                     buildingNum: '',
 
                 },
                 dialogFormVisible: false,
-                tableData: [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }],
+                tableData: [],
                 pickerOptions: {
                     disabledDate(time) {
                         return time.getTime() > Date.now();
@@ -197,25 +212,63 @@
             }
         },
         methods: {
-            refresh(){
-                for(let index in this.searchParams){
+            cellStyle({row, column, rowIndex, columnIndex}) {
+                return "text-align:center"
+
+            },
+            rowClass({row, rowIndex}) {
+                return "text-align:center"
+            },
+
+
+            handleEdit(index, row) {
+                console.log(index, row);
+            },
+            handleDelete(index, row) {
+                console.log(index, row);
+                this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                    });
+                }).catch(() => {
+
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+
+            },
+
+
+
+
+            refresh() {
+                for (let index in this.searchParams) {
                     this.searchParams[index] = '';
                 }
             },
             add() {
                 this.dialogFormVisible = true
-
             },
-            test() {
+            addCheck() {
+                console.log(this.addForm);
+            },
+            getDataList() {
                 console.log(111)
                 axios.post("/users/dormitoryInteriorList").then((response) => {
-                    console.log(response);
+                    console.log(response.result);
+                    this.tableData=response.result
                 })
-
-            },
+            }
         },
         mounted() {
-            this.test()
+            this.getDataList()
         }
 
 
@@ -230,23 +283,24 @@
         margin: 5px;
         margin-left: 10px;
     }
+
     .check {
         display: flex;
         padding: 5px;
         margin-left: 10px;
+
+        .el-input {
+            margin-right: 5px;
+            width: 150px;
+        }
     }
 
-    .el-input {
-        margin-right: 5px;
-        width: 150px;
-    }
 
-    .el-table {
+    .tableForm {
         margin: 10px;
         margin-left: 15px;
-        max-width: 1045px;
+        margin-right: 15px;
     }
-
 
 
 </style>
