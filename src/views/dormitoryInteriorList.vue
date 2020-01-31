@@ -28,6 +28,7 @@
                     :cell-style="cellStyle"
                     :header-cell-style="rowClass"
                     border
+                    max-height="512"
                     :data="tableData"
                     style="width: 100%">
                     <el-table-column
@@ -55,9 +56,22 @@
                     >
                     </el-table-column>
                     <el-table-column
-                        prop="score"
-                        label="分数"
-                    >
+                        label="分数">
+                        <template slot-scope="scope">
+<!--                            <el-popover trigger="hover" placement="top">-->
+<!--                                <p>姓名: {{ scope.row.score}}</p>-->
+<!--                                <p>住址: {{ 2}}</p>-->
+<!--                                <div slot="reference" class="name-wrapper">-->
+<!--                                    <el-tag size="medium">{{ 3}}</el-tag>-->
+<!--                                </div>-->
+<!--                            </el-popover>-->
+                            <el-rate
+                                v-model=scope.row.score
+                                disabled
+                                text-color="#ff9900">
+                            </el-rate>
+
+                        </template>
                     </el-table-column>
                     <el-table-column label="操作" width="150">
                         <template slot-scope="scope">
@@ -160,6 +174,8 @@
 
 <script>
     import axios from 'axios'
+    import {dateFormat} from "../libs/date"
+    import {deepClone} from "../libs/util";
 
     export default {
         name: 'dormitoryInteriorList',
@@ -266,16 +282,46 @@
                     this.searchParams[index] = '';
                 }
             },
+            clearData(){
+                for (let index in this.addForm) {
+                    this.addForm[index] = '';
+                }
+            },
             add() {
                 this.dialogFormVisible = true
+                this.clearData()
+
             },
             addCheck() {
+                let params=deepClone(this.addForm)
+                params.time = dateFormat(params.time, 'YYYY-MM-DD')
+                console.log(params);
+
+                axios.post("/users/addDormInteriorList",params).then((response) => {
+                    console.log(response);
+                    // if(response.msg=='新增成功'){
+                    //     this.$message({
+                    //         type: 'success',
+                    //         message: '新增成功!'
+                    //     });
+                    //     this.getDataList()
+                    // }else{
+                    //     this.$message({
+                    //         type: 'success',
+                    //         message: '新增失败!'
+                    //     });
+                    // }
+                })
+                this.dialogFormVisible = false
+                this.clearData()
 
             },
             getDataList() {
                 axios.post("/users/dormitoryInteriorList").then((response) => {
                     this.tableData = response.result
+                    console.log(this.tableData);
                 })
+
             }
         },
         mounted() {
