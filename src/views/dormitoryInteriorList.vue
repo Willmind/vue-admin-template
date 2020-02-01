@@ -10,16 +10,13 @@
                 <el-input size="mini" v-model="searchParams.buildingNum" prefix-icon="el-icon-office-building" placeholder="栋数"></el-input>
                 <el-input size="mini" v-model="searchParams.domNum" prefix-icon="el-icon-office-building" placeholder="宿舍号"></el-input>
                 <el-date-picker
-                    style="margin-left: 5px;"
-                    size="mini"
-                    align="left"
-                    :editable=false
-                    type="date"
                     v-model="searchParams.time"
-                    placeholder="选择日期"
-                    :picker-options="pickerOptions">
+                    type="date"
+                    size="mini"
+                    :editable=false
+                    placeholder="选择日期">
                 </el-date-picker>
-                <el-button style="margin-left: 5px" size="mini" icon="el-icon-search">搜索</el-button>
+                <el-button style="margin-left: 5px" size="mini" icon="el-icon-search" @click="search">搜索</el-button>
                 <el-button size="mini" icon="el-icon-refresh-left" @click="refresh">重置</el-button>
             </div>
             <!--            表格-->
@@ -90,7 +87,7 @@
             </div>
         </div>
 
-        <el-dialog width="75%" title="宿舍内务检查新增" :visible.sync="dialogFormVisible">
+        <el-dialog width="75%" title="宿舍内务检查编辑" :visible.sync="dialogFormVisible">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="12">
@@ -119,12 +116,10 @@
                         <el-form-item label="检查时间">
 
                             <el-date-picker
-                                align="left"
                                 type="date"
                                 :editable=false
                                 placeholder="选择日期"
-                                v-model="addForm.time"
-                                :picker-options="pickerOptions">
+                                v-model="addForm.time">
                             </el-date-picker>
 
                         </el-form-item>
@@ -200,31 +195,6 @@
                 },
                 dialogFormVisible: false,
                 tableData: [],
-                pickerOptions: {
-                    disabledDate(time) {
-                        return time.getTime() > Date.now();
-                    },
-                    shortcuts: [{
-                        text: '今天',
-                        onClick(picker) {
-                            picker.$emit('pick', new Date());
-                        }
-                    }, {
-                        text: '昨天',
-                        onClick(picker) {
-                            const date = new Date();
-                            date.setTime(date.getTime() - 3600 * 1000 * 24);
-                            picker.$emit('pick', date);
-                        }
-                    }, {
-                        text: '一周前',
-                        onClick(picker) {
-                            const date = new Date();
-                            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-                            picker.$emit('pick', date);
-                        }
-                    }]
-                },
             }
         },
         methods: {
@@ -237,7 +207,28 @@
             },
 
 
+
             handleEdit(index, row) {
+                console.log(row.cid);
+                this.dialogFormVisible = true
+                this.clearData()
+                axios.post("/users/uploadDormInterior",{
+                    cid:row.cid
+                }).then((response) => {
+                    console.log(response);
+                    if(response.msg=='查询成功'){
+                        this.addForm=response.result
+
+                    }else{
+                        this.$message({
+                            type: 'error',
+                            message: '查询失败!'
+                        });
+
+                    }
+
+                })
+
 
             },
             handleDelete(index, row) {
@@ -281,10 +272,13 @@
                 for (let index in this.searchParams) {
                     this.searchParams[index] = '';
                 }
+                this.getDataList()
+
             },
             clearData(){
                 for (let index in this.addForm) {
                     this.addForm[index] = '';
+                    this.addForm.rate=0
                 }
             },
             add() {
@@ -299,30 +293,40 @@
 
                 axios.post("/users/addDormInteriorList",params).then((response) => {
                     console.log(response);
-                    // if(response.msg=='新增成功'){
-                    //     this.$message({
-                    //         type: 'success',
-                    //         message: '新增成功!'
-                    //     });
-                    //     this.getDataList()
-                    // }else{
-                    //     this.$message({
-                    //         type: 'success',
-                    //         message: '新增失败!'
-                    //     });
-                    // }
+                    if(response.msg=='新增成功'){
+                        this.$message({
+                            type: 'success',
+                            message: '新增成功!'
+                        });
+                        this.getDataList()
+                    }else{
+                        this.$message({
+                            type: 'success',
+                            message: '新增失败!'
+                        });
+                    }
                 })
                 this.dialogFormVisible = false
                 this.clearData()
 
             },
             getDataList() {
-                axios.post("/users/dormitoryInteriorList").then((response) => {
+                let params=deepClone(this.searchParams)
+                params.time=dateFormat(params.time,'YYYY-MM-DD')
+                console.log(params);
+                axios.post("/users/dormitoryInteriorList",{
+                    buildingNum:params.buildingNum,
+                    domNum:params.domNum,
+                    time:params.time
+                }).then((response) => {
                     this.tableData = response.result
                     console.log(this.tableData);
                 })
 
-            }
+            },
+            search(){
+                this.getDataList()
+            },
         },
         mounted() {
             this.getDataList()
