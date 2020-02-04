@@ -14,9 +14,30 @@ const store = new Vuex.Store({
                 text: '主页', // 文本内容
             },
             {
-                type: 'ios-grid',
+                type: 'ios-clipboard',
                 name: 'dormitoryInteriorList',
                 text: '宿舍内务信息管理',
+            },
+            {
+                type: 'ios-paper', // icon类型
+                text: '社团活动管理', // 文本内容
+                children:[
+                    {
+                        type: 'ios-grid',
+                        name: 'associationApproval',
+                        text: '社团活动审批',
+                    },
+                    {
+                        type: 'ios-grid',
+                        name: 'associationApproval',
+                        text: '社团活动审批',
+                    },
+                    {
+                        type: 'ios-grid',
+                        name: 'associationApproval',
+                        text: '社团活动审批',
+                    },
+                ]
             },
         ],
     },

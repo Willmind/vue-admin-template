@@ -55,13 +55,13 @@
                     <el-table-column
                         label="分数">
                         <template slot-scope="scope">
-<!--                            <el-popover trigger="hover" placement="top">-->
-<!--                                <p>姓名: {{ scope.row.score}}</p>-->
-<!--                                <p>住址: {{ 2}}</p>-->
-<!--                                <div slot="reference" class="name-wrapper">-->
-<!--                                    <el-tag size="medium">{{ 3}}</el-tag>-->
-<!--                                </div>-->
-<!--                            </el-popover>-->
+                            <!--                            <el-popover trigger="hover" placement="top">-->
+                            <!--                                <p>姓名: {{ scope.row.score}}</p>-->
+                            <!--                                <p>住址: {{ 2}}</p>-->
+                            <!--                                <div slot="reference" class="name-wrapper">-->
+                            <!--                                    <el-tag size="medium">{{ 3}}</el-tag>-->
+                            <!--                                </div>-->
+                            <!--                            </el-popover>-->
                             <el-rate
                                 v-model=scope.row.score
                                 disabled
@@ -92,13 +92,29 @@
                 <el-row>
                     <el-col :span="12">
                         <el-form-item label="栋数">
-                            <el-input prefix-icon="el-icon-office-building" v-model="addForm.buildingNum" placeholder="请输入栋数"></el-input>
+                            <el-select v-model="addForm.buildingNum" placeholder="请选择">
+                                <el-option
+                                    v-for="item in buildOptions"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value"
+                                    :disabled="item.disabled">
+                                </el-option>
+                            </el-select>
                         </el-form-item>
                     </el-col>
 
                     <el-col :span="12">
                         <el-form-item label="宿舍号">
-                            <el-input prefix-icon="el-icon-office-building" v-model="addForm.domNum" placeholder="请输入宿舍号"></el-input>
+                            <el-select v-model="addForm.domNum" placeholder="请选择">
+                                <el-option
+                                    v-for="item in domOptions"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value"
+                                    :disabled="item.disabled">
+                                </el-option>
+                            </el-select>
                         </el-form-item>
                     </el-col>
 
@@ -158,7 +174,8 @@
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="addCheck">确 定</el-button>
+                <el-button v-if="isAdd" type="primary" @click="addCheck">确 定</el-button>
+                <el-button v-if="isUpdate" type="primary" @click="addUpdate">保 存</el-button>
             </div>
         </el-dialog>
 
@@ -177,6 +194,42 @@
         components: {},
         data() {
             return {
+                isUpdate:false,
+                isAdd:false,
+                buildOptions: [{
+                    value: '1',
+                    label: '1'
+                }, {
+                    value: '2',
+                    label: '2'
+                }, {
+                    value: '3',
+                    label: '3'
+                }, {
+                    value: '4',
+                    label: '4'
+                }, {
+                    value: '5',
+                    label: '5'
+                }],
+                domOptions: [{
+                    value: '101',
+                    label: '101'
+                }, {
+                    value: '102',
+                    label: '102'
+                }, {
+                    value: '303',
+                    label: '303'
+                }, {
+                    value: '404',
+                    label: '404'
+                }, {
+                    value: '505',
+                    label: '505'
+                }],
+
+
                 addForm: {
                     textarea: '',
                     rate: '',
@@ -207,19 +260,20 @@
             },
 
 
-
             handleEdit(index, row) {
+                this.isAdd=false
+                this.isUpdate=true
                 console.log(row.cid);
                 this.dialogFormVisible = true
                 this.clearData()
-                axios.post("/users/uploadDormInterior",{
-                    cid:row.cid
+                axios.post("/users/uploadDormInterior", {
+                    cid: row.cid
                 }).then((response) => {
                     console.log(response);
-                    if(response.msg=='查询成功'){
-                        this.addForm=response.result
+                    if (response.msg == '查询成功') {
+                        this.addForm = response.result
 
-                    }else{
+                    } else {
                         this.$message({
                             type: 'error',
                             message: '查询失败!'
@@ -275,31 +329,41 @@
                 this.getDataList()
 
             },
-            clearData(){
+            clearData() {
                 for (let index in this.addForm) {
                     this.addForm[index] = '';
-                    this.addForm.rate=0
+                    this.addForm.rate = 0
                 }
             },
             add() {
+                this.isAdd=true
+                this.isUpdate=false
                 this.dialogFormVisible = true
                 this.clearData()
 
             },
+            addUpdate(){
+                let params = deepClone(this.addForm)
+                params.time = dateFormat(params.time, 'YYYY-MM-DD')
+                console.log(params);
+                axios.post("/users/updateDormInteriorList",params).then((response)=>{
+                    console.log(response);
+                })
+            },
             addCheck() {
-                let params=deepClone(this.addForm)
+                let params = deepClone(this.addForm)
                 params.time = dateFormat(params.time, 'YYYY-MM-DD')
                 console.log(params);
 
-                axios.post("/users/addDormInteriorList",params).then((response) => {
+                axios.post("/users/addDormInteriorList", params).then((response) => {
                     console.log(response);
-                    if(response.msg=='新增成功'){
+                    if (response.msg == '新增成功') {
                         this.$message({
                             type: 'success',
                             message: '新增成功!'
                         });
                         this.getDataList()
-                    }else{
+                    } else {
                         this.$message({
                             type: 'success',
                             message: '新增失败!'
@@ -311,20 +375,20 @@
 
             },
             getDataList() {
-                let params=deepClone(this.searchParams)
-                params.time=dateFormat(params.time,'YYYY-MM-DD')
+                let params = deepClone(this.searchParams)
+                params.time = dateFormat(params.time, 'YYYY-MM-DD')
                 console.log(params);
-                axios.post("/users/dormitoryInteriorList",{
-                    buildingNum:params.buildingNum,
-                    domNum:params.domNum,
-                    time:params.time
+                axios.post("/users/dormitoryInteriorList", {
+                    buildingNum: params.buildingNum,
+                    domNum: params.domNum,
+                    time: params.time
                 }).then((response) => {
                     this.tableData = response.result
                     console.log(this.tableData);
                 })
 
             },
-            search(){
+            search() {
                 this.getDataList()
             },
         },
