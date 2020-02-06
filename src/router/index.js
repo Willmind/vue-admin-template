@@ -63,6 +63,42 @@ export const asyncRoutes = {
         meta: { title: '社团活动审批' },
         component: () => import('../views/associationActivities/associationApproval.vue'),
     },
+    libraryApply: {
+        path: 'associationActivities/libraryApply',
+        name: 'libraryApply',
+        meta: { title: '图书馆学术报告厅' },
+        component: () => import('../views/associationActivities/libraryApply.vue'),
+    },
+    lectureHallApply: {
+        path: 'associationActivities/lectureHallApply',
+        name: 'lectureHallApply',
+        meta: { title: '大学生学术报告厅' },
+        component: () => import('../views/associationActivities/lectureHallApply.vue'),
+    },
+    communityVenueApply: {
+        path: 'associationActivities/communityVenueApply',
+        name: 'communityVenueApply',
+        meta: { title: '社团活动场地' },
+        component: () => import('../views/associationActivities/communityVenueApply.vue'),
+    },
+    exhibitionBoard: {
+        path: 'associationActivities/exhibitionBoard',
+        name: 'exhibitionBoard',
+        meta: { title: '社团联合会展板' },
+        component: () => import('../views/associationActivities/exhibitionBoard.vue'),
+    },
+    classroomApply: {
+        path: 'associationActivities/classroomApply',
+        name: 'classroomApply',
+        meta: { title: '教室申请' },
+        component: () => import('../views/associationActivities/classroomApply.vue'),
+    },
+    editModel: {
+        path: '../views/models/editModel',
+        name: 'editModel',
+        meta: { title: 'editModel' },
+        component: () => import('../views/models/editModel.vue'),
+    },
 }
 
 const createRouter = () => new Router({

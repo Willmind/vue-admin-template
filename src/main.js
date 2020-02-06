@@ -8,6 +8,10 @@ import 'view-design/dist/styles/iview.css'
 import './permission'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css' //样式必须引入
+
+import '../src/style/main.css'
+
+
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false

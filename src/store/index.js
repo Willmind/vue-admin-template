@@ -19,23 +19,38 @@ const store = new Vuex.Store({
                 text: '宿舍内务信息管理',
             },
             {
-                type: 'ios-paper', // icon类型
+                type: 'md-bicycle', // icon类型
                 text: '社团活动管理', // 文本内容
                 children:[
                     {
-                        type: 'ios-grid',
+
                         name: 'associationApproval',
                         text: '社团活动审批',
                     },
                     {
-                        type: 'ios-grid',
-                        name: 'associationApproval',
-                        text: '社团活动审批',
+
+                        name: 'exhibitionBoard',
+                        text: '社团联合会展板',
                     },
                     {
-                        type: 'ios-grid',
-                        name: 'associationApproval',
-                        text: '社团活动审批',
+
+                        name: 'communityVenueApply',
+                        text: '社团活动场地',
+                    },
+                    {
+
+                        name: 'lectureHallApply',
+                        text: '大学生学术报告厅',
+                    },
+                    {
+
+                        name: 'libraryApply',
+                        text: '图书馆学术报告厅',
+                    },
+                    {
+
+                        name: 'classroomApply',
+                        text: '教室',
                     },
                 ]
             },

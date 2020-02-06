@@ -1,81 +1,85 @@
 <template>
     <div style="height:717px;">
         <el-scrollbar style="height:100%">
-            <editModel title="江西理工大学社团活动申请">
+            <editModel title="江西理工大学学生使用教室申请">
 
                 <div slot="write_explain" class="write_explain">
                     注意事项
                     <div class="explain_content">
-                        <p>暂无</p>
+                        <p>1、在教室中举行的活动应该是健康、向上、积极、有益的。若发现有与申请内容不相符的或者影响正常教学秩序的，由批准单位严肃处理。</p>
+                        <p>2、使用多媒体设备的全过程应有指导老师参加，指导老师名单应在申请书上注明。</p>
+                        <p>3、使用多媒体教室设备时，应爱护里面的设施，不得使用未经许可的设备，使用完后，应及时将设备钥匙交还给中心值班人员，并将设备使用情况告知值班人员。以保证后续课程的正常进行。</p>
                     </div>
                 </div>
                 <div slot="main">
                     <div style="height:717px;">
                         <div class="main-tap">
                             <el-form label-width="150px">
-                                <el-form-item label="社团名称">
-                                    <el-input></el-input>
-                                </el-form-item>
-
-                                <el-form-item label="活动名称">
-                                    <el-input></el-input>
-                                </el-form-item>
                                 <el-row>
                                     <el-col :span="12">
-
-                                        <el-form-item label="活动负责人">
+                                        <el-form-item label="使用班级">
                                             <el-input></el-input>
                                         </el-form-item>
-                                        <el-form-item label="活动时间">
-                                            <el-date-picker
-                                                type="date"
-                                                placeholder="选择日期">
-                                            </el-date-picker>
-                                        </el-form-item>
-
-                                        <el-form-item label="有无指导老师参与">
+                                        <el-form-item label="联系电话">
                                             <el-input></el-input>
                                         </el-form-item>
-
-                                        <el-form-item label="老师联系方式">
+                                        <el-form-item label="指导教师">
                                             <el-input></el-input>
                                         </el-form-item>
                                     </el-col>
 
                                     <el-col :span="12">
-                                        <el-form-item label="联系方式">
+                                        <el-form-item label="学生联系人">
                                             <el-input></el-input>
                                         </el-form-item>
-                                        <el-form-item label="活动地点">
+                                        <el-form-item label="学生所在学院或社团">
                                             <el-input></el-input>
                                         </el-form-item>
-
-                                        <el-form-item label="指导老师姓名">
+                                        <el-form-item label="指导教师电话">
                                             <el-input></el-input>
                                         </el-form-item>
-
                                     </el-col>
 
                                 </el-row>
 
                                 <el-row>
                                     <el-col :span="12">
-                                        <el-form-item label="预计成员参与人数">
+                                        <el-form-item label="使用周次">
                                             <el-input></el-input>
                                         </el-form-item>
-                                        <el-form-item label="实际成员参与人数">
+                                        <el-form-item label="使用节次">
                                             <el-input></el-input>
                                         </el-form-item>
-
+                                        <el-form-item label="教室类型">
+                                            <el-select v-model="classForm.JSLX" placeholder="请选择">
+                                                <el-option
+                                                    v-for="item in JSLX_option"
+                                                    :key="item"
+                                                    :label="item"
+                                                    :value="item"
+                                                >
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
                                     </el-col>
 
                                     <el-col :span="12">
-
-                                        <el-form-item label="财务预算总额">
+                                        <el-form-item label="星期几">
+                                            <el-select v-model="classForm.XQJ" placeholder="请选择">
+                                                <el-option
+                                                    v-for="item in XQJ_option"
+                                                    :key="item"
+                                                    :label="item"
+                                                    :value="item"
+                                                >
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                        <el-form-item label="使用人数">
                                             <el-input></el-input>
                                         </el-form-item>
 
-                                        <el-form-item label="财务决算总额">
+                                        <el-form-item label="使用教室">
                                             <el-input></el-input>
                                         </el-form-item>
                                     </el-col>
@@ -83,7 +87,7 @@
 
                                 </el-row>
 
-                                <el-form-item label="活动内容简述">
+                                <el-form-item label="活动内容说明">
                                     <el-input type="textarea"
                                               :rows="6"></el-input>
                                 </el-form-item>

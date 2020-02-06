@@ -1,92 +1,74 @@
 <template>
     <div style="height:717px;">
         <el-scrollbar style="height:100%">
-            <editModel title="江西理工大学社团活动申请">
+            <editModel title="江西理工大学社团联合会展板申请">
 
                 <div slot="write_explain" class="write_explain">
                     注意事项
                     <div class="explain_content">
-                        <p>暂无</p>
+                        <p>1、展板用完后，要把展板上的海报材料清理，保持板面整洁</p>
+                        <p>2、展板使用时要注意保护，不可随地拖拉，一旦出现损坏，由责任人赔偿</p>
+                        <p>3、本表一式三份，团委、社联、社团各执一份，留底存档</p>
                     </div>
                 </div>
                 <div slot="main">
                     <div style="height:717px;">
                         <div class="main-tap">
                             <el-form label-width="150px">
-                                <el-form-item label="社团名称">
-                                    <el-input></el-input>
-                                </el-form-item>
-
-                                <el-form-item label="活动名称">
-                                    <el-input></el-input>
-                                </el-form-item>
                                 <el-row>
                                     <el-col :span="12">
-
-                                        <el-form-item label="活动负责人">
+                                        <el-form-item label="申请社团">
                                             <el-input></el-input>
                                         </el-form-item>
-                                        <el-form-item label="活动时间">
-                                            <el-date-picker
-                                                type="date"
-                                                placeholder="选择日期">
-                                            </el-date-picker>
+                                        <el-form-item label="借用数量">
+                                            <el-input></el-input>
                                         </el-form-item>
-
-                                        <el-form-item label="有无指导老师参与">
+                                        <el-form-item label="联系电话">
                                             <el-input></el-input>
                                         </el-form-item>
 
-                                        <el-form-item label="老师联系方式">
+                                        <el-form-item label="预归还时间">
+                                            <el-input></el-input>
+                                        </el-form-item>
+
+                                        <el-form-item label="填表日期">
                                             <el-input></el-input>
                                         </el-form-item>
                                     </el-col>
 
                                     <el-col :span="12">
-                                        <el-form-item label="联系方式">
+                                        <el-form-item label="活动名称">
                                             <el-input></el-input>
                                         </el-form-item>
-                                        <el-form-item label="活动地点">
+                                        <el-form-item label="责任人">
+                                            <el-input></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="借用时间">
                                             <el-input></el-input>
                                         </el-form-item>
 
-                                        <el-form-item label="指导老师姓名">
+                                        <el-form-item label="实归还时间">
                                             <el-input></el-input>
                                         </el-form-item>
-
                                     </el-col>
 
                                 </el-row>
 
-                                <el-row>
-                                    <el-col :span="12">
-                                        <el-form-item label="预计成员参与人数">
-                                            <el-input></el-input>
-                                        </el-form-item>
-                                        <el-form-item label="实际成员参与人数">
-                                            <el-input></el-input>
-                                        </el-form-item>
 
-                                    </el-col>
-
-                                    <el-col :span="12">
-
-                                        <el-form-item label="财务预算总额">
-                                            <el-input></el-input>
-                                        </el-form-item>
-
-                                        <el-form-item label="财务决算总额">
-                                            <el-input></el-input>
-                                        </el-form-item>
-                                    </el-col>
+                                <el-form-item label="指导老师">
+                                    <el-input></el-input>
+                                </el-form-item>
 
 
-                                </el-row>
-
-                                <el-form-item label="活动内容简述">
+                                <el-form-item label="备注">
                                     <el-input type="textarea"
                                               :rows="6"></el-input>
                                 </el-form-item>
+
+
+
+
+
 
 
                             </el-form>
