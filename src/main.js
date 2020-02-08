@@ -9,6 +9,7 @@ import './permission'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css' //样式必须引入
 Vue.use(ElementUI)
+import '../src/style/main.css'
 
 Vue.config.productionTip = false
 Vue.use(ViewUI)

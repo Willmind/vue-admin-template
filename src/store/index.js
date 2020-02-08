@@ -18,6 +18,11 @@ const store = new Vuex.Store({
                 name: 'dormitoryInteriorList',
                 text: '宿舍内务信息管理',
             },
+            {
+                type: 'ios-grid',
+                name: 'classroomApplyList',
+                text: '教室申请',
+            },
         ],
     },
     mutations: {

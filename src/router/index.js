@@ -57,6 +57,14 @@ export const asyncRoutes = {
         meta: { title: '宿舍内务信息管理' },
         component: () => import('../views/dormitoryInteriorList.vue'),
     },
+
+    classroomApplyList: {
+        path: 'associationList/classroomApplyList',
+        name: 'classroomApplyList',
+        meta: { title: '教室申请' },
+        component: () => import('../views/associationList/classroomApplyList.vue'),
+    },
+
 }
 
 const createRouter = () => new Router({
