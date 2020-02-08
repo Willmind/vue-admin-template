@@ -20,7 +20,7 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="使用单位">
-                                            <el-input></el-input>
+                                            <el-input ></el-input>
                                         </el-form-item>
                                         <el-form-item label="责任人">
                                             <el-input></el-input>
@@ -48,7 +48,8 @@
 
                                 <el-form-item label="活动内容">
                                     <el-input type="textarea"
-                                              :rows="6"></el-input>
+                                              :rows="6"
+                                    v-model="academicReportForm.text"></el-input>
                                 </el-form-item>
 
 
@@ -89,7 +90,7 @@
         },
         data(){
             return{
-                classForm:{
+                academicReportForm:{
 
                 },
                 JSLX_option:['普通','多媒体'],

@@ -57,48 +57,39 @@ export const asyncRoutes = {
         meta: { title: '宿舍内务信息管理' },
         component: () => import('../views/dormitoryInteriorList.vue'),
     },
-    associationApproval: {
-        path: 'associationActivities/associationApproval',
-        name: 'associationApproval',
-        meta: { title: '社团活动审批' },
-        component: () => import('../views/associationActivities/associationApproval.vue'),
+
+
+    libraryApplyList: {
+        path: 'associationList/libraryApplyList',
+        name: 'libraryApplyList',
+        meta: { title: '图书馆申请' },
+        component: () => import('../views/associationList/libraryApplyList.vue'),
     },
-    libraryApply: {
-        path: 'associationActivities/libraryApply',
-        name: 'libraryApply',
-        meta: { title: '图书馆学术报告厅' },
-        component: () => import('../views/associationActivities/libraryApply.vue'),
-    },
-    lectureHallApply: {
-        path: 'associationActivities/lectureHallApply',
-        name: 'lectureHallApply',
-        meta: { title: '大学生学术报告厅' },
-        component: () => import('../views/associationActivities/lectureHallApply.vue'),
-    },
-    communityVenueApply: {
-        path: 'associationActivities/communityVenueApply',
-        name: 'communityVenueApply',
-        meta: { title: '社团活动场地' },
-        component: () => import('../views/associationActivities/communityVenueApply.vue'),
-    },
-    exhibitionBoard: {
-        path: 'associationActivities/exhibitionBoard',
-        name: 'exhibitionBoard',
-        meta: { title: '社团联合会展板' },
-        component: () => import('../views/associationActivities/exhibitionBoard.vue'),
-    },
-    classroomApply: {
-        path: 'associationActivities/classroomApply',
-        name: 'classroomApply',
+
+    classroomApplyList: {
+        path: 'associationList/classroomApplyList',
+        name: 'classroomApplyList',
         meta: { title: '教室申请' },
-        component: () => import('../views/associationActivities/classroomApply.vue'),
+        component: () => import('../views/associationList/classroomApplyList.vue'),
     },
-    editModel: {
-        path: '../views/models/editModel',
-        name: 'editModel',
-        meta: { title: 'editModel' },
-        component: () => import('../views/models/editModel.vue'),
+
+    lectureHallApplyList: {
+        path: 'associationList/lectureHallApplyList',
+        name: 'lectureHallApplyList',
+        meta: { title: '学术报告厅申请' },
+        component: () => import('../views/associationList/lectureHallApplyList.vue'),
     },
+
+    exhibitionBoardList: {
+        path: 'associationList/exhibitionBoardList',
+        name: 'exhibitionBoardList',
+        meta: { title: '展板' },
+        component: () => import('../views/associationList/exhibitionBoardList.vue'),
+    },
+
+
+
+
 }
 
 const createRouter = () => new Router({

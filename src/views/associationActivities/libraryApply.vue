@@ -22,41 +22,73 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="使用单位">
-                                            <el-input></el-input>
+                                            <el-input v-model="libraryApplyForm.unit"></el-input>
                                         </el-form-item>
                                         <el-form-item label="参加对象">
-                                            <el-input></el-input>
+                                            <el-input v-model="libraryApplyForm.object"></el-input>
                                         </el-form-item>
-                                        <el-form-item label="项目名称">
-                                            <el-input></el-input>
-                                        </el-form-item>
+
                                     </el-col>
 
                                     <el-col :span="12">
                                         <el-form-item label="参加人数">
-                                            <el-input></el-input>
+                                            <el-input v-model="libraryApplyForm.number"></el-input>
                                         </el-form-item>
                                         <el-form-item label="项目负责人电话">
-                                            <el-input></el-input>
+                                            <el-input v-model="libraryApplyForm.phone"></el-input>
                                         </el-form-item>
                                     </el-col>
 
                                 </el-row>
+                                <el-form-item label="项目名称">
+                                    <el-input v-model="libraryApplyForm.name"></el-input>
+                                </el-form-item>
 
                                 <el-row>
 
                                     <el-col :span="12">
                                         <el-form-item label="开始时间">
-                                            <el-input></el-input>
+                                            <el-date-picker
+                                                v-model="libraryApplyForm.startTime"
+                                                :editable="false"
+                                                type="datetime"
+                                                placeholder="请选择时间">
+                                            </el-date-picker>
                                         </el-form-item>
+<!--                                        Equipment Requirements-->
                                         <el-form-item label="设备、设施使用要求">
-                                            <el-input></el-input>
+                                            <el-select
+                                                v-model="libraryApplyForm.equipRequirement"
+                                                multiple
+                                                collapse-tags
+                                                placeholder="请选择">
+                                                <el-option
+                                                    v-for="item in equipRequirement_options"
+                                                    :key="item"
+                                                    :label="item"
+                                                    :value="item">
+                                                </el-option>
+                                            </el-select>
                                         </el-form-item>
                                     </el-col>
 
                                     <el-col :span="12">
                                         <el-form-item label="结束时间">
-                                            <el-input></el-input>
+                                            <el-date-picker
+                                                v-model="libraryApplyForm.endTime"
+                                                :editable="false"
+                                                type="datetime"
+                                                placeholder="请选择时间">
+                                            </el-date-picker>
+                                        </el-form-item>
+
+                                        <el-form-item label="填表日期">
+                                            <el-date-picker
+                                                v-model="libraryApplyForm.applyTime"
+                                                :editable="false"
+                                                type="date"
+                                                placeholder="请选择日期">
+                                            </el-date-picker>
                                         </el-form-item>
                                     </el-col>
 
@@ -65,8 +97,13 @@
 
                                 <el-form-item label="备注">
                                     <el-input type="textarea"
-                                              :rows="6"></el-input>
+                                              :rows="6"
+                                              v-model="libraryApplyForm.text"></el-input>
                                 </el-form-item>
+
+                                <el-button @click="add">
+                                    11
+                                </el-button>
 
 
 
@@ -100,17 +137,21 @@
 <script>
     import editModel from "../models/editModel";
     export default {
-        name: "classroomApply",
+        name: "libraryApply",
         components:{
             editModel
         },
         data(){
             return{
-                classForm:{
+                libraryApplyForm:{
 
                 },
-                JSLX_option:['普通','多媒体'],
-                XQJ_option:['一','二','三','四','五','六','日'],
+                equipRequirement_options:['话筒（会议话筒，无线话筒）','投影仪','空调','音响']
+            }
+        },
+        methods:{
+            add(){
+                console.log(this.libraryApplyForm);
             }
         }
     }

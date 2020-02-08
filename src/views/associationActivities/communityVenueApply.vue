@@ -6,7 +6,7 @@
                 <div slot="write_explain" class="write_explain">
                     注意事项
                     <div class="explain_content">
-                        <p>1、场地用完后，要安排后勤人进行打扫，保持场面清洁，设备的完整</p>
+                  zsz      <p>1、场地用完后，要安排后勤人进行打扫，保持场面清洁，设备的完整</p>
                     </div>
                 </div>
                 <div slot="main">

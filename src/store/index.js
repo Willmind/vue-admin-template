@@ -24,34 +24,30 @@ const store = new Vuex.Store({
                 children:[
                     {
 
-                        name: 'associationApproval',
-                        text: '社团活动审批',
-                    },
-                    {
-
-                        name: 'exhibitionBoard',
-                        text: '社团联合会展板',
-                    },
-                    {
-
-                        name: 'communityVenueApply',
-                        text: '社团活动场地',
-                    },
-                    {
-
-                        name: 'lectureHallApply',
-                        text: '大学生学术报告厅',
-                    },
-                    {
-
-                        name: 'libraryApply',
-                        text: '图书馆学术报告厅',
-                    },
-                    {
-
-                        name: 'classroomApply',
+                        name: 'classroomApplyList',
                         text: '教室',
                     },
+                    {
+                        name: 'libraryApplyList',
+                        text: '图书馆',
+                    },
+                    {
+                        name: 'lectureHallApplyList',
+                        text: '学术报告厅',
+                    },
+                    {
+                        name: 'exhibitionBoardList',
+                        text: '展板',
+                    },
+                    {
+                        name: 'communityVenueApplyList',
+                        text: '场地',
+                    },
+                    {
+                        name: 'associationApprovalList',
+                        text: '活动',
+                    },
+
                 ]
             },
         ],

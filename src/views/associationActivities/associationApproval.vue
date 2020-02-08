@@ -124,8 +124,12 @@
                 classForm:{
 
                 },
-                JSLX_option:['普通','多媒体'],
-                XQJ_option:['一','二','三','四','五','六','日'],
+
+            }
+        },
+        methods:{
+            add(){
+                console.log(this.classForm);
             }
         }
     }
