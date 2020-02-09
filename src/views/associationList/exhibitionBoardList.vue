@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-if="classroomApplyList">
-            <listModel title="教室申请列表">
+        <div v-if="exhibitionBoardList">
+            <listModel title="展板申请列表">
 
                 <div slot="conditionSearch">
                     <div class="row1">
@@ -101,8 +101,8 @@
             </listModel>
         </div>
 
-        <div v-if="classroomApply">
-            <classroomApply @goBack="back()"></classroomApply>
+        <div v-if="exhibitionBoard">
+            <exhibitionBoard @goBack="back()"></exhibitionBoard>
         </div>
 
 
@@ -112,30 +112,30 @@
 
 <script>
     import listModel from "../models/listModel";
-    import classroomApply from "../associationActivities/classroomApply";
+    import exhibitionBoard from "../associationActivities/exhibitionBoard";
     export default {
-        name: "classroomApplyList",
+        name: "exhibitionBoardList",
         components:{
             listModel,
-            classroomApply
+            exhibitionBoard
         },
         data(){
             return{
                 tableData:[],
-                classroomApplyList:true,
-                classroomApply:false
+                exhibitionBoardList:true,
+                exhibitionBoard:false
 
             }
         },
         methods:{
             add(){
-                this.classroomApplyList=false
-                this.classroomApply=true
+                this.exhibitionBoardList=false
+                this.exhibitionBoard=true
                 console.log(1);
             },
             back(){
-                this.classroomApplyList=true
-                this.classroomApply=false
+                this.exhibitionBoardList=true
+                this.exhibitionBoard=false
                 console.log(1);
             },
 

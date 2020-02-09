@@ -56,6 +56,16 @@
                                               :rows="6"></el-input>
                                 </el-form-item>
 
+                                <div class="footer">
+                                    <el-button @click="back">
+                                        返回
+                                    </el-button>
+                                    <el-button >
+                                        保存
+                                    </el-button>
+
+                                </div>
+
 
 
 
@@ -100,7 +110,15 @@
                 JSLX_option:['普通','多媒体'],
                 XQJ_option:['一','二','三','四','五','六','日'],
             }
-        }
+        },
+       methods: {
+
+           back() {
+               this.$emit('goBack');
+
+           }
+
+       }
     }
 </script>
 

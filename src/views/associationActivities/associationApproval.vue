@@ -88,6 +88,16 @@
                                               :rows="6"></el-input>
                                 </el-form-item>
 
+                                <div class="footer">
+                                    <el-button @click="back">
+                                        返回
+                                    </el-button>
+                                    <el-button >
+                                        保存
+                                    </el-button>
+
+                                </div>
+
 
                             </el-form>
                         </div>
@@ -130,7 +140,11 @@
         methods:{
             add(){
                 console.log(this.classForm);
+            }, back(){
+                this.$emit('goBack');
+
             }
+
         }
     }
 </script>

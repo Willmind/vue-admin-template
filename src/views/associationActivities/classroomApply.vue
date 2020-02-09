@@ -116,15 +116,15 @@
                                               v-model="classForm.text"></el-input>
                                 </el-form-item>
 
-                                <el-form-item>
-                                    <el-button @click="add">
-                                        新增
-                                    </el-button>
-
+                                <div class="footer">
                                     <el-button @click="back">
                                         返回
                                     </el-button>
-                                </el-form-item>
+                                    <el-button @click="add">
+                                        保存
+                                    </el-button>
+
+                                </div>
 
 
                             </el-form>

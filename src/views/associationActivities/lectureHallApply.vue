@@ -20,7 +20,7 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="使用单位">
-                                            <el-input ></el-input>
+                                            <el-input></el-input>
                                         </el-form-item>
                                         <el-form-item label="责任人">
                                             <el-input></el-input>
@@ -49,13 +49,18 @@
                                 <el-form-item label="活动内容">
                                     <el-input type="textarea"
                                               :rows="6"
-                                    v-model="academicReportForm.text"></el-input>
+                                              v-model="academicReportForm.text"></el-input>
                                 </el-form-item>
 
+                                <div class="footer">
+                                    <el-button @click="back">
+                                        返回
+                                    </el-button>
+                                    <el-button >
+                                        保存
+                                    </el-button>
 
-
-
-
+                                </div>
 
 
                             </el-form>
@@ -65,11 +70,7 @@
                     </div>
 
 
-
-
-
                 </div>
-
 
 
             </editModel>
@@ -83,19 +84,26 @@
 
 <script>
     import editModel from "../models/editModel";
+
     export default {
         name: "classroomApply",
-        components:{
+        components: {
             editModel
         },
-        data(){
-            return{
-                academicReportForm:{
-
-                },
-                JSLX_option:['普通','多媒体'],
-                XQJ_option:['一','二','三','四','五','六','日'],
+        data() {
+            return {
+                academicReportForm: {},
+                JSLX_option: ['普通', '多媒体'],
+                XQJ_option: ['一', '二', '三', '四', '五', '六', '日'],
             }
+        },
+        methods: {
+
+            back() {
+                this.$emit('goBack');
+
+            }
+
         }
     }
 </script>

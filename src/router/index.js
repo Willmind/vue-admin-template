@@ -65,6 +65,39 @@ export const asyncRoutes = {
         component: () => import('../views/associationList/classroomApplyList.vue'),
     },
 
+    associationApprovalList: {
+        path: 'associationList/associationApprovalList',
+        name: 'associationApprovalList',
+        meta: { title: '社团活动申请' },
+        component: () => import('../views/associationList/associationApprovalList.vue'),
+    },
+
+    libraryApplyList: {
+        path: 'associationList/libraryApplyList',
+        name: 'libraryApplyList',
+        meta: { title: '图书馆申请' },
+        component: () => import('../views/associationList/libraryApplyList.vue'),
+    },
+    exhibitionBoardList: {
+        path: 'associationList/exhibitionBoardList',
+        name: 'exhibitionBoardList',
+        meta: { title: '展板申请' },
+        component: () => import('../views/associationList/exhibitionBoardList.vue'),
+    },
+
+    lectureHallApplyList: {
+        path: 'associationList/lectureHallApplyList',
+        name: 'lectureHallApplyList',
+        meta: { title: '学术报告厅申请' },
+        component: () => import('../views/associationList/lectureHallApplyList.vue'),
+    },
+    communityVenueApplyList: {
+        path: 'associationList/communityVenueApplyList',
+        name: 'communityVenueApplyList',
+        meta: { title: '活动场地申请' },
+        component: () => import('../views/associationList/communityVenueApplyList.vue'),
+    },
+
 }
 
 const createRouter = () => new Router({

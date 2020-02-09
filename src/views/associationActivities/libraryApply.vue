@@ -101,9 +101,16 @@
                                               v-model="libraryApplyForm.text"></el-input>
                                 </el-form-item>
 
-                                <el-button @click="add">
-                                    11
-                                </el-button>
+                                <div class="footer">
+                                    <el-button @click="back">
+                                        返回
+                                    </el-button>
+                                    <el-button @click="add">
+                                        保存
+                                    </el-button>
+
+                                </div>
+
 
 
 
@@ -152,7 +159,11 @@
         methods:{
             add(){
                 console.log(this.libraryApplyForm);
-            }
+            },
+            back(){
+                this.$emit('goBack');
+
+            },
         }
     }
 </script>
