@@ -66,10 +66,10 @@
                                 </el-form-item>
 
                                 <div class="footer">
-                                    <el-button @click="back">
+                                    <el-button icon="el-icon-back" @click="back">
                                         返回
                                     </el-button>
-                                    <el-button >
+                                    <el-button type="primary" icon="el-icon-folder-checked" >
                                         保存
                                     </el-button>
 

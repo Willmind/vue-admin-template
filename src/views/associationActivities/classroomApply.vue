@@ -117,10 +117,10 @@
                                 </el-form-item>
 
                                 <div class="footer">
-                                    <el-button @click="back">
+                                    <el-button icon="el-icon-back" @click="back">
                                         返回
                                     </el-button>
-                                    <el-button @click="add">
+                                    <el-button type="primary" icon="el-icon-folder-checked" @click="add">
                                         保存
                                     </el-button>
 
@@ -156,6 +156,13 @@
         name: "classroomApply",
         components: {
             editModel
+        },
+        props:{
+            rid:{
+                type:String,
+                default:''
+            },
+
         },
         data() {
             return {
@@ -195,10 +202,29 @@
             back(){
                 this.$emit('goBack');
 
+
+            },
+            getDataDetail(){
+                axios.post("/users/classFormQueryOne",{rid:this.rid}).then((response)=>{
+                    console.log(response.result);
+                    if(response.msg=='查询成功'){
+                        this.classForm=response.result
+
+
+                    }
+
+                })
+
             },
         },
         mounted() {
-            this.classForm.applyTime = new Date()
+            console.log(this.rid);
+            if(this.rid){
+                this.getDataDetail()
+            }else{
+                this.classForm.applyTime = new Date()
+
+            }
 
 
 

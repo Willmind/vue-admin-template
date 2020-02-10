@@ -38,23 +38,23 @@
                             width="55">
                         </el-table-column>
                         <el-table-column
-                            prop="time"
-                            label="检查时间"
+                            prop="class"
+                            label="使用班级"
                         >
                         </el-table-column>
                         <el-table-column
-                            prop="checkPerson"
-                            label="检查人员"
+                            prop="student"
+                            label="学生联系人"
                         >
                         </el-table-column>
                         <el-table-column
-                            prop="buildingNum"
-                            label="栋数"
+                            prop="phone"
+                            label="联系电话"
                         >
                         </el-table-column>
                         <el-table-column
-                            prop="domNum"
-                            label="宿舍号"
+                            prop="organization"
+                            label="学生所在学院或社团"
                         >
                         </el-table-column>
                         <!--                        <el-table-column-->
@@ -75,19 +75,19 @@
 
                         <!--                            </template>-->
                         <!--                        </el-table-column>-->
-                        <!--                        <el-table-column label="操作" width="150">-->
-                        <!--                            <template slot-scope="scope">-->
-                        <!--                                <el-button-->
-                        <!--                                    size="mini"-->
-                        <!--                                    @click="handleEdit(scope.$index, scope.row)">编辑-->
-                        <!--                                </el-button>-->
-                        <!--                                <el-button-->
-                        <!--                                    size="mini"-->
-                        <!--                                    type="danger"-->
-                        <!--                                    @click="handleDelete(scope.$index, scope.row)">删除-->
-                        <!--                                </el-button>-->
-                        <!--                            </template>-->
-                        <!--                        </el-table-column>-->
+                                                <el-table-column label="操作" width="150">
+                                                    <template slot-scope="scope">
+                                                        <el-button
+                                                            size="mini"
+                                                            @click="handleEdit(scope.$index, scope.row)">编辑
+                                                        </el-button>
+                                                        <el-button
+                                                            size="mini"
+                                                            type="danger"
+                                                            >删除
+                                                        </el-button>
+                                                    </template>
+                                                </el-table-column>
                     </el-table>
 
 
@@ -102,7 +102,7 @@
         </div>
 
         <div v-if="classroomApply">
-            <classroomApply @goBack="back()"></classroomApply>
+            <classroomApply @goBack="back()" :rid="rid"></classroomApply>
         </div>
 
 
@@ -111,6 +111,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
     import listModel from "../models/listModel";
     import classroomApply from "../associationActivities/classroomApply";
     export default {
@@ -121,6 +122,7 @@
         },
         data(){
           return{
+              rid:'',
               tableData:[],
               classroomApplyList:true,
               classroomApply:false
@@ -136,11 +138,27 @@
             back(){
                 this.classroomApplyList=true
                 this.classroomApply=false
+                this.rid = '';
                 console.log(1);
+            },
+            getDataList(){
+                axios.post("/users/classFormList").then((response) => {
+                    console.log(response);
+                    if(response.msg=='查询成功'){
+                        this.tableData=response.result
+                    }
+                })
+            },
+            handleEdit(index,row){
+                console.log(row.rid);
+                this.rid=row.rid
+                this.add()
+
             },
 
         },
         mounted() {
+            this.getDataList()
 
         }
 
