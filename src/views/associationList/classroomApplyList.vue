@@ -1,104 +1,110 @@
 <template>
     <div>
-        <div v-if="classroomApplyList">
-            <listModel title="教室申请列表">
+        <div v-if="classroomApplyList" style="height:717px;">
+            <el-scrollbar style="height:100%">
+                <listModel title="教室申请列表">
 
-                <div slot="conditionSearch">
-                    <div class="row1">
+                    <div slot="conditionSearch">
+                        <div class="row1">
 
-                        <el-button size="mini" @click="add" icon="el-icon-plus">新增</el-button>
-                        <el-button size="mini" icon="el-icon-delete" type="primary">删除</el-button>
-                    </div>
+                            <el-button size="mini" @click="add" icon="el-icon-plus">新增</el-button>
+                            <el-button size="mini" icon="el-icon-delete" type="primary">删除</el-button>
+                        </div>
 
-                    <div class="row2">
+                        <div class="row2">
 
-                        <div class="left">
+                            <div class="left">
 
-                            <el-input size="mini"  prefix-icon="el-icon-office-building" placeholder="栋数"></el-input>
-                            <el-input size="mini"  prefix-icon="el-icon-office-building" placeholder="宿舍号"></el-input>
+                                <el-input size="mini"  prefix-icon="el-icon-office-building" placeholder="栋数"></el-input>
+                                <el-input size="mini"  prefix-icon="el-icon-office-building" placeholder="宿舍号"></el-input>
+                                <el-button size="mini" @click="search" icon="el-icon-search">搜索</el-button>
+                                <el-button size="mini" @click="refresh" icon="el-icon-refresh-right" type="primary">重置</el-button>
 
+
+
+                            </div>
 
                         </div>
 
+
+
+                    </div>
+
+                    <div slot="table">
+
+                        <el-table
+                            border
+                            max-height="512"
+                            :data="tableData"
+                            style="width: 100%">
+                            <el-table-column
+                                type="selection"
+                                width="55">
+                            </el-table-column>
+                            <el-table-column
+                                prop="class"
+                                label="使用班级"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                prop="student"
+                                label="学生联系人"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                prop="phone"
+                                label="联系电话"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                prop="organization"
+                                label="学生所在学院或社团"
+                            >
+                            </el-table-column>
+                            <!--                        <el-table-column-->
+                            <!--                            label="分数">-->
+                            <!--                            <template slot-scope="scope">-->
+                            <!--                                &lt;!&ndash;                            <el-popover trigger="hover" placement="top">&ndash;&gt;-->
+                            <!--                                &lt;!&ndash;                                <p>姓名: {{ scope.row.score}}</p>&ndash;&gt;-->
+                            <!--                                &lt;!&ndash;                                <p>住址: {{ 2}}</p>&ndash;&gt;-->
+                            <!--                                &lt;!&ndash;                                <div slot="reference" class="name-wrapper">&ndash;&gt;-->
+                            <!--                                &lt;!&ndash;                                    <el-tag size="medium">{{ 3}}</el-tag>&ndash;&gt;-->
+                            <!--                                &lt;!&ndash;                                </div>&ndash;&gt;-->
+                            <!--                                &lt;!&ndash;                            </el-popover>&ndash;&gt;-->
+                            <!--                                <el-rate-->
+                            <!--                                    v-model=scope.row.score-->
+                            <!--                                    disabled-->
+                            <!--                                    text-color="#ff9900">-->
+                            <!--                                </el-rate>-->
+
+                            <!--                            </template>-->
+                            <!--                        </el-table-column>-->
+                            <el-table-column label="操作" width="150">
+                                <template slot-scope="scope">
+                                    <el-button
+                                        size="mini"
+                                        @click="handleEdit(scope.$index, scope.row)">编辑
+                                    </el-button>
+                                    <el-button
+                                        size="mini"
+                                        type="danger"
+                                    >删除
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+
+
+
+
+
                     </div>
 
 
 
-                </div>
+                </listModel>
 
-                <div slot="table">
-
-                    <el-table
-                        border
-                        max-height="512"
-                        :data="tableData"
-                        style="width: 100%">
-                        <el-table-column
-                            type="selection"
-                            width="55">
-                        </el-table-column>
-                        <el-table-column
-                            prop="class"
-                            label="使用班级"
-                        >
-                        </el-table-column>
-                        <el-table-column
-                            prop="student"
-                            label="学生联系人"
-                        >
-                        </el-table-column>
-                        <el-table-column
-                            prop="phone"
-                            label="联系电话"
-                        >
-                        </el-table-column>
-                        <el-table-column
-                            prop="organization"
-                            label="学生所在学院或社团"
-                        >
-                        </el-table-column>
-                        <!--                        <el-table-column-->
-                        <!--                            label="分数">-->
-                        <!--                            <template slot-scope="scope">-->
-                        <!--                                &lt;!&ndash;                            <el-popover trigger="hover" placement="top">&ndash;&gt;-->
-                        <!--                                &lt;!&ndash;                                <p>姓名: {{ scope.row.score}}</p>&ndash;&gt;-->
-                        <!--                                &lt;!&ndash;                                <p>住址: {{ 2}}</p>&ndash;&gt;-->
-                        <!--                                &lt;!&ndash;                                <div slot="reference" class="name-wrapper">&ndash;&gt;-->
-                        <!--                                &lt;!&ndash;                                    <el-tag size="medium">{{ 3}}</el-tag>&ndash;&gt;-->
-                        <!--                                &lt;!&ndash;                                </div>&ndash;&gt;-->
-                        <!--                                &lt;!&ndash;                            </el-popover>&ndash;&gt;-->
-                        <!--                                <el-rate-->
-                        <!--                                    v-model=scope.row.score-->
-                        <!--                                    disabled-->
-                        <!--                                    text-color="#ff9900">-->
-                        <!--                                </el-rate>-->
-
-                        <!--                            </template>-->
-                        <!--                        </el-table-column>-->
-                                                <el-table-column label="操作" width="150">
-                                                    <template slot-scope="scope">
-                                                        <el-button
-                                                            size="mini"
-                                                            @click="handleEdit(scope.$index, scope.row)">编辑
-                                                        </el-button>
-                                                        <el-button
-                                                            size="mini"
-                                                            type="danger"
-                                                            >删除
-                                                        </el-button>
-                                                    </template>
-                                                </el-table-column>
-                    </el-table>
-
-
-
-
-
-                </div>
-
-
-
-            </listModel>
+            </el-scrollbar>
         </div>
 
         <div v-if="classroomApply">
@@ -130,6 +136,12 @@
           }
         },
         methods:{
+            search(){
+                this.getDataList()
+            },
+            refresh(){
+                this.getDataList()
+            },
             add(){
                 this.classroomApplyList=false
                 this.classroomApply=true
@@ -139,7 +151,7 @@
                 this.classroomApplyList=true
                 this.classroomApply=false
                 this.rid = '';
-                console.log(1);
+                this.refresh()
             },
             getDataList(){
                 axios.post("/users/classFormList").then((response) => {

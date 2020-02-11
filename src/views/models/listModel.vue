@@ -59,6 +59,8 @@
         min-width: 1100px;
         padding: 15px 35px;
         box-sizing: border-box;
+        padding-bottom: 65px;
+        margin-bottom: 35px;
 
         .title{
             & >.name {

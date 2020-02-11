@@ -192,11 +192,24 @@
         methods: {
             add() {
                 let params=deepClone(this.classForm)
+                console.log(params);
                 params.applyTime=dateFormat(params.applyTime,'YYYY-MM-DD')
                 params.section=params.section.join(',')
-                console.log(params);
+
                 axios.post("/users/addClassFormList",params).then((response)=>{
                     console.log(response);
+                    if(response.msg=='操作成功'){
+                        this.$message({
+                            message: '保存成功',
+                            type: 'success'
+                        });
+                    }else{
+                        this.$message({
+                            message: '保存失败',
+                            type: 'error'
+                        });
+
+                    }
                 })
             },
             back(){
@@ -209,6 +222,7 @@
                     console.log(response.result);
                     if(response.msg=='查询成功'){
                         this.classForm=response.result
+                        this.classForm.section=response.result.section.split('')
 
 
                     }
