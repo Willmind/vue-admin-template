@@ -20,34 +20,34 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="使用单位">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="责任人">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                     </el-col>
 
                                     <el-col :span="12">
                                         <el-form-item label="使用时间">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="联系电话">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                     </el-col>
 
                                 </el-row>
                                 <el-form-item label="指导老师">
-                                    <el-input></el-input>
+                                    <el-input clearable></el-input>
                                 </el-form-item>
 
                                 <el-form-item label="使用设备">
-                                    <el-input></el-input>
+                                    <el-input clearable></el-input>
                                 </el-form-item>
 
 
                                 <el-form-item label="活动内容">
-                                    <el-input type="textarea"
+                                    <el-input clearable type="textarea"
                                               :rows="6"
                                               v-model="academicReportForm.text"></el-input>
                                 </el-form-item>

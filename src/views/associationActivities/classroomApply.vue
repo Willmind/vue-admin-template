@@ -18,25 +18,25 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="使用班级">
-                                            <el-input v-model="classForm.class"></el-input>
+                                            <el-input clearable  v-model="classForm.class"></el-input>
                                         </el-form-item>
                                         <el-form-item label="联系电话">
-                                            <el-input v-model="classForm.phone"></el-input>
+                                            <el-input clearable v-model="classForm.phone"></el-input>
                                         </el-form-item>
                                         <el-form-item label="指导教师">
-                                            <el-input v-model="classForm.teacher"></el-input>
+                                            <el-input clearable v-model="classForm.teacher"></el-input>
                                         </el-form-item>
                                     </el-col>
 
                                     <el-col :span="12">
                                         <el-form-item label="学生联系人">
-                                            <el-input v-model="classForm.student"></el-input>
+                                            <el-input clearable v-model="classForm.student"></el-input>
                                         </el-form-item>
                                         <el-form-item label="学生所在学院或社团">
-                                            <el-input v-model="classForm.organization"></el-input>
+                                            <el-input clearable v-model="classForm.organization"></el-input>
                                         </el-form-item>
                                         <el-form-item label="指导教师电话">
-                                            <el-input v-model="classForm.teacherPhone"></el-input>
+                                            <el-input clearable v-model="classForm.teacherPhone"></el-input>
                                         </el-form-item>
                                     </el-col>
 
@@ -45,12 +45,12 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="使用周次">
-                                            <el-input v-model="classForm.week"></el-input>
+                                            <el-input clearable v-model="classForm.week"></el-input>
 
 
                                         </el-form-item>
                                         <el-form-item label="使用节次">
-                                            <el-select
+                                            <el-select clearable
                                                 v-model="classForm.section"
                                                 multiple
                                                 collapse-tags
@@ -64,7 +64,7 @@
                                             </el-select>
                                         </el-form-item>
                                         <el-form-item label="教室类型">
-                                            <el-select v-model="classForm.classroomType" placeholder="请选择">
+                                            <el-select clearable v-model="classForm.classroomType" placeholder="请选择">
                                                 <el-option
                                                     v-for="item in classroomType_option"
                                                     :key="item"
@@ -88,7 +88,7 @@
 
                                     <el-col :span="12">
                                         <el-form-item label="星期几">
-                                            <el-select v-model="classForm.whichDay" placeholder="请选择">
+                                            <el-select clearable v-model="classForm.whichDay" placeholder="请选择">
                                                 <el-option
                                                     v-for="item in whichDay_option"
                                                     :key="item"
@@ -99,11 +99,11 @@
                                             </el-select>
                                         </el-form-item>
                                         <el-form-item label="使用人数">
-                                            <el-input v-model="classForm.number"></el-input>
+                                            <el-input clearable v-model="classForm.number"></el-input>
                                         </el-form-item>
 
                                         <el-form-item label="使用教室">
-                                            <el-input v-model="classForm.classRoom"></el-input>
+                                            <el-input clearable v-model="classForm.classRoom"></el-input>
                                         </el-form-item>
                                     </el-col>
 
@@ -111,7 +111,7 @@
                                 </el-row>
 
                                 <el-form-item label="活动内容说明">
-                                    <el-input type="textarea"
+                                    <el-input clearable type="textarea"
                                               :rows="6"
                                               v-model="classForm.text"></el-input>
                                 </el-form-item>

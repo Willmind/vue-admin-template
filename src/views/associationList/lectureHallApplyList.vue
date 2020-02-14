@@ -14,8 +14,8 @@
 
                         <div class="left">
 
-                            <el-input size="mini"  prefix-icon="el-icon-office-building" placeholder="栋数"></el-input>
-                            <el-input size="mini"  prefix-icon="el-icon-office-building" placeholder="宿舍号"></el-input>
+                            <el-input clearable size="mini"  prefix-icon="el-icon-office-building" placeholder="栋数"></el-input>
+                            <el-input clearable size="mini"  prefix-icon="el-icon-office-building" placeholder="宿舍号"></el-input>
 
 
                         </div>

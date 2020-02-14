@@ -22,26 +22,26 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="使用单位">
-                                            <el-input v-model="libraryApplyForm.unit"></el-input>
+                                            <el-input clearable v-model="libraryApplyForm.unit"></el-input>
                                         </el-form-item>
                                         <el-form-item label="参加对象">
-                                            <el-input v-model="libraryApplyForm.object"></el-input>
+                                            <el-input clearable v-model="libraryApplyForm.object"></el-input>
                                         </el-form-item>
 
                                     </el-col>
 
                                     <el-col :span="12">
                                         <el-form-item label="参加人数">
-                                            <el-input v-model="libraryApplyForm.number"></el-input>
+                                            <el-input clearable v-model="libraryApplyForm.number"></el-input>
                                         </el-form-item>
                                         <el-form-item label="项目负责人电话">
-                                            <el-input v-model="libraryApplyForm.phone"></el-input>
+                                            <el-input clearable v-model="libraryApplyForm.phone"></el-input>
                                         </el-form-item>
                                     </el-col>
 
                                 </el-row>
                                 <el-form-item label="项目名称">
-                                    <el-input v-model="libraryApplyForm.name"></el-input>
+                                    <el-input clearable v-model="libraryApplyForm.name"></el-input>
                                 </el-form-item>
 
                                 <el-row>
@@ -57,7 +57,7 @@
                                         </el-form-item>
 <!--                                        Equipment Requirements-->
                                         <el-form-item label="设备、设施使用要求">
-                                            <el-select
+                                            <el-select clearable
                                                 v-model="libraryApplyForm.equipRequirement"
                                                 multiple
                                                 collapse-tags
@@ -96,7 +96,7 @@
                                 </el-row>
 
                                 <el-form-item label="备注">
-                                    <el-input type="textarea"
+                                    <el-input clearable type="textarea"
                                               :rows="6"
                                               v-model="libraryApplyForm.text"></el-input>
                                 </el-form-item>

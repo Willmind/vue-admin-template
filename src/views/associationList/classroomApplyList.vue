@@ -16,8 +16,8 @@
 
                                 <div class="left">
 
-                                    <el-input size="mini"  prefix-icon="el-icon-office-building" v-model="searchParams.class" placeholder="使用班级"></el-input>
-                                    <el-input size="mini"  prefix-icon="el-icon-user" v-model="searchParams.student" placeholder="学生联系人"></el-input>
+                                    <el-input clearable size="mini"  prefix-icon="el-icon-office-building" v-model="searchParams.class" placeholder="使用班级"></el-input>
+                                    <el-input clearable size="mini"  prefix-icon="el-icon-user" v-model="searchParams.student" placeholder="学生联系人"></el-input>
                                     <el-button size="mini" @click="search" icon="el-icon-search">搜索</el-button>
                                     <el-button size="mini" @click="refresh" icon="el-icon-refresh-right" type="primary">重置</el-button>
 

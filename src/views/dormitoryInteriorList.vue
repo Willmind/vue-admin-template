@@ -7,8 +7,8 @@
             </div>
             <!--            搜索条件-->
             <div class="check">
-                <el-input size="mini" v-model="searchParams.buildingNum"  prefix-icon="el-icon-office-building" placeholder="栋数"></el-input>
-                <el-input size="mini" v-model="searchParams.domNum"  prefix-icon="el-icon-office-building" placeholder="宿舍号"></el-input>
+                <el-input clearable size="mini" v-model="searchParams.buildingNum"  prefix-icon="el-icon-office-building" placeholder="栋数"></el-input>
+                <el-input clearable size="mini" v-model="searchParams.domNum"  prefix-icon="el-icon-office-building" placeholder="宿舍号"></el-input>
                 <el-date-picker
                     style="margin-left: 5px;"
                     size="mini"
@@ -51,13 +51,13 @@
                 <el-row>
                     <el-col span="12">
                         <el-form-item label="栋数">
-                            <el-input prefix-icon="el-icon-office-building" v-model="addForm.buildingNum" placeholder="请输入栋数"></el-input>
+                            <el-input clearable prefix-icon="el-icon-office-building" v-model="addForm.buildingNum" placeholder="请输入栋数"></el-input>
                         </el-form-item>
                     </el-col>
 
                     <el-col span="12">
                         <el-form-item label="宿舍号">
-                            <el-input prefix-icon="el-icon-office-building" v-model="addForm.domNum" placeholder="请输入宿舍号"></el-input>
+                            <el-input clearable prefix-icon="el-icon-office-building" v-model="addForm.domNum" placeholder="请输入宿舍号"></el-input>
                         </el-form-item>
                     </el-col>
 
@@ -67,7 +67,7 @@
                 <el-row>
                     <el-col span="12">
                         <el-form-item label="检查人员">
-                            <el-input prefix-icon="el-icon-user" v-model="addForm.checkPerson" placeholder="请输入检查人员"></el-input>
+                            <el-input clearable prefix-icon="el-icon-user" v-model="addForm.checkPerson" placeholder="请输入检查人员"></el-input>
                         </el-form-item>
                     </el-col>
 
@@ -104,7 +104,7 @@
                 <el-row>
                     <el-col >
                         <el-form-item label="备注">
-                            <el-input
+                            <el-input clearable
                                 type="textarea"
                                 :rows="3"
                                 placeholder="请输入内容"

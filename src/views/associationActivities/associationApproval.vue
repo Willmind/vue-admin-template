@@ -14,17 +14,17 @@
                         <div class="main-tap">
                             <el-form label-width="150px">
                                 <el-form-item label="社团名称">
-                                    <el-input></el-input>
+                                    <el-input clearable></el-input>
                                 </el-form-item>
 
                                 <el-form-item label="活动名称">
-                                    <el-input></el-input>
+                                    <el-input clearable></el-input>
                                 </el-form-item>
                                 <el-row>
                                     <el-col :span="12">
 
                                         <el-form-item label="活动负责人">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="活动时间">
                                             <el-date-picker
@@ -34,24 +34,24 @@
                                         </el-form-item>
 
                                         <el-form-item label="有无指导老师参与">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
 
                                         <el-form-item label="老师联系方式">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                     </el-col>
 
                                     <el-col :span="12">
                                         <el-form-item label="联系方式">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="活动地点">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
 
                                         <el-form-item label="指导老师姓名">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
 
                                     </el-col>
@@ -61,10 +61,10 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="预计成员参与人数">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="实际成员参与人数">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
 
                                     </el-col>
@@ -72,11 +72,11 @@
                                     <el-col :span="12">
 
                                         <el-form-item label="财务预算总额">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
 
                                         <el-form-item label="财务决算总额">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                     </el-col>
 
@@ -84,7 +84,7 @@
                                 </el-row>
 
                                 <el-form-item label="活动内容简述">
-                                    <el-input type="textarea"
+                                    <el-input clearable type="textarea"
                                               :rows="6"></el-input>
                                 </el-form-item>
 

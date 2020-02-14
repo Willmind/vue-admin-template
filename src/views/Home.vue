@@ -1,5 +1,12 @@
 <template>
     <div class="home-container">
+        <div>
+            超级管理员
+        </div>
+
+        <div>
+            普通
+        </div>
 
 
     </div>

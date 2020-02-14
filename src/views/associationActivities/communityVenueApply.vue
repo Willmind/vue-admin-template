@@ -16,25 +16,25 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="社团名称">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="活动名称">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="活动时间">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                     </el-col>
 
                                     <el-col :span="12">
                                         <el-form-item label="活动负责人">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="联系电话">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="申请地点">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                     </el-col>
 
@@ -42,17 +42,17 @@
 
 
                                 <el-form-item label="场地设备要求">
-                                    <el-input></el-input>
+                                    <el-input clearable></el-input>
                                 </el-form-item>
 
 
                                 <el-form-item label="宣传或张贴的内容">
-                                    <el-input type="textarea"
+                                    <el-input clearable type="textarea"
                                               :rows="4"></el-input>
                                 </el-form-item>
 
                                 <el-form-item label="活动内容简介">
-                                    <el-input type="textarea"
+                                    <el-input clearable type="textarea"
                                               :rows="6"></el-input>
                                 </el-form-item>
 

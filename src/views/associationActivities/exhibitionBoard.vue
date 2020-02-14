@@ -18,37 +18,37 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="申请社团">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="借用数量">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="联系电话">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
 
                                         <el-form-item label="预归还时间">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
 
                                         <el-form-item label="填表日期">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                     </el-col>
 
                                     <el-col :span="12">
                                         <el-form-item label="活动名称">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="责任人">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                         <el-form-item label="借用时间">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
 
                                         <el-form-item label="实归还时间">
-                                            <el-input></el-input>
+                                            <el-input clearable></el-input>
                                         </el-form-item>
                                     </el-col>
 
@@ -56,12 +56,12 @@
 
 
                                 <el-form-item label="指导老师">
-                                    <el-input></el-input>
+                                    <el-input clearable></el-input>
                                 </el-form-item>
 
 
                                 <el-form-item label="备注">
-                                    <el-input type="textarea"
+                                    <el-input clearable type="textarea"
                                               :rows="6"></el-input>
                                 </el-form-item>
 
