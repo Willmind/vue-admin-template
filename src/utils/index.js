@@ -5,8 +5,11 @@ export function resetTokenAndClearUser() {
     localStorage.setItem('token', '')
     localStorage.setItem('userImg', '')
     localStorage.setItem('userName', '')
+
+
     // 重设路由
     resetRouter()
+
 }
 
 export const defaultDocumentTitle = 'vue-admin-template'

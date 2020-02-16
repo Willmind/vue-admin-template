@@ -223,8 +223,6 @@
                     if(response.msg=='查询成功'){
                         this.classForm=response.result
                         this.classForm.section=response.result.section.split('')
-
-
                     }
 
                 })

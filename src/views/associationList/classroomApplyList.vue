@@ -347,6 +347,10 @@
         },
         mounted() {
             this.getDataList()
+            // this.userData=localStorage.getItem('userData')
+            // console.log(this.userData);
+
+
 
         }
 

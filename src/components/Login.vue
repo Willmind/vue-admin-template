@@ -17,6 +17,7 @@
 
                 <div class="login-button">
                     <Button :loading="isShowLoading" type="primary" @click="submit">登陆</Button>
+<!--                    <Button @click="refresh">刷新</Button>-->
 
                 </div>
 
@@ -31,12 +32,15 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex';
     import axios from 'axios'
 
     export default {
         name: 'login',
+        inject: ['reload'],
         data() {
             return {
+                userData:'',
                 adminPermission:'',
 
                 registerData: false,
@@ -48,6 +52,8 @@
                 isShowLoading: false,
             }
         },
+
+
         watch: {
             $route: {
                 handler(route) {
@@ -56,7 +62,12 @@
                 immediate: true,
             },
         },
+
         methods: {
+            refresh(){
+                console.log(1);
+                this.reload()
+            },
 
             register() {
                 this.login = false
@@ -81,20 +92,24 @@
                         });
 
                     }else if(response.data.status=='1'){
-
+                        this.userData=response.data.result
                         this.$message({
                             message: '登录成功',
                             type: 'success'
                         });
                         this.$nextTick(()=>{
 
+
                             this.isShowLoading = true
+                            this.$store.commit('updateUserData',this.userData)
+                            console.log(this.$store.state.userData);
 
                             // this.adminPermission=response.data.
                             // 登陆成功 设置用户信息
                             localStorage.setItem('userImg', 'https://avatars3.githubusercontent.com/u/22117876?s=460&v=4')
                             localStorage.setItem('userName', '小明')
-                            localStorage.setItem('data','123')
+
+                            // localStorage.setItem('userData',this.userData)
                             // 登陆成功 假设这里是后台返回的 token
                             localStorage.setItem('token', 'i_am_token')
                             this.$router.push({path: this.redirect || '/'})
@@ -120,6 +135,9 @@
 
             },
         },
+        mounted() {
+
+        }
     }
 </script>
 

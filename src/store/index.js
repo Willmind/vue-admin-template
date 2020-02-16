@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+
     state: {
+        userData:{},
         // 左侧菜单栏数据
         menuItems: [
             {
@@ -54,6 +57,9 @@ const store = new Vuex.Store({
         setMenus(state, items) {
             state.menuItems = [...items]
         },
+        updateUserData(state,val){
+            state.userData=val
+        }
     },
 })
 

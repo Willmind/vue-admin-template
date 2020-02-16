@@ -199,6 +199,7 @@
             })
         },
         mounted() {
+            console.log(this.$store.state.userData);
             // 第一个标签
             const name = this.$route.name
             this.currentPage = name
@@ -360,7 +361,10 @@
                         break
                     case '3':
                         resetTokenAndClearUser()
+
                         this.$router.replace({name: 'login'})
+                        this.$router.go(0)
+
                         break
                 }
             },
