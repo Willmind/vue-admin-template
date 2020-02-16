@@ -139,6 +139,7 @@
         name: 'index',
         data() {
             return {
+                data1:'',
                 // 用于储存页面路径
                 paths: {},
                 // 当前显示页面
@@ -215,6 +216,7 @@
             // 设置用户信息
             this.userName = localStorage.getItem('userName')
             this.userImg = localStorage.getItem('userImg')
+
 
             this.main = document.querySelector('.sec-right')
             this.asideArrowIcons = document.querySelectorAll('aside .ivu-icon-ios-arrow-down')

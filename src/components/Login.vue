@@ -7,29 +7,18 @@
                     <h3>系统登录</h3>
                 </div>
 
-                <el-form>
-                    <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user"/>
-        </span>
-                        <el-input
-                            ref="username"
-                            placeholder="Username"
-                            name="username"
-                            type="text"
-                            tabindex="1"
-                            autocomplete="on"
-                        />
-                    </el-form-item>
-                    <el-form-item>
-                        <el-input prefix-icon="el-icon-user" placeholder="请输入用户名" v-model="account"></el-input>
-                    </el-form-item>
+                <div>
+                    <Input prefix="ios-contact" v-model="account" placeholder="用户名" clearable/>
 
-                    <el-form-item>
-                        <el-input prefix-icon="el-icon-password" placeholder="请输入密码" v-model="pwd" show-password></el-input>
-                    </el-form-item>
+                    <Input type="password" v-model="password" prefix="md-lock" placeholder="密码" clearable/>
 
-                </el-form>
+
+                </div>
+
+                <div class="login-button">
+                    <Button :loading="isShowLoading" type="primary" @click="submit">登陆</Button>
+
+                </div>
 
 
             </div>
@@ -38,61 +27,26 @@
 
             </div>
         </div>
-
-        <!--        <div class="container">-->
-        <!--            <div v-if="login">-->
-        <!--                <p class="title">WELCOME</p>-->
-        <!--                <div class="input-c">-->
-        <!--                    <Input prefix="ios-contact" v-model="account" placeholder="用户名" clearable />-->
-        <!--                    <p class="error">{{accountError}}</p>-->
-        <!--                </div>-->
-        <!--                <div class="input-c">-->
-        <!--                    <Input type="password" v-model="pwd" prefix="md-lock" placeholder="密码" clearable />-->
-        <!--                    <p class="error">{{pwdError}}</p>-->
-        <!--                </div>-->
-        <!--                <Button :loading="isShowLoading" class="submit" type="primary" @click="submit">登陆</Button>-->
-        <!--                <p class="account"><span @click="register">注册账号</span> | <span @click="forgetPwd">忘记密码</span></p>-->
-
-        <!--            </div>-->
-
-
-        <!--            <div v-if="registerData">-->
-        <!--                <p class="title">WELCOME</p>-->
-        <!--                <el-form>-->
-        <!--                    <el-form-item label="用户名">-->
-        <!--                        <el-input clearable placeholder="请输入用户名" v-model="registerAccount" ></el-input>-->
-        <!--                    </el-form-item>-->
-
-
-        <!--                </el-form>-->
-
-        <!--                <el-input clearable></el-input>-->
-        <!--                <el-input clearable></el-input>-->
-
-
-        <!--            </div>-->
-        <!--        </div>-->
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
         name: 'login',
         data() {
             return {
-                registerAccount: '',
+                adminPermission:'',
+
                 registerData: false,
                 login: true,
+
                 account: 'admin',
-                pwd: '123456',
-                accountError: '',
-                pwdError: '',
+                password: '123456',
+
                 isShowLoading: false,
-                bg: {},
             }
-        },
-        created() {
-            this.bg.backgroundImage = 'url(' + require('../assets/imgs/honda.jpg') + ')'
         },
         watch: {
             $route: {
@@ -103,52 +57,74 @@
             },
         },
         methods: {
-            // verifyAccount() {
-            //     if (this.account !== 'admin') {
-            //         this.accountError = '账号为admin'
-            //     } else {
-            //         this.accountError = ''
-            //     }
-            // },
-            // verifyPwd() {
-            //     if (this.pwd !== 'admin') {
-            //         this.pwdError = '密码为admin'
-            //     } else {
-            //         this.pwdError = ''
-            //     }
-            // },
+
             register() {
                 this.login = false
                 this.registerData = true
 
             },
-            forgetPwd() {
+
+            getUserData() {
 
             },
             submit() {
-                if (this.account === 'admin' && this.pwd === '123456') {
-                    this.isShowLoading = true
-                    // 登陆成功 设置用户信息
-                    localStorage.setItem('userImg', 'https://avatars3.githubusercontent.com/u/22117876?s=460&v=4')
-                    localStorage.setItem('userName', '小明')
-                    // 登陆成功 假设这里是后台返回的 token
-                    localStorage.setItem('token', 'i_am_token')
-                    this.$router.push({path: this.redirect || '/'})
-                } else {
-                    if (this.account !== 'admin') {
-                        this.accountError = '账号为admin'
+                axios.post("/users/getUserData", {
+                    account: this.account,
+                    password: this.password,
+                }).then((response) => {
+                    console.log(response);
+
+                    if(response.data.status=='0'){
+                        this.$message({
+                            message: '无此用户名',
+                            type: 'error'
+                        });
+
+                    }else if(response.data.status=='1'){
+
+                        this.$message({
+                            message: '登录成功',
+                            type: 'success'
+                        });
+                        this.$nextTick(()=>{
+
+                            this.isShowLoading = true
+
+                            // this.adminPermission=response.data.
+                            // 登陆成功 设置用户信息
+                            localStorage.setItem('userImg', 'https://avatars3.githubusercontent.com/u/22117876?s=460&v=4')
+                            localStorage.setItem('userName', '小明')
+                            localStorage.setItem('data','123')
+                            // 登陆成功 假设这里是后台返回的 token
+                            localStorage.setItem('token', 'i_am_token')
+                            this.$router.push({path: this.redirect || '/'})
+                        })
+
+
+
+
+                    }else if(response.data.status=='2'){
+                        this.$message({
+                            message: '用户名或密码错误',
+                            type: 'error'
+                        });
                     }
 
-                    if (this.pwd !== 'admin') {
-                        this.pwdError = '密码为admin'
-                    }
-                }
+
+
+                })
+
+
+
+
+
             },
         },
     }
 </script>
 
 <style lang="scss" scoped>
+
     .login-vue {
         min-height: 100%;
         width: 100%;
@@ -157,6 +133,20 @@
         text-align: -webkit-center;
 
         .login-container {
+
+            .login-button {
+                margin: 10px 10px 10px 10px;
+            }
+
+            .ivu-input-wrapper {
+                display: inline-block;
+                width: 250px;
+                position: relative;
+                vertical-align: middle;
+                line-height: normal;
+                margin: 5px 10px 10px 10px;
+
+            }
 
             width: 420px;
             margin: 120px 20px 20px 20px;
