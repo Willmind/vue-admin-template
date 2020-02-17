@@ -16,7 +16,8 @@
     "view-design": "^4.0.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "vuex-along": "^1.2.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",

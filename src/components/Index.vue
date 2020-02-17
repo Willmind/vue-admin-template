@@ -134,6 +134,7 @@
 
 <script>
     import {resetTokenAndClearUser} from '../utils'
+    import {mapState } from 'vuex'
 
     export default {
         name: 'index',
@@ -199,7 +200,7 @@
             })
         },
         mounted() {
-            console.log(this.$store.state.userData);
+            console.log(this.userData['account']);
             // 第一个标签
             const name = this.$route.name
             this.currentPage = name
@@ -215,7 +216,7 @@
             })
 
             // 设置用户信息
-            this.userName = localStorage.getItem('userName')
+            this.userName = this.userData['account']
             this.userImg = localStorage.getItem('userImg')
 
 
@@ -248,6 +249,7 @@
             },
         },
         computed: {
+
             // 菜单栏
             menuItems() {
                 return this.$store.state.menuItems
@@ -266,6 +268,11 @@
 
                 return obj
             },
+            ...mapState(
+                {
+                    userData: 'userData'
+                }
+            )
         },
         methods: {
             dataDisplay() {

@@ -2,29 +2,41 @@
     <div class="login-vue">
         <div class="login-container">
             <div v-if="login">
-
                 <div class="title-container">
                     <h3>系统登录</h3>
                 </div>
-
                 <div>
-                    <Input prefix="ios-contact" v-model="account" placeholder="用户名" clearable/>
-
-                    <Input type="password" v-model="password" prefix="md-lock" placeholder="密码" clearable/>
-
-
+                    <Input prefix="ios-contact" v-model="account" placeholder="请输入用户名" clearable/>
+                    <Input type="password" password  v-model="password" prefix="md-lock" placeholder="请输入密码" />
                 </div>
-
                 <div class="login-button">
                     <Button :loading="isShowLoading" type="primary" @click="submit">登陆</Button>
-<!--                    <Button @click="refresh">刷新</Button>-->
-
+                    <Button :loading="isShowLoading2"   @click="register">注册</Button>
                 </div>
-
-
             </div>
 
             <div v-if="registerData">
+                <div class="title-container">
+                    <h3>用户注册</h3>
+                </div>
+                <div>
+                    <Input type="text" prefix="ios-contact" v-model="registerAccount" placeholder="请输入用户名" clearable/>
+                    <Input type="text"  style="position: fixed;bottom: -9999px"/>
+                </div>
+                <div>
+                    <Input type="password" style="position: fixed;bottom: -9999px"/>
+                    <Input type="password" password  v-model="registerPassword" prefix="md-lock" placeholder="请设置密码"/>
+                </div>
+
+                <div>
+                    <Input type="password" style="position: fixed;bottom: -9999px"/>
+                    <Input type="password" password  v-model="registerPassword2" prefix="md-lock" placeholder="请确认密码" />
+                </div>
+                <div class="login-button">
+                    <Button type="primary" @click="back">返回</Button>
+                    <Button :loading="isShowLoading3" @click="registerForm">确定</Button>
+                </div>
+
 
             </div>
         </div>
@@ -40,6 +52,10 @@
         inject: ['reload'],
         data() {
             return {
+                registerAccount:'',
+                registerPassword:'',
+                registerPassword2:'',
+
                 userData:'',
                 adminPermission:'',
 
@@ -50,6 +66,8 @@
                 password: '123456',
 
                 isShowLoading: false,
+                isShowLoading2:false,
+                isShowLoading3:false,
             }
         },
 
@@ -64,14 +82,45 @@
         },
 
         methods: {
+            back(){
+                this.login = true
+                this.registerData = false
+            },
             refresh(){
                 console.log(1);
                 this.reload()
             },
 
             register() {
-                this.login = false
-                this.registerData = true
+                this.isShowLoading2=true
+                let _this = this;
+                setTimeout(function (){
+                    _this.login = false
+                    _this.registerData = true
+                    _this.isShowLoading2=false
+                },50);
+
+
+            },
+            registerForm(){
+                this.isShowLoading3=true
+                axios.post("/users/addUser", {
+                    registerAccount: this.registerAccount,
+                    registerPassword: this.registerPassword,
+                }).then((response) =>{
+                    console.log(response);
+                    this.$message({
+                        message: '注册成功',
+                        type: 'success'
+                    });
+                })
+
+                // let _this = this;
+                // setTimeout(function (){
+                //
+                //
+                //     _this.isShowLoading3=false
+                // },50);
 
             },
 
@@ -92,7 +141,10 @@
                         });
 
                     }else if(response.data.status=='1'){
-                        this.userData=response.data.result
+                        let userData=response.data.result
+                        // console.log(userData);
+                        // this.userData = JSON.parse(JSON.stringify(userData))
+                        // console.log(this.userData);
                         this.$message({
                             message: '登录成功',
                             type: 'success'
@@ -101,15 +153,10 @@
 
 
                             this.isShowLoading = true
-                            this.$store.commit('updateUserData',this.userData)
+                            this.$store.commit('updateUserData',userData)
                             console.log(this.$store.state.userData);
-
-                            // this.adminPermission=response.data.
                             // 登陆成功 设置用户信息
                             localStorage.setItem('userImg', 'https://avatars3.githubusercontent.com/u/22117876?s=460&v=4')
-                            localStorage.setItem('userName', '小明')
-
-                            // localStorage.setItem('userData',this.userData)
                             // 登陆成功 假设这里是后台返回的 token
                             localStorage.setItem('token', 'i_am_token')
                             this.$router.push({path: this.redirect || '/'})
@@ -152,9 +199,15 @@
 
         .login-container {
 
+
             .login-button {
+
+                .ivu-btn{
+                    margin: 0px 10px 0 10px;
+                }
                 margin: 10px 10px 10px 10px;
             }
+
 
             .ivu-input-wrapper {
                 display: inline-block;
@@ -163,6 +216,8 @@
                 vertical-align: middle;
                 line-height: normal;
                 margin: 5px 10px 10px 10px;
+
+
 
             }
 
@@ -186,73 +241,5 @@
     }
 
 
-    .login-vue .container {
-        background: rgba(255, 255, 255, .5);
-        width: 300px;
-        text-align: center;
-        border-radius: 10px;
-        padding: 30px;
-    }
 
-    .login-vue .ivu-input {
-        background-color: transparent;
-        color: #fff;
-        outline: #fff;
-        border-color: #fff;
-    }
-
-    .login-vue ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-        color: rgba(255, 255, 255, .8);
-    }
-
-    .login-vue :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-        color: rgba(255, 255, 255, .8);
-    }
-
-    .login-vue ::-moz-placeholder { /* Mozilla Firefox 19+ */
-        color: rgba(255, 255, 255, .8);
-    }
-
-    .login-vue :-ms-input-placeholder { /* Internet Explorer 10-11 */
-        color: rgba(255, 255, 255, .8);
-    }
-
-    .login-vue .title {
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
-    .login-vue .input-c {
-        margin: auto;
-        width: 200px;
-    }
-
-    .login-vue .error {
-        color: red;
-        text-align: left;
-        margin: 5px auto;
-        font-size: 12px;
-        padding-left: 30px;
-        height: 20px;
-    }
-
-    .login-vue .submit {
-        width: 200px;
-    }
-
-    .login-vue .account {
-        margin-top: 30px;
-    }
-
-    .login-vue .account span {
-        cursor: pointer;
-    }
-
-    .login-vue .ivu-icon {
-        color: #eee;
-    }
-
-    .login-vue .ivu-icon-ios-close-circle {
-        color: #777;
-    }
 </style>

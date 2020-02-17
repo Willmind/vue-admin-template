@@ -347,6 +347,7 @@
         },
         mounted() {
             this.getDataList()
+            console.log(this.$store.state.userData);
             // this.userData=localStorage.getItem('userData')
             // console.log(this.userData);
 
