@@ -129,18 +129,72 @@
                 </div>
             </div>
         </section>
+
+        <el-dialog @close="resetForm('passwordForm')" @open="resetForm('passwordForm')" width="350px" title="修改密码" :visible.sync="dialogFormVisible">
+
+            <el-form :model="passwordForm" :rules="rules" ref="passwordForm" label-width="80px">
+                <el-form-item label="旧密码" prop="oldPassword">
+                    <el-input show-password v-model="passwordForm.oldPassword" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="新密码" prop="newPassword">
+                    <el-input show-password v-model="passwordForm.newPassword" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="确认密码" prop="checkPassword">
+                    <el-input show-password v-model="passwordForm.checkPassword" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+<!--                <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+                <el-button @click="resetForm('passwordForm')">重 置</el-button>
+                <el-button type="primary" @click="submitForm('passwordForm')">提 交</el-button>
+            </div>
+        </el-dialog>
+
     </div>
 </template>
 
 <script>
     import {resetTokenAndClearUser} from '../utils'
-    import {mapState } from 'vuex'
+    import {mapState} from 'vuex'
+    import axios from 'axios'
+
 
     export default {
         name: 'index',
         data() {
+            var validatePass = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请输入密码'));
+                } else {
+                    if (this.passwordForm.checkPassword !== '') {
+                        this.$refs.passwordForm.validateField('checkPassword');
+                    }
+                    callback();
+                }
+            };
+            var validatePass2 = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请再次输入密码'));
+                } else if (value !== this.passwordForm.newPassword) {
+                    callback(new Error('两次输入密码不一致!'));
+                } else {
+                    callback();
+                }
+            };
             return {
-                data1:'',
+                passwordForm: {
+                    oldPassword: '',
+                    newPassword: '',
+                    checkPassword: '',
+
+                },
+                rules: {
+                    oldPassword: [{required: true, message: '请输入旧密码', trigger: 'blur'}],
+                    newPassword: [ { required: true,validator: validatePass, trigger: 'blur' }],
+                    checkPassword: [ { required: true,validator: validatePass2, trigger: 'blur' }],
+                },
+                dialogFormVisible: false,
+                data1: '',
                 // 用于储存页面路径
                 paths: {},
                 // 当前显示页面
@@ -275,8 +329,37 @@
             )
         },
         methods: {
-            dataDisplay() {
-                console.log(111);
+            submitForm(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        axios.post("/users/updateUserPassword",{
+                            rid:this.userData['rid'],
+                            passwordForm:this.passwordForm
+                        }).then((response)=>{
+                            if(response.status=='1'){
+                                this.$message({
+                                    message: '修改成功！',
+                                    type: 'success'
+                                });
+                                this.dialogFormVisible = false
+                            }else{
+                                this.$message({
+                                    message: '旧密码错误！',
+                                    type: 'error'
+                                });
+                                return false
+                            }
+
+
+                        })
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
             },
             getMenus(name) {
                 let menus
@@ -360,7 +443,7 @@
                 switch (name) {
                     case '1':
                         // 修改密码
-                        this.gotoPage('password')
+                        this.dialogFormVisible = true
                         break
                     case '2':
                         // 基本资料
@@ -538,7 +621,6 @@
 </script>
 
 <style scoped>
-
 
 
     .index-vue {

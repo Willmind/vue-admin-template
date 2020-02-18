@@ -1,6 +1,7 @@
 <template>
     <div class="login-vue">
         <div class="login-container">
+
             <div v-if="login">
                 <div class="title-container">
                     <h3>系统登录</h3>
@@ -103,17 +104,39 @@
 
             },
             registerForm(){
-                this.isShowLoading3=true
-                axios.post("/users/addUser", {
-                    registerAccount: this.registerAccount,
-                    registerPassword: this.registerPassword,
-                }).then((response) =>{
-                    console.log(response);
-                    this.$message({
-                        message: '注册成功',
-                        type: 'success'
-                    });
-                })
+                if(this.registerPassword!==''&&this.registerPassword2!==''&&this.registerAccount!==''){
+                    if(this.registerPassword==this.registerPassword2){
+                        this.isShowLoading3=true
+                        axios.post("/users/addUser", {
+                            registerAccount: this.registerAccount,
+                            registerPassword: this.registerPassword,
+                        }).then((response) =>{
+                            if(response.data.status=='2'){
+                                this.$message({
+                                    message: '注册成功',
+                                    type: 'success'
+                                });
+                            } else if(response.data.status=='1'){
+                                this.$Message.error('注册失败！');
+
+                            }else if(response.data.status=='0'){
+                                this.$Message.error('用户名已存在！');
+
+                            }
+
+
+                            this.isShowLoading3=false
+                        })
+                    }else{
+                        this.$Message.error('密码不一致！');
+                        return false
+                    }
+                }else{
+                    this.$Message.error('请输入用户名和密码！');
+                    return false
+                }
+
+
 
                 // let _this = this;
                 // setTimeout(function (){
@@ -128,53 +151,60 @@
 
             },
             submit() {
-                axios.post("/users/getUserData", {
-                    account: this.account,
-                    password: this.password,
-                }).then((response) => {
-                    console.log(response);
 
-                    if(response.data.status=='0'){
-                        this.$message({
-                            message: '无此用户名',
-                            type: 'error'
-                        });
+                if(this.account!==''&&this.password!==''){
+                    axios.post("/users/getUserData", {
+                        account: this.account,
+                        password: this.password,
+                    }).then((response) => {
+                        console.log(response);
 
-                    }else if(response.data.status=='1'){
-                        let userData=response.data.result
-                        // console.log(userData);
-                        // this.userData = JSON.parse(JSON.stringify(userData))
-                        // console.log(this.userData);
-                        this.$message({
-                            message: '登录成功',
-                            type: 'success'
-                        });
-                        this.$nextTick(()=>{
+                        if(response.data.status=='0'){
+                            this.$message({
+                                message: '无此用户名',
+                                type: 'error'
+                            });
 
-
-                            this.isShowLoading = true
-                            this.$store.commit('updateUserData',userData)
-                            console.log(this.$store.state.userData);
-                            // 登陆成功 设置用户信息
-                            localStorage.setItem('userImg', 'https://avatars3.githubusercontent.com/u/22117876?s=460&v=4')
-                            // 登陆成功 假设这里是后台返回的 token
-                            localStorage.setItem('token', 'i_am_token')
-                            this.$router.push({path: this.redirect || '/'})
-                        })
+                        }else if(response.data.status=='1'){
+                            let userData=response.data.result
+                            // console.log(userData);
+                            // this.userData = JSON.parse(JSON.stringify(userData))
+                            // console.log(this.userData);
+                            this.$message({
+                                message: '登录成功',
+                                type: 'success'
+                            });
+                            this.$nextTick(()=>{
 
 
-
-
-                    }else if(response.data.status=='2'){
-                        this.$message({
-                            message: '用户名或密码错误',
-                            type: 'error'
-                        });
-                    }
+                                this.isShowLoading = true
+                                this.$store.commit('updateUserData',userData)
+                                console.log(this.$store.state.userData);
+                                // 登陆成功 设置用户信息
+                                localStorage.setItem('userImg', 'https://avatars3.githubusercontent.com/u/22117876?s=460&v=4')
+                                // 登陆成功 假设这里是后台返回的 token
+                                localStorage.setItem('token', 'i_am_token')
+                                this.$router.push({path: this.redirect || '/'})
+                            })
 
 
 
-                })
+
+                        }else if(response.data.status=='2'){
+                            this.$message({
+                                message: '用户名或密码错误',
+                                type: 'error'
+                            });
+                        }
+
+
+
+                    })
+                }else{
+                    this.$Message.error('请输入用户名和密码！');
+                    return false
+                }
+
 
 
 
@@ -198,8 +228,6 @@
         text-align: -webkit-center;
 
         .login-container {
-
-
             .login-button {
 
                 .ivu-btn{

@@ -53,3 +53,9 @@
 .breadcrumb-leave-active {
     position: absolute;
 }
+
+.el-dialog__body{
+    padding: 30px 30px 0px 20px;
+}
+
+
