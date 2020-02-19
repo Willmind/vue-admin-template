@@ -1,7 +1,5 @@
 # vue-admin-template
-vue轻量级后台管理系统基础模板<br>
-[在线预览](https://woai3c.github.io)
-## [更新日志](https://github.com/woai3c/vue-admin-template/blob/master/update.md)
+使用vue轻量级后台管理系统基础模板进行搭建<br>
 
 ## 相关依赖
 * [vue-router](https://router.vuejs.org/zh/)
@@ -12,7 +10,6 @@ vue轻量级后台管理系统基础模板<br>
 ## 功能
 
 #### 登录页
-* 一周七天自动切换不同的壁纸（建议自己配置）
 
 #### 标签栏
 * 点击标签切换页面
