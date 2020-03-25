@@ -1,0 +1,37 @@
+{
+  "id": "1591889",
+  "name": "text",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1127371",
+      "name": "世界",
+      "font_class": "world",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "1167297",
+      "name": "中国",
+      "font_class": "zhongguo",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "1111341",
+      "name": "世界",
+      "font_class": "shijie",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "3860872",
+      "name": "世界",
+      "font_class": "shijie1",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    }
+  ]
+}
