@@ -5,7 +5,7 @@
             <!-- logo -->
             <div class="logo-c">
                 <img src="../assets/imgs/logo.png" alt="logo" class="logo">
-                <span v-show="isShowAsideTitle">后台管理系统</span>
+                <span v-show="isShowAsideTitle" style="font-weight: bold">后台管理系统</span>
             </div>
             <!-- 菜单栏 -->
             <Menu class="menu" ref="asideMenu" theme="dark" width="100%" @on-select="selectMenuCallback"
@@ -15,31 +15,31 @@
                     <Submenu :class="isShowAsideTitle? '' : 'shrink'" v-if="item.children" :name="index">
                         <template slot="title">
                             <Icon :size="item.size" :type="item.type"/>
-                            <span v-show="isShowAsideTitle">{{item.text}}</span>
+                            <span v-show="isShowAsideTitle" style="font-weight: bolder">{{item.text}}</span>
                         </template>
                         <div v-for="(subItem, i) in item.children" :key="index + i">
                             <Submenu :class="isShowAsideTitle? '' : 'shrink'" v-if="subItem.children" :name="index + '-' + i">
                                 <template slot="title">
                                     <Icon :size="subItem.size" :type="subItem.type"/>
-                                    <span v-show="isShowAsideTitle">{{subItem.text}}</span>
+                                    <span v-show="isShowAsideTitle" style="font-weight: bolder">{{subItem.text}}</span>
                                 </template>
                                 <MenuItem :class="isShowAsideTitle? '' : 'shrink'" class="menu-level-3"
                                           v-for="(threeItem, k) in subItem.children" :name="threeItem.name" :key="index + i + k">
                                     <template v-if="!threeItem.hidden">
                                         <Icon :size="threeItem.size" :type="threeItem.type"/>
-                                        <span v-show="isShowAsideTitle">{{threeItem.text}}</span>
+                                        <span v-show="isShowAsideTitle" style="font-weight: bolder">{{threeItem.text}}</span>
                                     </template>
                                 </MenuItem>
                             </Submenu>
                             <MenuItem :class="isShowAsideTitle? '' : 'shrink'" v-else-if="!subItem.hidden" :name="subItem.name">
                                 <Icon :size="subItem.size" :type="subItem.type"/>
-                                <span v-show="isShowAsideTitle">{{subItem.text}}</span>
+                                <span v-show="isShowAsideTitle" style="font-weight: bolder">{{subItem.text}}</span>
                             </MenuItem>
                         </div>
                     </Submenu>
                     <MenuItem :class="isShowAsideTitle? '' : 'shrink'" v-else-if="!item.hidden" :name="item.name">
                         <Icon :size="item.size" :type="item.type"/>
-                        <span v-show="isShowAsideTitle">{{item.text}}</span>
+                        <span v-show="isShowAsideTitle" style="font-weight: bolder">{{item.text}}</span>
                     </MenuItem>
                 </div>
             </Menu>
@@ -306,6 +306,7 @@
 
             // 菜单栏
             menuItems() {
+                console.log(this.$store.state.menuItems);
                 return this.$store.state.menuItems
             },
             // 需要缓存的路由

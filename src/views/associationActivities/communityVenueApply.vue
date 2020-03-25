@@ -6,7 +6,7 @@
                 <div slot="write_explain" class="write_explain">
                     注意事项
                     <div class="explain_content">
-                  zsz      <p>1、场地用完后，要安排后勤人进行打扫，保持场面清洁，设备的完整</p>
+                        zsz <p>1、场地用完后，要安排后勤人进行打扫，保持场面清洁，设备的完整</p>
                     </div>
                 </div>
                 <div slot="main">
@@ -57,19 +57,14 @@
                                 </el-form-item>
 
                                 <div class="footer">
-                                    <el-button icon="el-icon-back"  @click="back">
+                                    <el-button icon="el-icon-back" @click="back">
                                         返回
                                     </el-button>
-                                    <el-button type="primary" icon="el-icon-folder-checked" >
+                                    <el-button type="primary" icon="el-icon-folder-checked">
                                         保存
                                     </el-button>
 
                                 </div>
-
-
-
-
-
 
 
                             </el-form>
@@ -79,11 +74,7 @@
                     </div>
 
 
-
-
-
                 </div>
-
 
 
             </editModel>
@@ -97,28 +88,27 @@
 
 <script>
     import editModel from "../models/editModel";
+
     export default {
         name: "classroomApply",
-        components:{
+        components: {
             editModel
         },
-        data(){
-            return{
-                classForm:{
-
-                },
-                JSLX_option:['普通','多媒体'],
-                XQJ_option:['一','二','三','四','五','六','日'],
+        data() {
+            return {
+                classForm: {},
+                JSLX_option: ['普通', '多媒体'],
+                XQJ_option: ['一', '二', '三', '四', '五', '六', '日'],
             }
         },
-       methods: {
+        methods: {
 
-           back() {
-               this.$emit('goBack');
+            back() {
+                this.$emit('goBack');
 
-           }
+            }
 
-       }
+        }
     }
 </script>
 
