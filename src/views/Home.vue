@@ -1,197 +1,236 @@
 <template>
-    <div class="home-container">
-        <div style="display:inline-block;">
-            <el-tabs style="height: 600px;width: 585px;" v-model="activeTab" type="border-card">
-                <el-tab-pane name="China">
-                    <span slot="label"><i class="iconfont icon-zhongguo"></i> 全国疫情数据（含港澳台）</span>
-                    <div class="main">
-                        <div class="home-content">
+    <div class="home-container" style="height:1000px;">
+        <el-scrollbar style="height:100%">
+            <div>
+                <div style="display:inline-block;">
+                    <el-tabs style="height: 570px;width: 585px;" v-model="activeTab" type="border-card">
+                        <el-tab-pane name="China">
+                            <span slot="label"><i class="iconfont icon-zhongguo"></i> 全国疫情数据（含港澳台）</span>
+                            <div class="main">
+                                <div class="home-content">
 
-                            <div class="single-content">
-                                <div>
-                                    <h4 class="text-item">累计确诊</h4>
-                                </div>
-                                <div class="number" style="color: #a31d13">{{dataDetail.gntotal}}</div>
-                                <div class="added">
-                                    较昨日
-                                    <span style="color: #a31d13">{{add_daily.addcon_new}}</span>
-                                </div>
-                            </div>
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">累计确诊</h4>
+                                        </div>
+                                        <div class="number" style="color: #a31d13">{{dataDetail.gntotal}}</div>
+                                        <div class="added">
+                                            较昨日
+                                            <span style="color: #a31d13">{{add_daily.addcon_new}}</span>
+                                        </div>
+                                    </div>
 
-                            <div class="single-content">
-                                <div>
-                                    <h4 class="text-item">累计死亡</h4>
-                                </div>
-                                <div class="number" style="color: #333">{{dataDetail.deathtotal}}</div>
-                                <div class="added">
-                                    较昨日
-                                    <span style="color: #333">{{add_daily.adddeath_new}}</span>
-                                </div>
-                            </div>
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">累计死亡</h4>
+                                        </div>
+                                        <div class="number" style="color: #333">{{dataDetail.deathtotal}}</div>
+                                        <div class="added">
+                                            较昨日
+                                            <span style="color: #333">{{add_daily.adddeath_new}}</span>
+                                        </div>
+                                    </div>
 
-                            <div class="single-content">
-                                <div>
-                                    <h4 class="text-item">累计治愈</h4>
-                                </div>
-                                <div class="number" style="color: #34aa70">
-                                    {{dataDetail.curetotal}}
-                                </div>
-                                <div class="added">
-                                    较昨日
-                                    <span style="color: #34aa70">{{add_daily.addcure_new}}</span>
-                                </div>
-                            </div>
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">累计治愈</h4>
+                                        </div>
+                                        <div class="number" style="color: #34aa70">
+                                            {{dataDetail.curetotal}}
+                                        </div>
+                                        <div class="added">
+                                            较昨日
+                                            <span style="color: #34aa70">{{add_daily.addcure_new}}</span>
+                                        </div>
+                                    </div>
 
-                            <div class="single-content">
-                                <div>
-                                    <h4 class="text-item">现有确诊
-                                        <el-popover
-                                            placement="bottom"
-                                            title="疫情数据说明"
-                                            width="200"
-                                            trigger="hover"
-                                            content="1.数据含义:现有确诊数为当前正在治疗中的确诊人数，此数值会随疫情数据的实时更新而发生变化。2.计算方法:
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">现有确诊
+                                                <el-popover
+                                                    placement="bottom"
+                                                    title="疫情数据说明"
+                                                    width="200"
+                                                    trigger="hover"
+                                                    content="1.数据含义:现有确诊数为当前正在治疗中的确诊人数，此数值会随疫情数据的实时更新而发生变化。2.计算方法:
                             现有确诊数=累计确诊数累计死亡数-累计治愈数
                             ">
-                                            <i slot="reference" class="el-icon-question write_explain"></i>
-                                        </el-popover>
+                                                    <i slot="reference" class="el-icon-question write_explain"></i>
+                                                </el-popover>
 
-                                    </h4>
+                                            </h4>
+
+                                        </div>
+                                        <div class="number" style="color: #e44a3d">
+                                            {{dataDetail.econNum}}
+                                        </div>
+                                        <div class="added">
+                                            较昨日
+                                            <span style="color: #e44a3d">{{add_daily.addecon_new}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">现有重症</h4>
+                                        </div>
+                                        <div class="number" style="color: #791618">
+                                            {{dataDetail.heconNum}}
+                                        </div>
+                                        <div class="added">
+                                            较昨日
+                                            <span style="color: #791618">{{add_daily.addhecon_new}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">现有疑似
+                                                <el-popover
+                                                    placement="bottom"
+                                                    title="疫情数据说明"
+                                                    width="200"
+                                                    trigger="hover"
+                                                    content="疑似病例及较昨日+数据来自国家卫健委每日通报">
+                                                    <i slot="reference" class="el-icon-question write_explain"></i>
+                                                </el-popover>
+                                            </h4>
+                                        </div>
+                                        <div class="number" style="color: #ffa352">
+                                            {{dataDetail.sustotal}}
+                                        </div>
+                                        <div class="added">
+                                            较昨日
+                                            <span style="color: #ffa352">{{add_daily.wjw_addsus_new}}</span>
+                                        </div>
+                                    </div>
+
 
                                 </div>
-                                <div class="number" style="color: #e44a3d">
-                                    {{dataDetail.econNum}}
-                                </div>
-                                <div class="added">
-                                    较昨日
-                                    <span style="color: #e44a3d">{{add_daily.addecon_new}}</span>
+                                <div class="cover-time">
+                                    {{dataDetail.times}}
+                                    <span class="cover-explain">数据说明<i @click="dialogTableVisible1 = true"
+                                                                       class="el-icon-question write_explain"></i></span>
                                 </div>
                             </div>
+                        </el-tab-pane>
 
-                            <div class="single-content">
-                                <div>
-                                    <h4 class="text-item">现有重症</h4>
+                        <el-tab-pane name="world">
+                            <span slot="label"><i class="iconfont icon-world"></i> 海外疫情</span>
+                            <div class="main">
+                                <div class="home-content" style="height: 159px">
+
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">累计确诊</h4>
+                                        </div>
+                                        <div class="number" style="color: #a31d13">{{othertotal.certain}}</div>
+                                        <div class="added">
+                                            较昨日
+                                            <span style="color: #a31d13">{{othertotal.certain_inc}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">累计死亡</h4>
+                                        </div>
+                                        <div class="number" style="color: #333">{{othertotal.die}}</div>
+                                        <div class="added">
+                                            较昨日
+                                            <span style="color: #333">{{othertotal.die_inc}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">累计治愈</h4>
+                                        </div>
+                                        <div class="number" style="color: #34aa70">
+                                            {{othertotal.recure}}
+                                        </div>
+                                        <div class="added">
+                                            较昨日
+                                            <span style="color: #34aa70">{{othertotal.recure_inc}}</span>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                                <div class="number" style="color: #791618">
-                                    {{dataDetail.heconNum}}
-                                </div>
-                                <div class="added">
-                                    较昨日
-                                    <span style="color: #791618">{{add_daily.addhecon_new}}</span>
+                                <div class="cover-time">
+                                    {{dataDetail.times}}
+                                    <span class="cover-explain">数据说明<i @click="dialogTableVisible2 = true"
+                                                                       class="el-icon-question write_explain"></i></span>
                                 </div>
                             </div>
+                        </el-tab-pane>
 
-                            <div class="single-content">
-                                <div>
-                                    <h4 class="text-item">现有疑似
-                                        <el-popover
-                                            placement="bottom"
-                                            title="疫情数据说明"
-                                            width="200"
-                                            trigger="hover"
-                                            content="疑似病例及较昨日+数据来自国家卫健委每日通报">
-                                            <i slot="reference" class="el-icon-question write_explain"></i>
-                                        </el-popover>
-                                    </h4>
-                                </div>
-                                <div class="number" style="color: #ffa352">
-                                    {{dataDetail.sustotal}}
-                                </div>
-                                <div class="added">
-                                    较昨日
-                                    <span style="color: #ffa352">{{add_daily.wjw_addsus_new}}</span>
-                                </div>
-                            </div>
+                    </el-tabs>
+                </div>
+                <div class="map">
+                    <el-tabs type="border-card">
+                        <el-tab-pane label="中国疫情" >
+                            <el-tabs >
+                                <el-tab-pane label="全国疫情趋势">
+                                    <div style="height:500px;width: 500px;" id="myCharts1" ref="myCharts1"></div>
+                                </el-tab-pane>
+
+                                <el-tab-pane label="全国疫情新增">
+                                    <div style="height:500px;width: 500px;" id="myCharts3" ref="myCharts3"></div>
+                                </el-tab-pane>
+
+                                <el-tab-pane label="全国治愈率/死亡率趋势">
+                                    <div style="height:500px;width: 500px;" id="myCharts4" ref="myCharts4"></div>
+                                </el-tab-pane>
 
 
-                        </div>
-                        <div class="cover-time">
-                            {{dataDetail.times}}
-                            <span class="cover-explain">数据说明<i @click="dialogTableVisible1 = true"
-                                                               class="el-icon-question write_explain"></i></span>
-                        </div>
+
+                                <!--                        <el-tab-pane label="海外疫情新增">-->
+                                <!--                            <div style="height:500px;width: 500px;" id="myCharts4" ref="myCharts4"></div>-->
+                                <!--                        </el-tab-pane>-->
+                            </el-tabs>
+
+                        </el-tab-pane>
+                        <el-tab-pane label="海外疫情" >
+                            <el-tabs>
+                                <el-tab-pane label="海外疫情趋势">
+                                    <div style="height:500px;width: 500px;" id="myCharts2" ref="myCharts2"></div>
+
+                                </el-tab-pane>
+                            </el-tabs>
+
+                        </el-tab-pane>
+                    </el-tabs>
+
+                </div>
+
+
+                <el-dialog title="疫情数据说明" :visible.sync="dialogTableVisible1">
+                    <div style="padding: 0 30px 30px 20px;letter-spacing:2px;">
+                        <p><strong>1.数据来源</strong>:国家卫健委、各省市区卫健。委、各省市区政府、港澳台官方渠道公开数据。</p>
+                        <p><strong>2.数据更新时间:</strong>实时更新全国、各省市、区数据，因核实计算需要，与官方的发布时间相比，将有-定时间延迟。</p>
+                        <p><strong>3.实时数据统计原则:</strong></p>
+                        <p>①每日上午优先将全国各类数据与国家卫健委公布数据对齐(此时各省市区数据尚未及时更新，会出现全国数据大于各省市区合计数的情况)</p>
+                        <p>②数据实时更新过程中，各省市区卫健委陆续公布数据，如果各省市区公布数据总和大于之前国家公布数据，则全国数据切换为各省市区合计数(“疑似病例”仅使用国家卫健委每天公布的共有疑似病例总数，而不做新增累计) ;</p>
+                        <p>③"较昨日+”的数据以国家卫健委每日公布的新增数据为基线，实时根据各 省市区陆续公布的数据进行更新;</p>
+                        <p>④由于各省市区数据发布时间和统计时间各不相同，因此在部分时段可能出现国家总数与各省市区总数</p>
+                        <p><strong>4.疫情趋势图:</strong>全国数据使用国家卫健委公布的截至前一日24:00数据，每日更新一次。</p>
                     </div>
-                </el-tab-pane>
+                </el-dialog>
 
-                <el-tab-pane name="world">
-                    <span slot="label"><i class="iconfont icon-world"></i> 海外疫情</span>
-                    <div class="main">
-                        <div class="home-content" style="height: 159px">
+                <el-dialog title="疫情数据说明" :visible.sync="dialogTableVisible2">
+                    <div style="padding: 0 30px 30px 20px;letter-spacing:2px;">
+                        <p><strong>1.数据来源:</strong>海外疫情数据均来自各国家和地区官方通报及媒体公开报道。</p>
+                        <p><strong>2.数据更新时间:</strong>数据实时更新，因计算、核实需要，与官方发布时间相比，将存在一定延迟。</p>
+                        <p><strong>3.说明:</strong></p>
+                        <p>因”钻石公主号"邮轮内人员来自世界多国，故在邮轮上确诊的病例数据计入日本，离开邮轮后确诊的病例数据则分别计入其所在国。若出现其他特殊情况，将以各国家和地区官方通报的统计口径为准。</p>
 
-                            <div class="single-content">
-                                <div>
-                                    <h4 class="text-item">累计确诊</h4>
-                                </div>
-                                <div class="number" style="color: #a31d13">{{othertotal.certain}}</div>
-                                <div class="added">
-                                    较昨日
-                                    <span style="color: #a31d13">{{othertotal.certain_inc}}</span>
-                                </div>
-                            </div>
-
-                            <div class="single-content">
-                                <div>
-                                    <h4 class="text-item">累计死亡</h4>
-                                </div>
-                                <div class="number" style="color: #333">{{othertotal.die}}</div>
-                                <div class="added">
-                                    较昨日
-                                    <span style="color: #333">{{othertotal.die_inc}}</span>
-                                </div>
-                            </div>
-
-                            <div class="single-content">
-                                <div>
-                                    <h4 class="text-item">累计治愈</h4>
-                                </div>
-                                <div class="number" style="color: #34aa70">
-                                    {{othertotal.recure}}
-                                </div>
-                                <div class="added">
-                                    较昨日
-                                    <span style="color: #34aa70">{{othertotal.recure_inc}}</span>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="cover-time">
-                            {{dataDetail.times}}
-                            <span class="cover-explain">数据说明<i @click="dialogTableVisible2 = true"
-                                                               class="el-icon-question write_explain"></i></span>
-                        </div>
                     </div>
-                </el-tab-pane>
-
-            </el-tabs>
-        </div>
-        <div class="map">
-            111
-        </div>
-
-
-        <el-dialog title="疫情数据说明" :visible.sync="dialogTableVisible1">
-            <div style="padding: 0 30px 30px 20px;letter-spacing:2px;">
-                <p><strong>1.数据来源</strong>:国家卫健委、各省市区卫健。委、各省市区政府、港澳台官方渠道公开数据。</p>
-                <p><strong>2.数据更新时间:</strong>实时更新全国、各省市、区数据，因核实计算需要，与官方的发布时间相比，将有-定时间延迟。</p>
-                <p><strong>3.实时数据统计原则:</strong></p>
-                <p>①每日上午优先将全国各类数据与国家卫健委公布数据对齐(此时各省市区数据尚未及时更新，会出现全国数据大于各省市区合计数的情况)</p>
-                <p>②数据实时更新过程中，各省市区卫健委陆续公布数据，如果各省市区公布数据总和大于之前国家公布数据，则全国数据切换为各省市区合计数(“疑似病例”仅使用国家卫健委每天公布的共有疑似病例总数，而不做新增累计) ;</p>
-                <p>③"较昨日+”的数据以国家卫健委每日公布的新增数据为基线，实时根据各 省市区陆续公布的数据进行更新;</p>
-                <p>④由于各省市区数据发布时间和统计时间各不相同，因此在部分时段可能出现国家总数与各省市区总数</p>
-                <p><strong>4.疫情趋势图:</strong>全国数据使用国家卫健委公布的截至前一日24:00数据，每日更新一次。</p>
-            </div>
-        </el-dialog>
-
-        <el-dialog title="疫情数据说明" :visible.sync="dialogTableVisible2">
-            <div style="padding: 0 30px 30px 20px;letter-spacing:2px;">
-                <p><strong>1.数据来源:</strong>海外疫情数据均来自各国家和地区官方通报及媒体公开报道。</p>
-                <p><strong>2.数据更新时间:</strong>数据实时更新，因计算、核实需要，与官方发布时间相比，将存在一定延迟。</p>
-                <p><strong>3.说明:</strong></p>
-                <p>因”钻石公主号"邮轮内人员来自世界多国，故在邮轮上确诊的病例数据计入日本，离开邮轮后确诊的病例数据则分别计入其所在国。若出现其他特殊情况，将以各国家和地区官方通报的统计口径为准。</p>
+                </el-dialog>
 
             </div>
-        </el-dialog>
+
+        </el-scrollbar>
 
 
     </div>
@@ -212,46 +251,542 @@
         },
         data() {
             return {
+                cn_deathRate:[],
+                cn_cureRate:[],
+
+                chinaDayList:[],
+                chinaDateList:[],
+                cn_addConList:[],
+                cn_addDeadList:[],
+                cn_addHealList:[],
+                cn_addSusList:[],
+
+                tabPosition: 'left',
                 activeTab: 'China',
                 dialogTableVisible1: false,
                 dialogTableVisible2: false,
-                historylist:'',
+                historylist: '',
                 adminPermission: '',
                 othertotal: '',
                 dataDetail: '',
                 add_daily: '',
 
-                cn_conNumList:[],
-                dateList:[],
+                otherhistorylist:'',
+                certain:[],
+                recure:[],
+                die:[],
+                date:[],
+
+
+                cn_conNumList: [],
+                cn_cureNum: [],
+                dateList: [],
+                cn_deathNum:[],
             }
         },
 
         methods: {
+            initMyCharts1() {
+                const myCharts1 = this.$echarts.init(this.$refs.myCharts1);
+                let option = {
+                    title: {
+                        text: '全国疫情趋势图',
+                        subtext: '数据来自interface.sina.cn',
+                    },
+                    toolbox: {
+                    },
+                    tooltip: {
+                        formatter:function(params) {
+                            var relVal = params[0].name;
+                            for (var i = 0, l = params.length; i < l; i++) {
+                                relVal += '<br/>' + params[i].marker + params[i].seriesName + ':' + params[i].value+"人";
+                            }
+                            return relVal;
+                        },
+                        trigger: 'axis',
+                        backgroundColor:'#ffffff',
+                        extraCssText:'box-shadow: 0 2px 20px rgba(0, 0, 0, .1);',
+                        textStyle:{
+                            color: '#000000',
+                        },
+                    },
+                    legend: {
+                        data: ['累计确诊', '累计治愈','累计死亡'],
+                        x: '150px',
+                        y: '5px',
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {},
+                            dataView: { //数据视图
+                                show: true,
+                            },
+                            restore: { //重置
+                                show: true
+                            },
+                        },
+
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: this.dateList
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+
+                            showSymbol: false,
+                            name: '累计确诊',
+                            type: 'line',
+                            data: this.cn_conNumList,
+                            itemStyle:{
+                                normal: {
+                                    color: 'rgb(232,49,50)', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: 'rgb(232,49,50)' //改变折线颜色
+                                    }
+                                }
+                            }
 
 
-            getDataList() {
-                let url = "https://interface.sina.cn/news/wap/fymap2020_data.d.json";
-                this.$jsonp(url).then(res => {
-                    this.add_daily = res.data.add_daily;
-                    this.othertotal = res.data.othertotal;
-                    this.historylist=res.data.historylist;
-                    console.log(this.historylist);
+                        },
+                        {
 
-                    this.dataDetail = res.data;
-                    for(var i=0;i<this.historylist.length;i++){
-                        this.cn_conNumList.push(this.historylist[i].cn_conNum)
-                        this.dateList.push(this.historylist[i].date)
-                    };
-                    this.cn_conNumList.reverse();
-                    this.dateList.reverse()
-                    console.log(this.dateList);
+                            showSymbol: false,
+                            name: '累计治愈',
+                            type: 'line',
+                            data: this.cn_cureNum,
+                            itemStyle:{
+                                normal: {
+                                    color: '#34aa70', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: '#34aa70' //改变折线颜色
+                                    }
+                                }
+                            }
+                        },
+                        {
 
-                });
+                            showSymbol: false,
+                            name: '累计死亡',
+                            type: 'line',
+                            data: this.cn_deathNum,
+                            itemStyle:{
+                                normal: {
+                                    color: '#333', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: '#333' //改变折线颜色
+                                    }
+                                }
+                            }
+                        },
+
+
+                    ]
+                };
+                myCharts1.setOption(option);
+
             },
+            initMyCharts2() {
+                const myCharts2 = this.$echarts.init(this.$refs.myCharts2);
+                let option = {
+                    title: {
+                        text: '海外疫情趋势图',
+                        subtext: '数据来自interface.sina.cn',
+
+                    },
+                    tooltip: {
+                        formatter:function(params) {
+                            var relVal = params[0].name;
+                            for (var i = 0, l = params.length; i < l; i++) {
+                                relVal += '<br/>' + params[i].marker + params[i].seriesName + ':' + params[i].value+"人";
+                            }
+                            return relVal;
+                        },
+                        trigger: 'axis',
+                        backgroundColor:'#ffffff',
+                        extraCssText:'box-shadow: 0 2px 20px rgba(0, 0, 0, .1);',
+                        textStyle:{
+                            color: '#000000',
+                        },
+                    },
+                    legend: {
+                        data: ['累计确诊', '累计治愈','累计死亡'],
+                        x: '150px',
+                        y: '5px',
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {},
+                            dataView: { //数据视图
+                                show: true,
+                            },
+                            restore: { //重置
+                                show: true
+                            },
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: this.date
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+
+                            showSymbol: false,
+                            name: '累计确诊',
+                            type: 'line',
+                            data: this.certain,
+                            itemStyle:{
+                                normal: {
+                                    color: 'rgb(232,49,50)', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: 'rgb(232,49,50)' //改变折线颜色
+                                    }
+                                }
+                            }
+
+
+                        },
+                        {
+
+                            showSymbol: false,
+                            name: '累计治愈',
+                            type: 'line',
+                            data: this.recure,
+                            itemStyle:{
+                                normal: {
+                                    color: '#34aa70', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: '#34aa70' //改变折线颜色
+                                    }
+                                }
+                            }
+                        },
+                        {
+
+                            showSymbol: false,
+                            name: '累计死亡',
+                            type: 'line',
+                            data: this.die,
+                            itemStyle:{
+                                normal: {
+                                    color: '#333', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: '#333' //改变折线颜色
+                                    }
+                                }
+                            }
+                        },
+
+
+                    ]
+                };
+                myCharts2.setOption(option);
+
+            },
+            initMyCharts3() {
+                const myCharts3 = this.$echarts.init(this.$refs.myCharts3);
+                let option = {
+                    title: {
+                        text: '全国疫情趋势图',
+                        subtext: '数据来自interface.sina.cn',
+                    },
+                    toolbox: {
+                    },
+                    tooltip: {
+                        formatter:function(params) {
+                            var relVal = params[0].name;
+                            for (var i = 0, l = params.length; i < l; i++) {
+                                relVal += '<br/>' + params[i].marker + params[i].seriesName + ':' + params[i].value+"人";
+                            }
+                            return relVal;
+                        },
+                        trigger: 'axis',
+                        backgroundColor:'#ffffff',
+                        extraCssText:'box-shadow: 0 2px 20px rgba(0, 0, 0, .1);',
+                        textStyle:{
+                            color: '#000000',
+                        },
+                    },
+
+
+                    legend: {
+                        data: ['新增确诊', '新增治愈','新增死亡'],
+                        x: '150px',
+                        y: '5px',
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {},
+                            dataView: { //数据视图
+                                show: true,
+                            },
+                            restore: { //重置
+                                show: true
+                            },
+                        },
+
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: this.chinaDateList
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+
+                            showSymbol: false,
+                            name: '新增确诊',
+                            type: 'line',
+                            data: this.cn_addConList,
+                            itemStyle:{
+                                normal: {
+                                    color: 'rgb(232,49,50)', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: 'rgb(232,49,50)' //改变折线颜色
+                                    }
+                                }
+                            },
+
+
+
+                        },
+                        {
+
+                            showSymbol: false,
+                            name: '新增治愈',
+                            type: 'line',
+                            data: this.cn_addHealList,
+                            itemStyle:{
+                                normal: {
+                                    color: '#34aa70', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: '#34aa70' //改变折线颜色
+                                    }
+                                }
+                            }
+                        },
+                        {
+
+                            showSymbol: false,
+                            name: '新增死亡',
+                            type: 'line',
+                            data: this.cn_addDeadList,
+                            itemStyle:{
+                                normal: {
+                                    color: '#333', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: '#333' //改变折线颜色
+                                    }
+                                }
+                            }
+                        },
+
+
+                    ]
+                };
+                myCharts3.setOption(option);
+
+            },
+            initMyCharts4() {
+                const myCharts4 = this.$echarts.init(this.$refs.myCharts4);
+                let option = {
+                    title: {
+                        text: '全国治愈率/死亡率趋势',
+                        subtext: '数据来自interface.sina.cn',
+                    },
+                    toolbox: {
+                    },
+                    tooltip: {
+                        formatter:function(params) {
+                            var relVal = params[0].name;
+                            for (var i = 0, l = params.length; i < l; i++) {
+                                relVal += '<br/>' + params[i].marker + params[i].seriesName + ':' + params[i].value+"%";
+                            }
+                            return relVal;
+                        },
+                        trigger: 'axis',
+                        backgroundColor:'#ffffff',
+                        extraCssText:'box-shadow: 0 2px 20px rgba(0, 0, 0, .1);',
+                        textStyle:{
+                            color: '#000000',
+                        },
+                    },
+                    legend: {
+                        data: ['治愈率', '死亡率'],
+                        x: '150px',
+                        y: '5px',
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {},
+                            dataView: { //数据视图
+                                show: true,
+                            },
+                            restore: { //重置
+                                show: true
+                            },
+                        },
+
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: this.dateList
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+
+                            showSymbol: false,
+                            name: '治愈率',
+                            type: 'line',
+                            data: this.cn_cureRate,
+                            itemStyle:{
+                                normal: {
+                                    color: '#34aa70', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: '#34aa70' //改变折线颜色
+                                    }
+                                }
+                            }
+                        },
+                        {
+
+                            showSymbol: false,
+                            name: '死亡率',
+                            type: 'line',
+                            data: this.cn_deathRate,
+                            itemStyle:{
+                                normal: {
+                                    color: '#333', //改变折线点的颜色
+                                    lineStyle: {
+                                        color: '#333' //改变折线颜色
+                                    }
+                                }
+                            }
+                        },
+                    ]
+                };
+                myCharts4.setOption(option);
+            },
+
+
+
         },
 
         mounted() {
-            this.getDataList()
+            let url = "https://interface.sina.cn/news/wap/fymap2020_data.d.json";
+            axios.get('getListTotal').then((res)=>{
+
+                this.$store.commit('updateDayList',res.data)
+                this.chinaDayList=res.data.chinaDayList
+                console.log(this.chinaDayList);
+                for(var i = 0; i < this.chinaDayList.length; i++){
+                    this.chinaDateList.push(this.chinaDayList[i].date.slice(5,10))
+                    this.cn_addConList.push(this.chinaDayList[i].today.confirm)
+                    this.cn_addDeadList.push(this.chinaDayList[i].today.dead)
+                    this.cn_addHealList.push(this.chinaDayList[i].today.heal)
+                    this.cn_addSusList.push(this.chinaDayList[i].today.suspect)
+
+                }
+
+
+                this.initMyCharts3()
+
+
+
+            })
+
+
+            this.$jsonp(url).then(res => {
+                let epidemicData=res.data
+                this.$store.commit('updateEpidemicData',epidemicData)
+
+                this.add_daily = res.data.add_daily;
+                this.othertotal = res.data.othertotal;
+                this.historylist = res.data.historylist;
+                this.dataDetail = res.data;
+                this.otherhistorylist=res.data.otherhistorylist
+
+
+
+                for (var i = 0; i < this.historylist.length; i++) {
+                    this.cn_conNumList.push(parseInt(this.historylist[i].cn_conNum));
+                    this.dateList.push(this.historylist[i].date.replace('.','-'))
+                    this.cn_cureNum.push(parseInt(this.historylist[i].cn_cureNum))
+                    this.cn_deathNum.push(parseInt(this.historylist[i].cn_deathNum))
+                    this.cn_deathRate.push(parseFloat(this.historylist[i].cn_deathRate))
+                    this.cn_cureRate.push(parseFloat(this.historylist[i].cn_cureRate))
+                }
+
+                this.cn_cureNum.reverse();
+                this.cn_deathNum.reverse();
+                this.cn_conNumList.reverse();
+                this.dateList.reverse()
+                this.cn_deathRate.reverse()
+                console.log(this.cn_deathRate);
+                this.cn_cureRate.reverse()
+                console.log(this.cn_cureRate);
+
+                for (var i = 0; i < this.otherhistorylist.length; i++) {
+                    this.certain.push(parseInt(this.otherhistorylist[i].certain));
+                    this.date.push(this.otherhistorylist[i].date.replace('.','-'))
+                    this.recure.push(parseInt(this.otherhistorylist[i].recure))
+                    this.die.push(parseInt(this.otherhistorylist[i].die))
+                }
+
+                this.certain.reverse();
+                this.date.reverse();
+                this.recure.reverse();
+                this.die.reverse()
+
+
+
+                this.initMyCharts1()
+                this.initMyCharts2()
+                this.initMyCharts4()
+
+
+
+            });
 
 
             if (this.userData['adminPermission'] == '0') {
@@ -268,10 +803,10 @@
 <style lang="scss" scoped>
     .map {
         display: inline-block;
-        margin: 0 20px 0 0;
-        padding: 0 20px 0 0;
-        height: 600px;
-        width: 585px;
+        margin: 0 10px 0 0;
+        padding: 0 10px 0 0;
+        height: 700px;
+        width: 552px;
 
         float: left
     }

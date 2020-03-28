@@ -807,13 +807,13 @@
     /* 主要内容区域 */
     .main-content {
         height: calc(100% - 88px);
-        overflow: hidden;
+        overflow: auto;
     }
 
     .view-c {
         position: relative;
         height: 100%;
-        overflow: hidden;
+        overflow: auto;
     }
 
     .pointer {

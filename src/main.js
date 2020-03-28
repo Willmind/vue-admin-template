@@ -14,6 +14,18 @@ import VueJsonp from 'vue-jsonp'
 import "./assets/icon/iconfont.css";
 Vue.use(VueJsonp)
 
+window.devicePixelRatio = 2;
+
+import echarts from 'echarts'
+
+import china from 'echarts/map/json/china.json'
+echarts.registerMap('china', china)
+
+import world from 'echarts/map/json/world.json'
+echarts.registerMap('world', world)
+
+Vue.prototype.$echarts = echarts
+
 Vue.config.productionTip = false
 Vue.use(ViewUI)
 
