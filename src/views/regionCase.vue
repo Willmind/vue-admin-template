@@ -367,7 +367,6 @@
                         y: '5px',
                     },
                     tooltip: {
-                        
                         formatter: function (params) {
                             var relVal = params[0].name;
                             for (var i = 0, l = params.length; i < l; i++) {
