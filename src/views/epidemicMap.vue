@@ -1,20 +1,40 @@
 <template>
     <div style="height: 800px;">
 
-            <div style="display: flex;justify-content: center;align-items: center">
-                <div style="width:800px;height:700px;padding: 10px;">
-                    <el-tabs type="border-card">
-                        <el-tab-pane label="全国疫情地图">
-                            <div style="width:600px;height:450px; " id="myCharts1" ref="myCharts1"></div>
-                        </el-tab-pane>
+        <div style="display: flex;justify-content: center;align-items: center">
+            <div style="width:800px;height:700px;padding: 10px;">
+                <el-tabs type="border-card">
+                    <el-tab-pane label="全国疫情地图">
+                        <el-tabs>
+                            <el-tab-pane label="现有确诊">
+                                <div style="width:600px;height:600px; " id="myCharts3" ref="myCharts3"></div>
+                            </el-tab-pane>
 
-                        <el-tab-pane  label="海外疫情地图" >
-                            <div style="width:563px;height:450px; " id="myCharts2" ref="myCharts2"></div>
-                        </el-tab-pane>
+                            <el-tab-pane label="累计确诊">
+                                <div style="width:600px;height:600px; " id="myCharts1" ref="myCharts1"></div>
+                            </el-tab-pane>
 
-                    </el-tabs>
-                </div>
+
+                        </el-tabs>
+
+                    </el-tab-pane>
+
+                    <el-tab-pane label="海外疫情地图">
+                        <el-tabs>
+                            <el-tab-pane label="累计确诊">
+                                <div style="width:563px;height:450px; " id="myCharts2" ref="myCharts2"></div>
+                            </el-tab-pane>
+                            <el-tab-pane label="现有确诊">
+
+                            </el-tab-pane>
+
+                        </el-tabs>
+
+                    </el-tab-pane>
+
+                </el-tabs>
             </div>
+        </div>
 
 
     </div>
@@ -38,6 +58,9 @@
         },
         data() {
             return {
+                cn_econNumList: [],
+                cn_conNumList:[],
+
                 otherlistObject: [],
                 conObject: {},
                 areaDataList: [],
@@ -52,15 +75,15 @@
                 let dataList = this.areaDataList
                 let option = {
                     title: {
-                        text: '全球疫情地图',
+                        text: '全球疫情累计确诊地图',
                         subtext: '数据来自interface.sina.cn',
                     },
                     toolbox: {
                         show: true,
                         feature: {
                             saveAsImage: {
-                                show:true,
-                                excludeComponents :['toolbox'],
+                                show: true,
+                                excludeComponents: ['toolbox'],
                                 pixelRatio: 2
                             },
                             dataView: { //数据视图
@@ -72,9 +95,16 @@
                         }
                     },
                     tooltip: {
+
+                        backgroundColor: '#ffffff',
+                        extraCssText: 'box-shadow: 0 2px 20px rgba(0, 0, 0, .1);',
+                        textStyle: {
+                            color: '#000000',
+                        },
                         formatter: function (params, ticket, callback) {
-                            return params.seriesName + '<br />' + params.name + '：' + params.value
-                        }//数据格式化
+                            return params.seriesName + '<br />' + params.name + '：' + params.value + '人'
+                        },//数据格式化
+
                     },
                     visualMap: {
                         // calculable:true,
@@ -135,56 +165,27 @@
 
             initCharts1() {
                 const myCharts1 = this.$echarts.init(this.$refs.myCharts1);
-                let dataList = [
-                    {name: "南海诸岛", value: 0},
-                    {name: '北京', value: this.conObject['北京']},
-                    {name: '天津', value: this.conObject['天津']},
-                    {name: '上海', value: this.conObject['上海']},
-                    {name: '重庆', value: this.conObject['重庆']},
-                    {name: '河北', value: this.conObject['河北']},
-                    {name: '河南', value: this.conObject['河南']},
-                    {name: '云南', value: this.conObject['云南']},
-                    {name: '辽宁', value: this.conObject['辽宁']},
-                    {name: '黑龙江', value: this.conObject['黑龙江']},
-                    {name: '湖南', value: this.conObject['湖南']},
-                    {name: '安徽', value: this.conObject['安徽']},
-                    {name: '山东', value: this.conObject['山东']},
-                    {name: '新疆', value: this.conObject['新疆']},
-                    {name: '江苏', value: this.conObject['江苏']},
-                    {name: '浙江', value: this.conObject['浙江']},
-                    {name: '江西', value: this.conObject['江西']},
-                    {name: '湖北', value: this.conObject['湖北']},
-                    {name: '广西', value: this.conObject['广西']},
-                    {name: '甘肃', value: this.conObject['甘肃']},
-                    {name: '山西', value: this.conObject['山西']},
-                    {name: '内蒙古', value: this.conObject['内蒙古']},
-                    {name: '陕西', value: this.conObject['陕西']},
-                    {name: '吉林', value: this.conObject['吉林']},
-                    {name: '福建', value: this.conObject['福建']},
-                    {name: '贵州', value: this.conObject['贵州']},
-                    {name: '广东', value: this.conObject['广东']},
-                    {name: '青海', value: this.conObject['青海']},
-                    {name: '西藏', value: this.conObject['西藏']},
-                    {name: '四川', value: this.conObject['四川']},
-                    {name: '宁夏', value: this.conObject['宁夏']},
-                    {name: '海南', value: this.conObject['海南']},
-                    {name: '台湾', value: this.conObject['台湾']},
-                    {name: '香港', value: this.conObject['香港']},
-                    {name: '澳门', value: this.conObject['澳门']}
-                ]
+                let dataList =this.cn_conNumList;
                 let option = {
+                    borderWidth:'1',
+                    borderColor: 'rgba(0, 0, 0, 0.2)',
+                    backgroundColor:'rgb(243,243,243)',
                     title: {
-                        text: '全国疫情地图',
+                        top:'20',
+                        left:'20',
+                        text: '全国疫情累计确诊地图',
                         subtext: '数据来自interface.sina.cn',
                     },
                     toolbox: {
-                        showTitle:true,
+                        right:'20',
+                        top:'20',
+                        showTitle: true,
                         show: true,
                         feature: {
 
                             saveAsImage: {
-                                show:true,
-                                excludeComponents :['toolbox'],
+                                show: true,
+                                excludeComponents: ['toolbox'],
                                 pixelRatio: 2
                             },
                             dataView: { //数据视图
@@ -197,21 +198,37 @@
                         }
                     },
                     tooltip: {
+                        backgroundColor: 'rgba(255,255,255,0.8)',
+                        extraCssText: 'box-shadow: 0 2px 20px rgba(0, 0, 0, .1);',
+                        textStyle: {
+                            color: '#000000',
+                        },
                         formatter: function (params, ticket, callback) {
-                            return params.seriesName + '<br />' + params.name + '：' + params.value
+                            return params.seriesName + '<br />' + params.name + '：' + params.value + '人'
                         }//数据格式化
                     },
                     visualMap: {
-                        min: 0,
-                        max: 2500,
-                        left: 'left',
-                        top: 'bottom',
+                        left:"15",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                        bottom:"15",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                        right:"auto",                               //组件离容器右侧的距离,'20%'
+                        showLabel:true,
+                        show: true,//图注
+                        type: 'piecewise',
                         text: ['高', '低'],//取值范围的文字
-                        inRange: {
-                            color: ['#ffffff', '#a31d13']//取值范围的颜色
-                        },
-                        show: true//图注
+                        pieces: [
+                            //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
+                            {min: 10000,label: '>10000人',color:'rgb(127,17,0)'},
+                            {min: 1000, max: 9999,label: '1000-9999人',color:'rgb(189,19,22)'},
+                            {min: 500, max: 999,label: '500-999人',color:'rgb(230,75,69)'},
+                            {min: 100, max: 499,label: '100-499人',color:'rgb(255,140,113)'},
+                            {min: 10, max: 99,label: '10-99人',color:'rgb(253,210,160)'},
+                            {min: 1, max: 9, label: '1-9人',color:'rgb(255,242,207)'},
+                            {min:0,max: 0,label:'0',color:'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
+                        ],
+
+
                     },
+
                     geo: {
                         map: 'china',
                         roam: false,//不开启缩放和平移
@@ -251,11 +268,128 @@
                     alert(params.name);
                 });
 
-            }
+            },
+            initCharts3() {
+                const myCharts3 = this.$echarts.init(this.$refs.myCharts3);
+                let dataList = this.cn_econNumList
+                let option = {
+                    borderWidth:'1',
+                    borderColor: 'rgba(0, 0, 0, 0.2)',
+                    backgroundColor:'rgb(243,243,243)',
+                    title: {
+                        top:'20',
+                        left:'20',
+                        text: '全国疫情现有确诊地图',
+                        subtext: '数据来自interface.sina.cn',
+                    },
+                    toolbox: {
+                        right:'20',
+                        top:'20',
+                        showTitle: true,
+                        show: true,
+                        feature: {
+
+                            saveAsImage: {
+                                show: true,
+                                excludeComponents: ['toolbox'],
+                                pixelRatio: 2
+                            },
+                            dataView: { //数据视图
+                                show: true,
+                            },
+                            restore: { //重置
+                                show: true
+                            },
+
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(255,255,255,0.8)',
+                        extraCssText: 'box-shadow: 0 2px 20px rgba(0, 0, 0, .1);',
+                        textStyle: {
+                            color: '#000000',
+                        },
+                        formatter: function (params, ticket, callback) {
+                            return params.seriesName + '<br />' + params.name + '：' + params.value + '人'
+                        }//数据格式化
+                    },
+                    visualMap: {
+                        left:"15",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                        bottom:"15",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                        right:"auto",                               //组件离容器右侧的距离,'20%'
+                        showLabel:true,
+                        show: true,//图注
+                        type: 'piecewise',
+                        text: ['高', '低'],//取值范围的文字
+                        pieces: [
+                            //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
+                            {min: 10000,label: '>10000人',color:'rgb(127,17,0)'},
+                            {min: 1000, max: 9999,label: '1000-9999人',color:'rgb(189,19,22)'},
+                            {min: 500, max: 999,label: '500-999人',color:'rgb(230,75,69)'},
+                            {min: 100, max: 499,label: '100-499人',color:'rgb(255,140,113)'},
+                            {min: 10, max: 99,label: '10-99人',color:'rgb(253,210,160)'},
+                            {min: 1, max: 9, label: '1-9人',color:'rgb(255,242,207)'},
+                            {min:0,max: 0,label:'0',color:'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
+                        ],
+
+
+                    },
+                    // dataRange: {//颜色的变化设置
+                    //     x: 'left',
+                    //     y: 'bottom',
+                    //     splitList: [
+                    //         {start: 1500},
+                    //         {start: 900, end: 1500},
+                    //         {start: 310, end: 1000},
+                    //         {start: 200, end: 300},
+                    //         {start: 10, end: 200, label: '10 到 200（自定义label）'},
+                    //         {start: 5, end: 5, label: '5（自定义特殊颜色）', color: 'black'},
+                    //         {end: 10}
+                    //     ],
+                    // },
+                    geo: {
+                        map: 'china',
+                        roam: false,//不开启缩放和平移
+                        zoom: 1.23,//视角缩放比例
+                        label: {
+                            normal: {
+                                show: true,
+                                fontSize: '10',
+                                color: 'rgba(0,0,0,0.7)'
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                borderColor: 'rgba(0, 0, 0, 0.2)'
+                            },
+                            emphasis: {
+                                areaColor: '#F3B329',//鼠标选择区域颜色
+                                shadowOffsetX: 0,
+                                shadowOffsetY: 0,
+                                shadowBlur: 20,
+                                borderWidth: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    },
+                    series: [
+                        {
+                            name: '现有确诊',
+                            type: 'map',
+                            geoIndex: 0,
+                            data: dataList
+                        }
+                    ]
+                };
+                myCharts3.setOption(option);
+                myCharts3.on('click', function (params) {
+                    alert(params.name);
+                });
+
+            },
 
         },
         mounted() {
-            console.log(this.epidemicData.gntotal);
             let mapData = require('./../assets/json/mapData')
             const invertKeyValues = obj =>
                 Object.keys(obj).reduce((acc, key) => {
@@ -263,14 +397,26 @@
                     return acc;
                 }, {});
             let mapCurrent = invertKeyValues(mapData)
-            console.log(mapCurrent);
 
 
             for (var i = 0; i < this.epidemicData.list.length; i++) {
-                let key = this.epidemicData.list[i].name
-                let value = this.epidemicData.list[i].value
-                this.conObject[key] = value
+                this.cn_conNumList.push({
+                    name: this.epidemicData.list[i].name,
+                    value:parseInt(this.epidemicData.list[i].value),
+                })
             }
+
+            for (var i = 0; i < this.epidemicData.list.length; i++) {
+                this.cn_econNumList.push({
+                    name: this.epidemicData.list[i].name,
+                    value:parseInt(this.epidemicData.list[i].econNum),
+                })
+
+            }
+
+            console.log(this.cn_econNumList);
+
+
             for (var i = 0; i < this.epidemicData.otherlist.length; i++) {
                 this.otherlistObject.push({name: this.epidemicData.otherlist[i].name, value: this.epidemicData.otherlist[i].conNum})
             }
@@ -278,20 +424,19 @@
             for (var i = 0; i < this.otherlistObject.length; i++) {
                 this.areaDataList.push({
                     name: mapCurrent[this.otherlistObject[i].name],
-                    value:this.otherlistObject[i].value
+                    value: this.otherlistObject[i].value
                 })
 
             }
             this.areaDataList.push({
                 name: 'China',
-                value:this.epidemicData.gntotal
+                value: this.epidemicData.gntotal
             })
-
-            console.log(this.otherlistObject);
 
 
             this.initCharts1()
             this.initCharts2()
+            this.initCharts3()
 
         }
     }
@@ -304,7 +449,7 @@
             display: flex;
             justify-content: center;
             align-content: center;
-            padding: 33px;
+            /*padding: 33px;*/
         }
 
     }

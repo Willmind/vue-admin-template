@@ -24,6 +24,12 @@ const store = new Vuex.Store({
                 name: 'epidemicMap', // 要跳转的路由名称 不是路径
                 text: '疫情地图', // 文本内容
             },
+            {
+                size: 18, // icon大小
+                type: 'ios-copy',
+                name: 'regionCase', // 要跳转的路由名称 不是路径
+                text: '各地区病例', // 文本内容
+            },
             // {
             //     type: 'ios-grid',
             //     name: 'dormitoryInteriorList',

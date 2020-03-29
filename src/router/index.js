@@ -27,6 +27,12 @@ export const asyncRoutes = {
         meta: {title: '主页'},
         component: () => import('../views/Home.vue'),
     },
+    regionCase: {
+        path: 'regionCase',
+        name: 'regionCase',
+        meta: {title: '各地区病例'},
+        component: () => import('../views/regionCase.vue'),
+    },
     epidemicMap: {
         path: 'epidemicMap',
         name: 'epidemicMap',
