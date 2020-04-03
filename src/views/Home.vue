@@ -5,7 +5,7 @@
                 <div style="display:inline-block;">
                     <el-tabs style="height: 625px;" v-model="activeTab" type="border-card">
                         <el-tab-pane name="China">
-                            <span slot="label"><i class="iconfont icon-zhongguo"></i> 全国疫情数据（含港澳台）</span>
+                            <span slot="label"><i class="iconfont icon-zhongguo"></i> {{$t('m.DomesticEpidemicData')}}</span>
                             <div class="main">
                                 <div class="home-content">
 
@@ -116,7 +116,7 @@
                         </el-tab-pane>
 
                         <el-tab-pane name="world">
-                            <span slot="label"><i class="iconfont icon-world"></i> 海外疫情</span>
+                            <span slot="label"><i class="iconfont icon-world"></i> {{$t('m.OverseaEpidemicData')}}</span>
                             <div class="main">
                                 <div class="home-content" style="height: 159px">
 
@@ -168,22 +168,27 @@
                     </el-tabs>
                 </div>
                 <div class="map">
-                    <el-tabs type="border-card">
-                        <el-tab-pane label="中国疫情">
+                    <el-tabs v-model="activeTab2" type="border-card">
+                        <el-tab-pane name="China">
+                            <span slot="label"><i class="iconfont icon-zhongguo"></i> {{$t('m.DomesticEpidemic')}}</span>
                             <el-tabs>
-                                <el-tab-pane label="疫情趋势">
+                                <el-tab-pane >
+                                    <span slot="label"> {{$t('m.EpidemicTrend')}}</span>
                                     <div style="height:500px;width: 500px;" id="myCharts1" ref="myCharts1"></div>
                                 </el-tab-pane>
 
-                                <el-tab-pane label="疫情新增">
+                                <el-tab-pane >
+                                    <span slot="label"> {{$t('m.NewEpidemicSituation')}}</span>
                                     <div style="height:500px;width: 500px;" id="myCharts3" ref="myCharts3"></div>
                                 </el-tab-pane>
 
-                                <el-tab-pane label="治愈率/死亡率趋势">
+                                <el-tab-pane>
+                                    <span slot="label"> {{$t('m.CureRateMortalityTrends')}}</span>
                                     <div style="height:500px;width: 500px;" id="myCharts4" ref="myCharts4"></div>
                                 </el-tab-pane>
 
-                                <el-tab-pane label="现有确诊/疑似/累计确诊趋势">
+                                <el-tab-pane >
+                                    <span slot="label"> {{$t('m.CurrentDiagnosisSuspectedCumulativeDiagnosisTrend')}}</span>
                                     <div style="height:500px;width: 500px;" id="myCharts5" ref="myCharts5"></div>
 
                                 </el-tab-pane>
@@ -195,11 +200,12 @@
                             </el-tabs>
 
                         </el-tab-pane>
-                        <el-tab-pane label="海外疫情">
+                        <el-tab-pane name="world">
+                            <span slot="label"><i class="iconfont icon-world"></i> {{$t('m.OverseaEpidemic')}}</span>
                             <el-tabs>
-                                <el-tab-pane label="海外疫情趋势">
+                                <el-tab-pane >
+                                    <span slot="label"> {{$t('m.OverseasEpidemicTrend')}}</span>
                                     <div style="height:500px;width: 500px;" id="myCharts2" ref="myCharts2"></div>
-
                                 </el-tab-pane>
                             </el-tabs>
 
@@ -270,6 +276,8 @@
 
                 tabPosition: 'left',
                 activeTab: 'China',
+                activeTab2: 'China',
+
                 dialogTableVisible1: false,
                 dialogTableVisible2: false,
                 historylist: '',
@@ -293,7 +301,7 @@
         },
 
         methods: {
-            initMyCharts1() {
+            initMyCharts1()     {
                 const myCharts1 = this.$echarts.init(this.$refs.myCharts1);
                 let option = {
                     title: {
@@ -350,7 +358,8 @@
                     series: [
                         {
 
-                            showSymbol: false,
+                            showSymbol: true,
+                            symbolSize: 8,
                             name: '累计确诊',
                             type: 'line',
                             data: this.cn_conNumList,
@@ -358,6 +367,7 @@
                                 normal: {
                                     color: 'rgb(232,49,50)', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: 'rgb(232,49,50)' //改变折线颜色
                                     }
                                 }
@@ -366,8 +376,8 @@
 
                         },
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '累计治愈',
                             type: 'line',
                             data: this.cn_cureNum,
@@ -375,14 +385,15 @@
                                 normal: {
                                     color: '#34aa70', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: '#34aa70' //改变折线颜色
                                     }
                                 }
                             }
                         },
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '累计死亡',
                             type: 'line',
                             data: this.cn_deathNum,
@@ -390,6 +401,7 @@
                                 normal: {
                                     color: '#333', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: '#333' //改变折线颜色
                                     }
                                 }
@@ -457,8 +469,8 @@
                     },
                     series: [
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '累计确诊',
                             type: 'line',
                             data: this.certain,
@@ -466,6 +478,7 @@
                                 normal: {
                                     color: 'rgb(232,49,50)', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: 'rgb(232,49,50)' //改变折线颜色
                                     }
                                 }
@@ -474,8 +487,8 @@
 
                         },
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '累计治愈',
                             type: 'line',
                             data: this.recure,
@@ -483,14 +496,15 @@
                                 normal: {
                                     color: '#34aa70', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: '#34aa70' //改变折线颜色
                                     }
                                 }
                             }
                         },
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '累计死亡',
                             type: 'line',
                             data: this.die,
@@ -498,6 +512,7 @@
                                 normal: {
                                     color: '#333', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: '#333' //改变折线颜色
                                     }
                                 }
@@ -568,8 +583,8 @@
                     },
                     series: [
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '新增确诊',
                             type: 'line',
                             data: this.cn_addConList,
@@ -577,6 +592,7 @@
                                 normal: {
                                     color: 'rgb(232,49,50)', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: 'rgb(232,49,50)' //改变折线颜色
                                     }
                                 }
@@ -585,8 +601,8 @@
 
                         },
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '新增治愈',
                             type: 'line',
                             data: this.cn_addHealList,
@@ -594,14 +610,15 @@
                                 normal: {
                                     color: '#34aa70', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: '#34aa70' //改变折线颜色
                                     }
                                 }
                             }
                         },
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '新增死亡',
                             type: 'line',
                             data: this.cn_addDeadList,
@@ -609,6 +626,7 @@
                                 normal: {
                                     color: '#333', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: '#333' //改变折线颜色
                                     }
                                 }
@@ -677,8 +695,8 @@
                     },
                     series: [
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '治愈率',
                             type: 'line',
                             data: this.cn_cureRate,
@@ -686,14 +704,15 @@
                                 normal: {
                                     color: '#34aa70', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: '#34aa70' //改变折线颜色
                                     }
                                 }
                             }
                         },
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '死亡率',
                             type: 'line',
                             data: this.cn_deathRate,
@@ -701,6 +720,7 @@
                                 normal: {
                                     color: '#333', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: '#333' //改变折线颜色
                                     }
                                 }
@@ -774,8 +794,8 @@
                     },
                     series: [
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '现有确诊',
                             type: 'line',
                             data: this.cn_econNum,
@@ -783,14 +803,15 @@
                                 normal: {
                                     color: 'rgb(254,150,136)', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: 'rgb(254,150,136)' //改变折线颜色
                                     }
                                 }
                             }
                         },
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '累计确诊',
                             type: 'line',
                             data: this.cn_conNumList,
@@ -798,14 +819,15 @@
                                 normal: {
                                     color: 'rgb(232,49,50)', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: 'rgb(232,49,50)' //改变折线颜色
                                     }
                                 }
                             }
                         },
                         {
-
-                            showSymbol: false,
+                            symbolSize: 8,
+                            showSymbol: true,
                             name: '现有疑似',
                             type: 'line',
                             data: this.cn_susNum,
@@ -813,6 +835,7 @@
                                 normal: {
                                     color: 'rgb(236,146,23)', //改变折线点的颜色
                                     lineStyle: {
+                                        width:5,//折线宽度
                                         color: 'rgb(236,146,23)' //改变折线颜色
                                     }
                                 }
@@ -828,6 +851,9 @@
 
         mounted() {
             let url = "https://interface.sina.cn/news/wap/fymap2020_data.d.json";
+
+
+
             axios.get('getListTotal').then((res) => {
 
                 this.$store.commit('updateDayList', res.data)
@@ -839,15 +865,9 @@
                     this.cn_addDeadList.push(this.chinaDayList[i].today.dead)
                     this.cn_addHealList.push(this.chinaDayList[i].today.heal)
                     this.cn_addSusList.push(this.chinaDayList[i].today.suspect)
-
                 }
-
-
                 this.initMyCharts3()
-
-
             })
-
 
             this.$jsonp(url).then(res => {
                 let epidemicData = res.data
@@ -858,7 +878,6 @@
                 this.historylist = res.data.historylist;
                 this.dataDetail = res.data;
                 this.otherhistorylist = res.data.otherhistorylist
-
 
                 for (var i = 0; i < this.historylist.length; i++) {
                     this.cn_conNumList.push(parseInt(this.historylist[i].cn_conNum));

@@ -1,0 +1,17 @@
+export const m = {
+    Home: 'Home',
+    EpidemicMap: 'EpidemicMap',
+    RegionCase: 'RegionCase',
+    RealTimeBroadcast: 'RealTimeBroadcast',
+    MigrationData: 'MigrationData',
+    DomesticEpidemic:'DomesticEpidemic',
+    DomesticEpidemicData:'DomesticEpidemicData',
+    OverseaEpidemic:'OverseaEpidemic',
+    OverseaEpidemicData:'OverseaEpidemicData',
+    EpidemicTrend:'EpidemicTrend',
+    OverseasEpidemicTrend:'OverseasEpidemicTrend',
+    NewEpidemicSituation:'NewEpidemicSituation',
+    CureRateMortalityTrends:'CureRate/MortalityTrends',
+    CurrentDiagnosisSuspectedCumulativeDiagnosisTrend:'CurrentDiagnosis/Suspected/CumulativeDiagnosis/Trend',
+    // CurrentDiagnosisSuspectedCumulativeDiagnosisTrend:'CurrentDiagnosis/Suspected/CumulativeDiagnosis/Trend',
+}

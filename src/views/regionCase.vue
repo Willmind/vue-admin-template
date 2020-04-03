@@ -1,70 +1,84 @@
 <template>
     <div class="_wrap">
-        <el-backtop target="._wrap"></el-backtop>
+
 
         <div style="display:flex;justify-content: center">
-            <div>
-                <div class="wrap">
-                    <div class="chart">
+
+                <el-card class="box-card">
+                    <div class="wrap">
+                        <div class="chart">
                         <span class="line-chart">
+                            <svg class="icon closeImg"  aria-hidden="true">
+                                <use xlink:href="#icon-zhongguo1"></use>
+                            </svg>
+
                            中国病例
                         </span>
-                    </div>
-                    <div class="province_th">
-                        <span class="item_name" style="font-weight: bold">地区</span>
-                        <span class="item_name" style="color: rgb(228,74,61);font-weight: bold ">新增确诊</span>
-                        <span class="item_name" style="font-weight: bold">确诊</span>
-                        <span class="item_name" style="font-weight: bold">死亡</span>
-                        <span class="item_name" style="font-weight: bold">治愈</span>
-                    </div>
-                    <ul style="margin: 60px 0">
-                        <li>
-                            <div class="hasCities" v-for="(item, index) in dataList" :key="index">
+                            <span>点击各地区查看疫情趋势图</span>
+
+                        </div>
+                        <div class="province_th">
+                            <span class="item_name" style="font-weight: bold">地区</span>
+                            <span class="item_name" style="color: rgb(228,74,61);font-weight: bold ">新增确诊</span>
+                            <span class="item_name" style="font-weight: bold">确诊</span>
+                            <span class="item_name" style="font-weight: bold">死亡</span>
+                            <span class="item_name" style="font-weight: bold">治愈</span>
+                        </div>
+                        <ul style="margin: 60px 0">
+                            <li>
+                                <div class="hasCities" v-for="(item, index) in dataList" :key="index">
 
                                 <span class="item_name" @click="changeActive(item)" @mouseover="changeColor(item)"
                                       @mouseleave="changeColor(!item)"
                                       :class="{to_active:shows==item.name}"
-                                      style="font-weight: bold; cursor: pointer;">{{item.name}}</span>
-                                <span class="item_name" style="color: rgb(228,74,61)">{{item.conadd}}</span>
-                                <span class="item_name">{{item.value}}</span>
-                                <span class="item_name">{{item.deathNum}}</span>
-                                <span class="item_name">{{item.cureNum}}</span>
+                                      style="font-weight: bold;color:#2E6EB1 ;cursor: pointer;text-decoration:underline">{{item.name}}</span>
+                                    <span class="item_name" style="color: rgb(228,74,61)">{{item.conadd}}</span>
+                                    <span class="item_name">{{item.value}}</span>
+                                    <span class="item_name">{{item.deathNum}}</span>
+                                    <span class="item_name">{{item.cureNum}}</span>
 
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="wrap">
-                    <div class="chart">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </el-card>
+                <el-card class="box-card">
+                    <div class="wrap">
+                        <div class="chart">
                         <span class="line-chart">
+                            <svg class="icon closeImg"  aria-hidden="true">
+                                <use xlink:href="#icon-shijie1"></use>
+                            </svg>
                            海外病例
                         </span>
+                            <span>以下数据来自各国(地区)官方通报</span>
+                        </div>
+
+                        <div class="province_th">
+                            <span class="item_name" style="font-weight: bold">地区</span>
+                            <span class="item_name" style="color: rgb(228,74,61);font-weight: bold ">新增确诊</span>
+                            <span class="item_name" style="font-weight: bold">确诊</span>
+                            <span class="item_name" style="font-weight: bold">死亡</span>
+                            <span class="item_name" style="font-weight: bold">治愈</span>
+                        </div>
+                        <ul style="margin: 60px 0">
+                            <li>
+                                <div class="hasCities" v-for="(item, index) in otherlist" :key="index">
+
+                                <span class="item_name"
+                                      style="font-weight: bold">{{item.name}}</span>
+                                    <span class="item_name" style="color: rgb(228,74,61)">{{item.conadd}}</span>
+                                    <span class="item_name">{{item.value}}</span>
+                                    <span class="item_name">{{item.deathNum}}</span>
+                                    <span class="item_name">{{item.cureNum}}</span>
+
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="province_th">
-                        <span class="item_name" style="font-weight: bold">地区</span>
-                        <span class="item_name" style="color: rgb(228,74,61);font-weight: bold ">新增确诊</span>
-                        <span class="item_name" style="font-weight: bold">确诊</span>
-                        <span class="item_name" style="font-weight: bold">死亡</span>
-                        <span class="item_name" style="font-weight: bold">治愈</span>
-                    </div>
-                    <ul style="margin: 60px 0">
-                        <li>
-                            <div class="hasCities" v-for="(item, index) in otherlist" :key="index">
-                                <span class="item_name" @click="changeActive(item)" @mouseover="changeColor(item)"
-                                      @mouseleave="changeColor(!item)"
-                                      :class="{to_active:shows==item.name}"
-                                      style="font-weight: bold; cursor: pointer;">{{item.name}}</span>
-                                <span class="item_name" style="color: rgb(228,74,61)">{{item.conadd}}</span>
-                                <span class="item_name">{{item.value}}</span>
-                                <span class="item_name">{{item.deathNum}}</span>
-                                <span class="item_name">{{item.cureNum}}</span>
+                </el-card>
 
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
 
         <el-dialog title="疫情趋势"  :visible.sync="dialogFormVisible">
@@ -86,6 +100,7 @@
 
 
 </template>
+
 
 <script>
     import axios from 'axios'
@@ -180,10 +195,23 @@
                         left: 170,
                         y: '5px',
                     },
-                    tooltip: {  // 图列提示框，默认不显示
-                        show: true,
+                    tooltip: {
+                        formatter: function (params) {
+                            var relVal = params[0].name;
+                            for (var i = 0, l = params.length; i < l; i++) {
+                                relVal += '<br/>' + params[i].marker + params[i].seriesName + ':' + params[i].value + "人";
+                            }
+                            return relVal;
+                        },
+                        trigger: 'axis',
 
+                        backgroundColor: '#ffffff',
+                        extraCssText: 'box-shadow: 0 2px 20px rgba(0, 0, 0, .1);',
+                        textStyle: {
+                            color: '#000000',
+                        },
                     },
+
                     dataZoom:{
                         realtime:true, //拖动滚动条时是否动态的更新图表数据
                         height:25,//滚动条高度
@@ -275,9 +303,21 @@
                         left: 170,
                         y: '5px',
                     },
-                    tooltip: {  // 图列提示框，默认不显示
-                        show: true,
+                    tooltip: {
+                        formatter: function (params) {
+                            var relVal = params[0].name;
+                            for (var i = 0, l = params.length; i < l; i++) {
+                                relVal += '<br/>' + params[i].marker + params[i].seriesName + ':' + params[i].value + "人";
+                            }
+                            return relVal;
+                        },
+                        trigger: 'axis',
 
+                        backgroundColor: '#ffffff',
+                        extraCssText: 'box-shadow: 0 2px 20px rgba(0, 0, 0, .1);',
+                        textStyle: {
+                            color: '#000000',
+                        },
                     },
                     dataZoom:{
                         realtime:true, //拖动滚动条时是否动态的更新图表数据
@@ -352,6 +392,7 @@
                     },
                     xAxis: {
                         type: 'category',
+
                         data: nameList,
                         "axisLabel":{
                             interval: 0
@@ -368,11 +409,13 @@
                     },
                     tooltip: {
                         formatter: function (params) {
-                            var relVal = params[0].name;
-                            for (var i = 0, l = params.length; i < l; i++) {
-                                relVal += '<br/>' + params[i].marker + params[i].seriesName + ':' + params[i].value + "人";
-                            }
-                            return relVal;
+                            // var relVal = params[0].name;
+                            // for (var i = 0, l = params.length; i < l; i++) {
+                            //     relVal += '<br/>' + params[i].marker + params[i].seriesName + ':' + params[i].value + "人";
+                            // }
+                            // return relVal;
+                            return params[0].name+"<br>"+params[0].marker+params[0].seriesName+":"+params[0].data+"人"+"<br>"+params[1].marker+
+                                params[1].seriesName+":"+params[1].data+"天";
                         },
                         trigger: 'axis',
 
@@ -413,8 +456,6 @@
                 myCharts3.setOption(option);
             },
 
-
-
             changeActive(data) {
                 console.log(data);
                 this.dialogFormVisible = true;
@@ -427,30 +468,48 @@
 
             },
 
+
+
             changeColor(data) {
+                console.log(data);
                 this.shows = data.name;
             },
 
 
         },
         mounted() {
-
             this.dataList = this.epidemicData.list;
             this.otherlist = this.epidemicData.otherlist;
-
             function sortRule(a, b) {
                 return b.value - a.value;
             }
-
             this.dataList.sort(sortRule)
             this.otherlist.sort(sortRule)
-
-
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    .icon {
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+    }
+
+    .el-tabs--border-card {
+        /deep/
+        .el-tabs__item.is-active {
+            font-weight: bold;
+        }
+
+        /deep/
+        .el-tabs__item {
+            font-weight: bold;
+        }
+    }
+
 
 
     .to_active {
@@ -470,6 +529,12 @@
             .el-dialog__body {
                 padding: 30px 30px 0px 30px;
             }
+        }
+        /deep/
+        .box-card{
+            margin: 40px 20px 0 20px;
+            height:auto !important;
+            overflow: hidden
         }
     }
 

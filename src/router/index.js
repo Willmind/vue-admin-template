@@ -39,30 +39,21 @@ export const asyncRoutes = {
         meta: {title: '疫情地图'},
         component: () => import('../views/epidemicMap.vue'),
     },
-    t1: {
-        path: 't1',
-        name: 't1',
-        meta: {title: '表格'},
-        component: () => import('../views/T1.vue'),
+    realTimeBroadcast: {
+        path: 'realTimeBroadcast',
+        name: 'realTimeBroadcast',
+        meta: {title: '实时播报'},
+        component: () => import('../views/realTimeBroadcast.vue'),
     },
-    password: {
-        path: 'password',
-        name: 'password',
-        meta: {title: '修改密码'},
-        component: () => import('../views/Password.vue'),
+    moveList: {
+        path: 'moveList',
+        name: 'moveList',
+        meta: {title: '迁徙数据'},
+        component: () => import('../views/moveList.vue'),
     },
-    msg: {
-        path: 'msg',
-        name: 'msg',
-        meta: {title: '通知消息'},
-        component: () => import('../views/Msg.vue'),
-    },
-    userinfo: {
-        path: 'userinfo',
-        name: 'userinfo',
-        meta: {title: '用户信息'},
-        component: () => import('../views/UserInfo.vue'),
-    },
+
+
+    ////////////////////////////////////////
     dormitoryInteriorList: {
         path: 'dormitoryInteriorList',
         name: 'dormitoryInteriorList',

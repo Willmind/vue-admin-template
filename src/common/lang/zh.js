@@ -1,0 +1,17 @@
+export const m = {
+    Home: '主页',
+    EpidemicMap: '疫情地图',
+    RegionCase: '各地区病例',
+    RealTimeBroadcast: '实时播报',
+    MigrationData: '迁徙数据',
+    DomesticEpidemic:'国内疫情',
+    DomesticEpidemicData:'国内疫情数据(含港澳台)',
+    OverseaEpidemic:'海外疫情',
+    OverseaEpidemicData:'海外疫情数据',
+    EpidemicTrend:'疫情趋势',
+    NewEpidemicSituation:'疫情新增',
+    CureRateMortalityTrends:'治愈率/死亡率趋势',
+    CurrentDiagnosisSuspectedCumulativeDiagnosisTrend:'现有确诊/疑似/累计确诊趋势',
+    OverseasEpidemicTrend:'海外疫情趋势',
+    CumulativeDiagnosis:'累计确诊',
+}

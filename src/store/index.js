@@ -24,11 +24,25 @@ const store = new Vuex.Store({
                 name: 'epidemicMap', // 要跳转的路由名称 不是路径
                 text: '疫情地图', // 文本内容
             },
+
+
             {
                 size: 18, // icon大小
                 type: 'ios-copy',
                 name: 'regionCase', // 要跳转的路由名称 不是路径
                 text: '各地区病例', // 文本内容
+            },
+            {
+                size: 18, // icon大小
+                type: 'ios-megaphone',
+                name: 'realTimeBroadcast', // 要跳转的路由名称 不是路径
+                text: '实时播报', // 文本内容
+            },
+            {
+                size: 18, // icon大小
+                type: 'ios-people',
+                name: 'moveList', // 要跳转的路由名称 不是路径
+                text: '迁徙数据', // 文本内容
             },
             // {
             //     type: 'ios-grid',
@@ -79,6 +93,12 @@ const store = new Vuex.Store({
         },
         updateDayList(state,val){
             state.DayList=val
+        },
+        updateNews(state,val){
+            state.News=val
+        },
+        updateMoveList(state,val){
+            state.MoveList=val
         }
     },
     plugins: [VueXAlong({

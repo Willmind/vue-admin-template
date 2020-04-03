@@ -5,10 +5,10 @@
             <!-- logo -->
             <div class="logo-c">
                 <img src="../assets/imgs/logo.png" alt="logo" class="logo">
-                <span v-show="isShowAsideTitle" style="font-weight: bold">后台管理系统</span>
+                <span v-show="isShowAsideTitle" style="font-weight: bold;color: black;font-size: 20px">后台管理系统</span>
             </div>
             <!-- 菜单栏 -->
-            <Menu class="menu" ref="asideMenu" theme="dark" width="100%" @on-select="selectMenuCallback"
+            <Menu class="menu" ref="asideMenu" theme="light" width="100%" @on-select="selectMenuCallback"
                   accordion :open-names="openMenus" :active-name="currentPage" @on-open-change="menuChange">
                 <!-- 动态菜单 -->
                 <div v-for="(item, index) in menuItems" :key="index">
@@ -78,6 +78,16 @@
                                 <!-- name标识符 -->
                                 <DropdownItem name="1">修改密码</DropdownItem>
                                 <DropdownItem name="2">基本资料</DropdownItem>
+                                <Dropdown placement="right-start">
+                                    <DropdownItem>
+                                        切换语言
+                                        <Icon type="ios-arrow-forward"></Icon>
+                                    </DropdownItem>
+                                    <DropdownMenu slot="list">
+                                        <DropdownItem name="4">简体中文</DropdownItem>
+                                        <DropdownItem name="5">English</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
                                 <DropdownItem divided name="3">退出登陆</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
@@ -457,6 +467,15 @@
                         this.$router.go(0)
 
                         break
+                    case '4':
+                        console.log("简体中文");
+                        this.$i18n.locale='zh-CN'
+                        break
+                    case '5':
+                        console.log("English");
+                        this.$i18n.locale='en-US'
+
+                        break
                 }
             },
             // 控制用户三角箭头显示状态
@@ -631,11 +650,12 @@
 
     /* 侧边栏 */
     aside {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, .1);
         position: fixed;
         top: 0;
         left: 0;
         width: 90px;
-        background: #20222A;
+        /*background: #20222A;*/
         height: 100%;
         transition: width .3s;
         overflow: auto;

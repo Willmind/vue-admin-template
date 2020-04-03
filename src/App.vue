@@ -32,14 +32,25 @@
 </script>
 
 <style>
+
     body .el-table th.gutter {
         display: table-cell !important;
     }
+
+    .el-table td,.el-table th{
+        text-align: center!important;
+    }
+
+
+
+
+
 
     body {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+
     }
 
     li, ul, p, div, body, html, table {

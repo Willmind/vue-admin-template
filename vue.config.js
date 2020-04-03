@@ -38,6 +38,45 @@ module.exports = {
                     console.log(e)
                 })
             })
+
+            app.get('/getNewsList', function (req, res) {
+                var url = 'https://gw.m.163.com/nc/api/v1/feed/static/h5-normal-list?start=0&size=100&tid=T1582287839597&t=317111417022'
+                axios.get(url, {
+                    headers: {
+                        // 设置代理服务器和代理域名
+                        referer: 'https://gw.m.163.com',
+                        host: 'gw.m.163.com'
+                    },
+                    // 需要注意，请求参数为req.quey而不是req
+                    // 请求参数由使用该代理的js方法传入
+                    params: req.query
+                }).then((response) => {
+                    // js方法请求ajax数据后，通过后端代理对数据进行json解析，再返回数据到方法中
+                    res.json(response.data)
+                }).catch((e) => {
+                    console.log(e)
+                })
+            })
+
+            app.get('/getMoveList', function (req, res) {
+                var url = 'https://huiyan.baidu.com/openapi/v1/migration/rank?type=move&ak=kgD2HiDnLdUhwzd3CLuG5AWNfX3fhLYe&adminType=country&name=%E5%85%A8%E5%9B%BD'
+                axios.get(url, {
+                    headers: {
+                        // 设置代理服务器和代理域名
+                        referer: 'https://huiyan.baidu.com',
+                        host: 'huiyan.baidu.com'
+                    },
+                    // 需要注意，请求参数为req.quey而不是req
+                    // 请求参数由使用该代理的js方法传入
+                    params: req.query
+                }).then((response) => {
+                    // js方法请求ajax数据后，通过后端代理对数据进行json解析，再返回数据到方法中
+                    res.json(response.data)
+                }).catch((e) => {
+                    console.log(e)
+                })
+            })
+
         },
 
         proxy: {
