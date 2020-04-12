@@ -151,6 +151,7 @@
 
             },
             submit() {
+                console.log(123);
 
                 if(this.account!==''&&this.password!==''){
                     axios.post("/users/getUserData", {
@@ -175,6 +176,13 @@
                                 type: 'success'
                             });
                             this.$nextTick(()=>{
+                                this.$i18n.locale='zh-CN'
+                                this.$store.state.menuItems[0].text='主页'
+                                this.$store.state.menuItems[1].text='疫情地图'
+                                this.$store.state.menuItems[2].text='各地区病例'
+                                this.$store.state.menuItems[3].text='实时播报'
+                                this.$store.state.menuItems[4].text='迁徙数据'
+                                console.log(1);
 
 
                                 this.isShowLoading = true
@@ -184,6 +192,7 @@
                                 localStorage.setItem('userImg', 'https://avatars3.githubusercontent.com/u/22117876?s=460&v=4')
                                 // 登陆成功 假设这里是后台返回的 token
                                 localStorage.setItem('token', 'i_am_token')
+                                console.log(123);
                                 this.$router.push({path: this.redirect || '/'})
                             })
 

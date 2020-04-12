@@ -7,15 +7,18 @@
                     <el-tab-pane name="China">
                         <span slot="label">
                             <i class="iconfont icon-zhongguo"></i>
-                            全国疫情地图
+                            {{$t('m.DomesticEpidemicMap')}}
                         </span>
 
                         <el-tabs>
-                            <el-tab-pane label="现有确诊">
+                            <el-tab-pane>
+                                 <span slot="label">{{$t('m.ExistDiagnosis')}}</span>
                                 <div style="width:600px;height:600px; " id="myCharts3" ref="myCharts3"></div>
                             </el-tab-pane>
 
-                            <el-tab-pane label="累计确诊">
+                            <el-tab-pane >
+                                <span slot="label">{{$t('m.CumulativeDiagnosis')}}</span>
+
                                 <div style="width:600px;height:600px;" id="myCharts1" ref="myCharts1"></div>
                             </el-tab-pane>
 
@@ -25,14 +28,19 @@
                     </el-tab-pane>
 
                     <el-tab-pane name="world">
-                        <span slot="label"><i class="iconfont icon-world"></i> 海外疫情地图</span>
+                        <span slot="label"><i class="iconfont icon-world"></i>  {{$t('m.OverseaEpidemicMap')}}</span>
                         <el-tabs>
 
-                            <el-tab-pane label="新增确诊">
+                            <el-tab-pane >
+                                <span slot="label">{{$t('m.AddDiagnosis')}}</span>
+
+
                                 <div style="width:700px;height:600px; " id="myCharts4" ref="myCharts4"></div>
 
                             </el-tab-pane>
-                            <el-tab-pane label="累计确诊">
+                            <el-tab-pane >
+                                <span slot="label">{{$t('m.CumulativeDiagnosis')}}</span>
+
                                 <div style="width:700px;height:600px; " id="myCharts2" ref="myCharts2"></div>
                             </el-tab-pane>
 
@@ -70,12 +78,12 @@
                 activeTab: 'China',
 
                 cn_econNumList: [],
-                cn_conNumList:[],
+                cn_conNumList: [],
 
                 otherlistObject: [],
                 conObject: {},
 
-                otherlistObject2:[],
+                otherlistObject2: [],
 
                 areaDataList: [],
                 areaDataList2: [],
@@ -88,18 +96,18 @@
                 const myCharts2 = this.$echarts.init(this.$refs.myCharts2);
                 let dataList = this.areaDataList
                 let option = {
-                    borderWidth:'1',
+                    borderWidth: '1',
                     borderColor: 'rgba(0, 0, 0, 0.2)',
-                    backgroundColor:'rgb(243,243,243)',
+                    backgroundColor: 'rgb(243,243,243)',
                     title: {
-                        top:'20',
-                        left:'20',
+                        top: '20',
+                        left: '20',
                         text: '全球疫情累计确诊地图',
                         subtext: '数据来自interface.sina.cn',
                     },
                     toolbox: {
-                        right:'20',
-                        top:'20',
+                        right: '20',
+                        top: '20',
                         show: true,
                         feature: {
                             saveAsImage: {
@@ -128,22 +136,22 @@
 
                     },
                     visualMap: {
-                        left:"15",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
-                        bottom:"15",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
-                        right:"auto",                               //组件离容器右侧的距离,'20%'
-                        showLabel:true,
+                        left: "15",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                        bottom: "15",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                        right: "auto",                               //组件离容器右侧的距离,'20%'
+                        showLabel: true,
                         show: true,//图注
                         type: 'piecewise',
                         text: ['高', '低'],//取值范围的文字
                         pieces: [
                             //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
-                            {min: 10000,label: '>10000人',color:'rgb(127,17,0)'},
-                            {min: 1000, max: 9999,label: '1000-9999人',color:'rgb(189,19,22)'},
-                            {min: 500, max: 999,label: '500-999人',color:'rgb(230,75,69)'},
-                            {min: 100, max: 499,label: '100-499人',color:'rgb(255,140,113)'},
-                            {min: 10, max: 99,label: '10-99人',color:'rgb(253,210,160)'},
-                            {min: 1, max: 9, label: '1-9人',color:'rgb(255,242,207)'},
-                            {min:0,max: 0,label:'0',color:'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
+                            {min: 10000, label: '>10000人', color: 'rgb(127,17,0)'},
+                            {min: 1000, max: 9999, label: '1000-9999人', color: 'rgb(189,19,22)'},
+                            {min: 500, max: 999, label: '500-999人', color: 'rgb(230,75,69)'},
+                            {min: 100, max: 499, label: '100-499人', color: 'rgb(255,140,113)'},
+                            {min: 10, max: 99, label: '10-99人', color: 'rgb(253,210,160)'},
+                            {min: 1, max: 9, label: '1-9人', color: 'rgb(255,242,207)'},
+                            {min: 0, max: 0, label: '0', color: 'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
                         ],
 
 
@@ -196,18 +204,18 @@
                 const myCharts4 = this.$echarts.init(this.$refs.myCharts4);
                 let dataList = this.areaDataList2
                 let option = {
-                    borderWidth:'1',
+                    borderWidth: '1',
                     borderColor: 'rgba(0, 0, 0, 0.2)',
-                    backgroundColor:'rgb(243,243,243)',
+                    backgroundColor: 'rgb(243,243,243)',
                     title: {
-                        top:'20',
-                        left:'20',
+                        top: '20',
+                        left: '20',
                         text: '全球疫情新增确诊地图',
                         subtext: '数据来自interface.sina.cn',
                     },
                     toolbox: {
-                        right:'20',
-                        top:'20',
+                        right: '20',
+                        top: '20',
                         show: true,
                         feature: {
                             saveAsImage: {
@@ -236,22 +244,22 @@
 
                     },
                     visualMap: {
-                        left:"15",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
-                        bottom:"15",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
-                        right:"auto",                               //组件离容器右侧的距离,'20%'
-                        showLabel:true,
+                        left: "15",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                        bottom: "15",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                        right: "auto",                               //组件离容器右侧的距离,'20%'
+                        showLabel: true,
                         show: true,//图注
                         type: 'piecewise',
                         text: ['高', '低'],//取值范围的文字
                         pieces: [
                             //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
-                            {min: 10000,label: '>10000人',color:'rgb(127,17,0)'},
-                            {min: 1000, max: 9999,label: '1000-9999人',color:'rgb(189,19,22)'},
-                            {min: 500, max: 999,label: '500-999人',color:'rgb(230,75,69)'},
-                            {min: 100, max: 499,label: '100-499人',color:'rgb(255,140,113)'},
-                            {min: 10, max: 99,label: '10-99人',color:'rgb(253,210,160)'},
-                            {min: 1, max: 9, label: '1-9人',color:'rgb(255,242,207)'},
-                            {min:0,max: 0,label:'0',color:'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
+                            {min: 10000, label: '>10000人', color: 'rgb(127,17,0)'},
+                            {min: 1000, max: 9999, label: '1000-9999人', color: 'rgb(189,19,22)'},
+                            {min: 500, max: 999, label: '500-999人', color: 'rgb(230,75,69)'},
+                            {min: 100, max: 499, label: '100-499人', color: 'rgb(255,140,113)'},
+                            {min: 10, max: 99, label: '10-99人', color: 'rgb(253,210,160)'},
+                            {min: 1, max: 9, label: '1-9人', color: 'rgb(255,242,207)'},
+                            {min: 0, max: 0, label: '0', color: 'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
                         ],
 
 
@@ -292,11 +300,11 @@
 
                         }
                     ],
-                    grid:{
-                        x:35,
-                        y:25,
-                        x2:25,
-                        y2:35,
+                    grid: {
+                        x: 35,
+                        y: 25,
+                        x2: 25,
+                        y2: 35,
                     }
                 };
                 myCharts4.setOption(option);
@@ -309,20 +317,20 @@
 
             initCharts1() {
                 const myCharts1 = this.$echarts.init(this.$refs.myCharts1);
-                let dataList =this.cn_conNumList;
+                let dataList = this.cn_conNumList;
                 let option = {
-                    borderWidth:'1',
+                    borderWidth: '1',
                     borderColor: 'rgba(0, 0, 0, 0.2)',
-                    backgroundColor:'rgb(243,243,243)',
+                    backgroundColor: 'rgb(243,243,243)',
                     title: {
-                        top:'20',
-                        left:'20',
+                        top: '20',
+                        left: '20',
                         text: '全国疫情累计确诊地图',
                         subtext: '数据来自interface.sina.cn',
                     },
                     toolbox: {
-                        right:'20',
-                        top:'20',
+                        right: '20',
+                        top: '20',
                         showTitle: true,
                         show: true,
                         feature: {
@@ -351,22 +359,22 @@
                         }//数据格式化
                     },
                     visualMap: {
-                        left:"15",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
-                        bottom:"15",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
-                        right:"auto",                               //组件离容器右侧的距离,'20%'
-                        showLabel:true,
+                        left: "15",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                        bottom: "15",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                        right: "auto",                               //组件离容器右侧的距离,'20%'
+                        showLabel: true,
                         show: true,//图注
                         type: 'piecewise',
                         text: ['高', '低'],//取值范围的文字
                         pieces: [
                             //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
-                            {min: 10000,label: '>10000人',color:'rgb(127,17,0)'},
-                            {min: 1000, max: 9999,label: '1000-9999人',color:'rgb(189,19,22)'},
-                            {min: 500, max: 999,label: '500-999人',color:'rgb(230,75,69)'},
-                            {min: 100, max: 499,label: '100-499人',color:'rgb(255,140,113)'},
-                            {min: 10, max: 99,label: '10-99人',color:'rgb(253,210,160)'},
-                            {min: 1, max: 9, label: '1-9人',color:'rgb(255,242,207)'},
-                            {min:0,max: 0,label:'0',color:'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
+                            {min: 10000, label: '>10000人', color: 'rgb(127,17,0)'},
+                            {min: 1000, max: 9999, label: '1000-9999人', color: 'rgb(189,19,22)'},
+                            {min: 500, max: 999, label: '500-999人', color: 'rgb(230,75,69)'},
+                            {min: 100, max: 499, label: '100-499人', color: 'rgb(255,140,113)'},
+                            {min: 10, max: 99, label: '10-99人', color: 'rgb(253,210,160)'},
+                            {min: 1, max: 9, label: '1-9人', color: 'rgb(255,242,207)'},
+                            {min: 0, max: 0, label: '0', color: 'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
                         ],
 
 
@@ -416,18 +424,18 @@
                 const myCharts3 = this.$echarts.init(this.$refs.myCharts3);
                 let dataList = this.cn_econNumList
                 let option = {
-                    borderWidth:'1',
+                    borderWidth: '1',
                     borderColor: 'rgba(0, 0, 0, 0.2)',
-                    backgroundColor:'rgb(243,243,243)',
+                    backgroundColor: 'rgb(243,243,243)',
                     title: {
-                        top:'20',
-                        left:'20',
+                        top: '20',
+                        left: '20',
                         text: '全国疫情现有确诊地图',
                         subtext: '数据来自interface.sina.cn',
                     },
                     toolbox: {
-                        right:'20',
-                        top:'20',
+                        right: '20',
+                        top: '20',
                         showTitle: true,
                         show: true,
                         feature: {
@@ -457,22 +465,22 @@
                         }//数据格式化
                     },
                     visualMap: {
-                        left:"15",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
-                        bottom:"15",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
-                        right:"auto",                               //组件离容器右侧的距离,'20%'
-                        showLabel:true,
+                        left: "15",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                        bottom: "15",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                        right: "auto",                               //组件离容器右侧的距离,'20%'
+                        showLabel: true,
                         show: true,//图注
                         type: 'piecewise',
                         text: ['高', '低'],//取值范围的文字
                         pieces: [
                             //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
-                            {min: 10000,label: '>10000人',color:'rgb(127,17,0)'},
-                            {min: 1000, max: 9999,label: '1000-9999人',color:'rgb(189,19,22)'},
-                            {min: 500, max: 999,label: '500-999人',color:'rgb(230,75,69)'},
-                            {min: 100, max: 499,label: '100-499人',color:'rgb(255,140,113)'},
-                            {min: 10, max: 99,label: '10-99人',color:'rgb(253,210,160)'},
-                            {min: 1, max: 9, label: '1-9人',color:'rgb(255,242,207)'},
-                            {min:0,max: 0,label:'0',color:'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
+                            {min: 10000, label: '>10000人', color: 'rgb(127,17,0)'},
+                            {min: 1000, max: 9999, label: '1000-9999人', color: 'rgb(189,19,22)'},
+                            {min: 500, max: 999, label: '500-999人', color: 'rgb(230,75,69)'},
+                            {min: 100, max: 499, label: '100-499人', color: 'rgb(255,140,113)'},
+                            {min: 10, max: 99, label: '10-99人', color: 'rgb(253,210,160)'},
+                            {min: 1, max: 9, label: '1-9人', color: 'rgb(255,242,207)'},
+                            {min: 0, max: 0, label: '0', color: 'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
                         ],
 
 
@@ -545,14 +553,14 @@
             for (var i = 0; i < this.epidemicData.list.length; i++) {
                 this.cn_conNumList.push({
                     name: this.epidemicData.list[i].name,
-                    value:parseInt(this.epidemicData.list[i].value),
+                    value: parseInt(this.epidemicData.list[i].value),
                 })
             }
 
             for (var i = 0; i < this.epidemicData.list.length; i++) {
                 this.cn_econNumList.push({
                     name: this.epidemicData.list[i].name,
-                    value:parseInt(this.epidemicData.list[i].econNum),
+                    value: parseInt(this.epidemicData.list[i].econNum),
                 })
 
             }
@@ -595,8 +603,6 @@
             })
 
 
-
-
             this.initCharts1()
             this.initCharts2()
             this.initCharts3()
@@ -614,6 +620,7 @@
         fill: currentColor;
         overflow: hidden;
     }
+
     .el-tabs--border-card {
         /deep/
         .el-tabs__content {

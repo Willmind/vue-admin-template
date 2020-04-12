@@ -5,7 +5,7 @@
             <!-- logo -->
             <div class="logo-c">
                 <img src="../assets/imgs/logo.png" alt="logo" class="logo">
-                <span v-show="isShowAsideTitle" style="font-weight: bold;color: black;font-size: 20px">后台管理系统</span>
+                <span v-show="isShowAsideTitle" style="font-weight: bold;color: black;font-size: 20px"> {{$t('m.ManageSystem')}}</span>
             </div>
             <!-- 菜单栏 -->
             <Menu class="menu" ref="asideMenu" theme="light" width="100%" @on-select="selectMenuCallback"
@@ -51,7 +51,7 @@
             <div class="top-c">
                 <header>
                     <div class="h-left">
-                        <div class="pointer" @click="isShrinkAside" title="收缩/展开">
+                        <div class="pointer" @click="isShrinkAside" >
                             <Icon type="ios-apps"/>
                         </div>
                         <!-- 面包屑功能 -->
@@ -59,7 +59,7 @@
                     </div>
                     <div class="h-right">
                         <!-- 消息 -->
-                        <div class="notice-c" @click="info" title="查看新消息">
+                        <div class="notice-c" @click="info">
                             <div :class="{newMsg: hasNewMsg}"></div>
                             <Icon type="ios-notifications-outline"/>
                         </div>
@@ -76,11 +76,11 @@
                             </div>
                             <DropdownMenu slot="list">
                                 <!-- name标识符 -->
-                                <DropdownItem name="1">修改密码</DropdownItem>
-                                <DropdownItem name="2">基本资料</DropdownItem>
+                                <DropdownItem name="1">{{$t("m.Password")}}</DropdownItem>
+<!--                                <DropdownItem name="2">基本资料</DropdownItem>-->
                                 <Dropdown placement="right-start">
                                     <DropdownItem>
-                                        切换语言
+                                        {{$t("m.Language")}}
                                         <Icon type="ios-arrow-forward"></Icon>
                                     </DropdownItem>
                                     <DropdownMenu slot="list">
@@ -88,7 +88,7 @@
                                         <DropdownItem name="5">English</DropdownItem>
                                     </DropdownMenu>
                                 </Dropdown>
-                                <DropdownItem divided name="3">退出登陆</DropdownItem>
+                                <DropdownItem divided name="3"> {{$t("m.Logout")}}</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </div>
@@ -106,15 +106,15 @@
                     </ul>
                     <!-- 标签栏相关功能 -->
                     <div class="div-icons">
-                        <div class="refresh-c" @click="reloadPage" title="刷新当前标签页">
+                        <div class="refresh-c" @click="reloadPage" >
                             <Icon type="md-refresh"/>
                         </div>
-                        <div class="tag-options" title="关闭标签">
+                        <div class="tag-options">
                             <Dropdown trigger="click" @on-click="closeTags">
                                 <Icon type="ios-options"/>
                                 <DropdownMenu slot="list">
-                                    <DropdownItem name="1">关闭其他标签</DropdownItem>
-                                    <DropdownItem name="2">关闭所有标签</DropdownItem>
+                                    <DropdownItem name="1">{{$t("m.Closeother")}}</DropdownItem>
+                                    <DropdownItem name="2">{{$t("m.Closeall")}}</DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
                         </div>
@@ -465,15 +465,31 @@
 
                         this.$router.replace({name: 'login'})
                         this.$router.go(0)
-
                         break
                     case '4':
                         console.log("简体中文");
                         this.$i18n.locale='zh-CN'
+                        this.$store.state.menuItems[0].text='主页'
+                        this.$store.state.menuItems[1].text='疫情地图'
+                        this.$store.state.menuItems[2].text='各地区病例'
+                        this.$store.state.menuItems[3].text='实时播报'
+                        this.$store.state.menuItems[4].text='迁徙数据'
+                        this.$nextTick(()=>{
+                            this.reloadPage()
+                        })
+
                         break
                     case '5':
                         console.log("English");
                         this.$i18n.locale='en-US'
+                        this.$store.state.menuItems[0].text='Home'
+                        this.$store.state.menuItems[1].text='EpidemicMap'
+                        this.$store.state.menuItems[2].text='RegionCase'
+                        this.$store.state.menuItems[3].text='RealTimeBroadcast'
+                        this.$store.state.menuItems[4].text='MigrationData'
+                        this.$nextTick(()=>{
+                            this.reloadPage()
+                        })
 
                         break
                 }

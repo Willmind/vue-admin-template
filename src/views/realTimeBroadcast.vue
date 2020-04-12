@@ -12,7 +12,7 @@
                         <p class="detail" @mouseover="changeColor(item)"
                            :class="{to_active:shows==item.title}"
                            @click="getDetail(item)"
-                           @mouseleave="changeColor(!item)">查看详细报道>></p>
+                           @mouseleave="changeColor(!item)">{{$t('m.detail')}}>></p>
                     </el-card>
                 </el-timeline-item>
             </el-timeline>

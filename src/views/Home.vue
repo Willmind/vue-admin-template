@@ -8,45 +8,45 @@
                             <span slot="label"><i class="iconfont icon-zhongguo"></i> {{$t('m.DomesticEpidemicData')}}</span>
                             <div class="main">
                                 <div class="home-content">
-
                                     <div class="single-content">
                                         <div>
-                                            <h4 class="text-item">累计确诊</h4>
+                                            <h4 class="text-item">{{$t('m.CumulativeDiagnosis')}}</h4>
                                         </div>
                                         <div class="number" style="color: #a31d13">{{dataDetail.gntotal}}</div>
                                         <div class="added">
-                                            较昨日
+                                            {{$t('m.add')}}
                                             <span style="color: #a31d13">{{add_daily.addcon_new}}</span>
                                         </div>
                                     </div>
 
+
                                     <div class="single-content">
                                         <div>
-                                            <h4 class="text-item">累计死亡</h4>
+                                            <h4 class="text-item">{{$t('m.DeadNums')}}</h4>
                                         </div>
                                         <div class="number" style="color: #333">{{dataDetail.deathtotal}}</div>
                                         <div class="added">
-                                            较昨日
+                                            {{$t('m.add')}}
                                             <span style="color: #333">{{add_daily.adddeath_new}}</span>
                                         </div>
                                     </div>
 
                                     <div class="single-content">
                                         <div>
-                                            <h4 class="text-item">累计治愈</h4>
+                                            <h4 class="text-item">{{$t('m.CureNums')}}</h4>
                                         </div>
                                         <div class="number" style="color: #34aa70">
                                             {{dataDetail.curetotal}}
                                         </div>
                                         <div class="added">
-                                            较昨日
+                                            {{$t('m.add')}}
                                             <span style="color: #34aa70">{{add_daily.addcure_new}}</span>
                                         </div>
                                     </div>
 
                                     <div class="single-content">
                                         <div>
-                                            <h4 class="text-item">现有确诊
+                                            <h4 class="text-item">{{$t('m.ExistDiagnosis')}}
                                                 <el-popover
                                                     placement="bottom"
                                                     title="疫情数据说明"
@@ -65,27 +65,27 @@
                                             {{dataDetail.econNum}}
                                         </div>
                                         <div class="added">
-                                            较昨日
+                                            {{$t('m.add')}}
                                             <span style="color: #e44a3d">{{add_daily.addecon_new}}</span>
                                         </div>
                                     </div>
 
                                     <div class="single-content">
                                         <div>
-                                            <h4 class="text-item">现有重症</h4>
+                                            <h4 class="text-item"> {{$t('m.ExistSevereCase')}}</h4>
                                         </div>
                                         <div class="number" style="color: #791618">
                                             {{dataDetail.heconNum}}
                                         </div>
                                         <div class="added">
-                                            较昨日
+                                            {{$t('m.add')}}
                                             <span style="color: #791618">{{add_daily.addhecon_new}}</span>
                                         </div>
                                     </div>
 
                                     <div class="single-content">
                                         <div>
-                                            <h4 class="text-item">现有疑似
+                                            <h4 class="text-item">{{$t('m.ExistSuspect')}}
                                                 <el-popover
                                                     placement="bottom"
                                                     title="疫情数据说明"
@@ -100,16 +100,38 @@
                                             {{dataDetail.sustotal}}
                                         </div>
                                         <div class="added">
-                                            较昨日
+                                            {{$t('m.add')}}
                                             <span style="color: #ffa352">{{add_daily.wjw_addsus_new}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">{{$t('m.ImportedCase')}}</h4>
+                                        </div>
+                                        <div class="number" style="color: #a31d13">{{dataDetail.jwsrNum}}</div>
+                                        <div class="added">
+                                            {{$t('m.add')}}
+                                            <span style="color: #a31d13">{{add_daily.addjwsr}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="single-content">
+                                        <div>
+                                            <h4 class="text-item">{{$t('m.AsymptomaticInfection')}}</h4>
+                                        </div>
+                                        <div class="number" style="color: #a31d13">{{dataDetail.asymptomNum}}</div>
+                                        <div class="added">
+                                            {{$t('m.add')}}
+                                            <span style="color: #a31d13">+63</span>
                                         </div>
                                     </div>
 
 
                                 </div>
                                 <div class="cover-time">
-                                    {{dataDetail.times}}
-                                    <span class="cover-explain">数据说明<i @click="dialogTableVisible1 = true"
+                                    {{$t('m.By')}}  {{dataDetail.cachetime}}
+                                    <span class="cover-explain"> {{$t('m.DataSpecification')}}<i @click="dialogTableVisible1 = true"
                                                                        class="el-icon-question write_explain"></i></span>
                                 </div>
                             </div>
@@ -122,35 +144,35 @@
 
                                     <div class="single-content">
                                         <div>
-                                            <h4 class="text-item">累计确诊</h4>
+                                            <h4 class="text-item">{{$t('m.CumulativeDiagnosis')}}</h4>
                                         </div>
                                         <div class="number" style="color: #a31d13">{{othertotal.certain}}</div>
                                         <div class="added">
-                                            较昨日
+                                            {{$t('m.add')}}
                                             <span style="color: #a31d13">{{othertotal.certain_inc}}</span>
                                         </div>
                                     </div>
 
                                     <div class="single-content">
                                         <div>
-                                            <h4 class="text-item">累计死亡</h4>
+                                            <h4 class="text-item">{{$t('m.DeadNums')}}</h4>
                                         </div>
                                         <div class="number" style="color: #333">{{othertotal.die}}</div>
                                         <div class="added">
-                                            较昨日
+                                            {{$t('m.add')}}
                                             <span style="color: #333">{{othertotal.die_inc}}</span>
                                         </div>
                                     </div>
 
                                     <div class="single-content">
                                         <div>
-                                            <h4 class="text-item">累计治愈</h4>
+                                            <h4 class="text-item">{{$t('m.CureNums')}}</h4>
                                         </div>
                                         <div class="number" style="color: #34aa70">
                                             {{othertotal.recure}}
                                         </div>
                                         <div class="added">
-                                            较昨日
+                                            {{$t('m.add')}}
                                             <span style="color: #34aa70">{{othertotal.recure_inc}}</span>
                                         </div>
                                     </div>
@@ -158,8 +180,8 @@
 
                                 </div>
                                 <div class="cover-time">
-                                    {{dataDetail.times}}
-                                    <span class="cover-explain">数据说明<i @click="dialogTableVisible2 = true"
+                                    {{$t('m.By')}}  {{dataDetail.cachetime}}
+                                    <span class="cover-explain">{{$t('m.DataSpecification')}}<i @click="dialogTableVisible2 = true"
                                                                        class="el-icon-question write_explain"></i></span>
                                 </div>
                             </div>
@@ -238,6 +260,10 @@
                     </div>
                 </el-dialog>
 
+                <div>
+
+                </div>
+
             </div>
 
         </el-scrollbar>
@@ -259,6 +285,7 @@
                 }
             )
         },
+
         data() {
             return {
                 cn_econNum: [],
@@ -850,6 +877,7 @@
         },
 
         mounted() {
+            console.log(123);
             let url = "https://interface.sina.cn/news/wap/fymap2020_data.d.json";
 
 
@@ -877,6 +905,7 @@
                 this.othertotal = res.data.othertotal;
                 this.historylist = res.data.historylist;
                 this.dataDetail = res.data;
+                console.log(this.dataDetail);
                 this.otherhistorylist = res.data.otherhistorylist
 
                 for (var i = 0; i < this.historylist.length; i++) {
@@ -963,7 +992,7 @@
 
         display: flex;
         width: 512px;
-        height: 289px;
+        height: 422px;
         margin: 10px;
         flex-wrap: wrap;
         justify-content: center;

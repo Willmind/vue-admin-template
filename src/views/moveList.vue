@@ -6,17 +6,16 @@
                     <svg class="icon closeImg" aria-hidden="true">
                         <use xlink:href="#icon-zhongguo1"></use>
                     </svg>
-                    <h1>全国迁徙城市热门</h1>
-                    <span>{{$t('m.Home')}}</span>
+                    <h1>{{$t('m.MigratingCities')}}</h1>
                 </div>
-                <div style="margin-bottom: 5px">
-                    <span>更新至{{time}}&nbsp;来自百度地图</span>
+                <div style="margin: 10px 0">
+                    <span>{{$t('m.By')}}&nbsp;{{time}}&nbsp;{{$t('m.comefromBaiduMap')}}</span>
 
                 </div>
 
                 <el-tabs type="border-card">
                     <el-tab-pane>
-                        <span slot="label"><i class="el-icon-s-home"></i> 热门迁入地</span>
+                        <span slot="label"><i class="el-icon-s-home"></i> {{$t('m.PopularImmigration')}}</span>
                         <el-table
                             :data="tableData1"
                             border
@@ -24,25 +23,33 @@
                             cell-style="font-weight: 700;"
                             style="width: 100%">
                             <el-table-column
-                                label="排名"
                                 type="index"
-                                width="50">
+                                width="70">
+                                <template slot="header" slot-scope="scope">
+                                    <span>{{$t('m.Rank')}}</span>
+                                </template>
                             </el-table-column>
                             <el-table-column
                                 prop="city_name"
-                                label="城市名称"
-                                width="180">
+
+                                width="150">
+                                <template slot="header" slot-scope="scope">
+                                    <span>{{$t('m.City')}}</span>
+                                </template>
                             </el-table-column>
                             <el-table-column
                                 prop="value"
-                                label="迁入比例(%)">
+                                >
+                                <template slot="header" slot-scope="scope">
+                                    <span>{{$t('m.ImmigrationRate')}}</span>
+                                </template>
                             </el-table-column>
                         </el-table>
 
 
                     </el-tab-pane>
                     <el-tab-pane>
-                        <span slot="label"><i class="el-icon-s-promotion"></i> 热门迁出地</span>
+                        <span slot="label"><i class="el-icon-s-promotion"></i> {{$t('m.PopularEmigration')}}</span>
                         <el-table
                             :data="tableData2"
                             border
@@ -50,18 +57,28 @@
                             cell-style="font-weight: 700;"
                             style="width: 100%">
                             <el-table-column
-                                label="排名"
+
                                 type="index"
-                                width="50">
+                                width="70">
+                                <template slot="header" slot-scope="scope">
+                                    <span>{{$t('m.Rank')}}</span>
+                                </template>
                             </el-table-column>
                             <el-table-column
                                 prop="city_name"
-                                label="城市名称"
-                                width="180">
+
+                                width="150">
+                                <template slot="header" slot-scope="scope">
+                                    <span>{{$t('m.City')}}</span>
+                                </template>
                             </el-table-column>
+
                             <el-table-column
                                 prop="value"
-                                label="迁出比例(%)">
+                                >
+                                <template slot="header" slot-scope="scope">
+                                    <span>{{$t('m.EmigrationRate')}}</span>
+                                </template>
                             </el-table-column>
                         </el-table>
 

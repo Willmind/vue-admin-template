@@ -12,17 +12,17 @@
                                 <use xlink:href="#icon-zhongguo1"></use>
                             </svg>
 
-                           中国病例
+                           {{$t('m.ChinaCase')}}
                         </span>
-                            <span>点击各地区查看疫情趋势图</span>
+                            <span> {{$t('m.clicktodetail')}}</span>
 
                         </div>
                         <div class="province_th">
-                            <span class="item_name" style="font-weight: bold">地区</span>
-                            <span class="item_name" style="color: rgb(228,74,61);font-weight: bold ">新增确诊</span>
-                            <span class="item_name" style="font-weight: bold">确诊</span>
-                            <span class="item_name" style="font-weight: bold">死亡</span>
-                            <span class="item_name" style="font-weight: bold">治愈</span>
+                            <span class="item_name" style="font-weight: bold">{{$t('m.area')}}</span>
+                            <span class="item_name" style="color: rgb(228,74,61);font-weight: bold ">{{$t('m.added')}}</span>
+                            <span class="item_name" style="font-weight: bold">{{$t('m.cum')}}</span>
+                            <span class="item_name" style="font-weight: bold">{{$t('m.dead')}}</span>
+                            <span class="item_name" style="font-weight: bold">{{$t('m.cure')}}</span>
                         </div>
                         <ul style="margin: 60px 0">
                             <li>
@@ -49,17 +49,17 @@
                             <svg class="icon closeImg"  aria-hidden="true">
                                 <use xlink:href="#icon-shijie1"></use>
                             </svg>
-                           海外病例
+                            {{$t('m.OverseasCase')}}
                         </span>
-                            <span>以下数据来自各国(地区)官方通报</span>
+                            <span>{{$t('m.publish')}}</span>
                         </div>
 
                         <div class="province_th">
-                            <span class="item_name" style="font-weight: bold">地区</span>
-                            <span class="item_name" style="color: rgb(228,74,61);font-weight: bold ">新增确诊</span>
-                            <span class="item_name" style="font-weight: bold">确诊</span>
-                            <span class="item_name" style="font-weight: bold">死亡</span>
-                            <span class="item_name" style="font-weight: bold">治愈</span>
+                            <span class="item_name" style="font-weight: bold">{{$t('m.area')}}</span>
+                            <span class="item_name" style="color: rgb(228,74,61);font-weight: bold ">{{$t('m.added')}}</span>
+                            <span class="item_name" style="font-weight: bold">{{$t('m.cum')}}</span>
+                            <span class="item_name" style="font-weight: bold">{{$t('m.dead')}}</span>
+                            <span class="item_name" style="font-weight: bold">{{$t('m.cure')}}</span>
                         </div>
                         <ul style="margin: 60px 0">
                             <li>
@@ -215,7 +215,7 @@
                     dataZoom:{
                         realtime:true, //拖动滚动条时是否动态的更新图表数据
                         height:25,//滚动条高度
-                        start:20,//滚动条开始位置（共100等份）
+                        start:0,//滚动条开始位置（共100等份）
                         end:80//结束位置（共100等份）
                     },
 
@@ -322,7 +322,7 @@
                     dataZoom:{
                         realtime:true, //拖动滚动条时是否动态的更新图表数据
                         height:25,//滚动条高度
-                        start:20,//滚动条开始位置（共100等份）
+                        start:0,//滚动条开始位置（共100等份）
                         end:80//结束位置（共100等份）
                     },
 
@@ -428,7 +428,7 @@
                     dataZoom:{
                         realtime:true, //拖动滚动条时是否动态的更新图表数据
                         height:25,//滚动条高度
-                        start:20,//滚动条开始位置（共100等份）
+                        start:0,//滚动条开始位置（共100等份）
                         end:80//结束位置（共100等份）
                     },
 
