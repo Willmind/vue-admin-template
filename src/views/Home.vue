@@ -128,6 +128,7 @@
                                     </div>
 
 
+
                                 </div>
                                 <div class="cover-time">
                                     {{$t('m.By')}}  {{dataDetail.cachetime}}
@@ -288,6 +289,7 @@
 
         data() {
             return {
+
                 cn_econNum: [],
                 cn_susNum: [],
 

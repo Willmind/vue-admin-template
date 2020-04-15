@@ -7,7 +7,10 @@ const commonRoutes = [
     {
         path: '/login',
         name: 'login',
-        meta: {title: '登录'},
+        meta: {
+            title: '登录',
+            keepAlive: true
+        },
         component: () => import('../components/Login.vue'),
     },
     {
@@ -24,31 +27,46 @@ export const asyncRoutes = {
     home: {
         path: 'home',
         name: 'home',
-        meta: {title: '主页'},
+        meta: {
+            title: '主页',
+            keepAlive: true
+        },
         component: () => import('../views/Home.vue'),
     },
     regionCase: {
         path: 'regionCase',
         name: 'regionCase',
-        meta: {title: '各地区病例'},
+        meta: {
+            title: '各地区病例',
+            keepAlive: true
+        },
         component: () => import('../views/regionCase.vue'),
     },
     epidemicMap: {
         path: 'epidemicMap',
         name: 'epidemicMap',
-        meta: {title: '疫情地图'},
+        meta: {
+            title: '疫情地图',
+            keepAlive: true
+        },
         component: () => import('../views/epidemicMap.vue'),
     },
     realTimeBroadcast: {
         path: 'realTimeBroadcast',
         name: 'realTimeBroadcast',
-        meta: {title: '实时播报'},
+        meta: {
+            title: '实时播报',
+            keepAlive: true
+        },
         component: () => import('../views/realTimeBroadcast.vue'),
     },
     moveList: {
         path: 'moveList',
         name: 'moveList',
-        meta: {title: '迁徙数据'},
+        meta: {
+            title: '迁徙数据',
+            keepAlive: true
+        },
         component: () => import('../views/moveList.vue'),
     },
 
