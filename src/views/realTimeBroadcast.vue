@@ -6,7 +6,7 @@
                     <el-card>
                         <h3 class="card-title">{{item.title}}</h3>
                         <div style="display: flex;justify-content: center">
-                            <el-image :src="item.imgsrc"  lazy></el-image>
+                            <el-image :src="item.imgsrc" style="cursor: pointer"  @click="getDetail(item)"  lazy></el-image>
                         </div>
                         <p class="card-detail">{{item.digest}}</p>
                         <p class="detail" @mouseover="changeColor(item)"

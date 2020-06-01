@@ -608,7 +608,8 @@
                         data: this.chinaDateList
                     },
                     yAxis: {
-                        type: 'value'
+                        type: 'value',
+                        min:0,
                     },
                     series: [
                         {
@@ -879,11 +880,11 @@
         },
 
         mounted() {
+
+
+
+
             console.log(123);
-            let url = "https://interface.sina.cn/news/wap/fymap2020_data.d.json";
-
-
-
             axios.get('getListTotal').then((res) => {
 
                 this.$store.commit('updateDayList', res.data)
@@ -896,9 +897,14 @@
                     this.cn_addHealList.push(this.chinaDayList[i].today.heal)
                     this.cn_addSusList.push(this.chinaDayList[i].today.suspect)
                 }
+                console.log(this.cn_addConList);
+                console.log(this.cn_addDeadList);
+                console.log(this.cn_addHealList);
                 this.initMyCharts3()
             })
 
+
+            let url = "https://interface.sina.cn/news/wap/fymap2020_data.d.json";
             this.$jsonp(url).then(res => {
                 let epidemicData = res.data
                 this.$store.commit('updateEpidemicData', epidemicData)

@@ -10,14 +10,14 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css' //样式必须引入
 Vue.use(ElementUI)
 import '../src/style/main.css'
-import VueJsonp from 'vue-jsonp'
+
 import "./assets/icon/iconfont.css";
 import "./assets/icon/iconfont.js";
 
 import VueI18n from 'vue-i18n'
 Vue.use(VueI18n) // 通过插件的形式挂载
 
-
+import VueJsonp from 'vue-jsonp'
 Vue.use(VueJsonp)
 
 window.devicePixelRatio = 2;

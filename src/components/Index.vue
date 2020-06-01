@@ -51,7 +51,7 @@
             <div class="top-c">
                 <header>
                     <div class="h-left">
-                        <div class="pointer" @click="isShrinkAside" >
+                        <div class="pointer" @click="isShrinkAside">
                             <Icon type="ios-apps"/>
                         </div>
                         <!-- 面包屑功能 -->
@@ -77,7 +77,7 @@
                             <DropdownMenu slot="list">
                                 <!-- name标识符 -->
                                 <DropdownItem name="1">{{$t("m.Password")}}</DropdownItem>
-<!--                                <DropdownItem name="2">基本资料</DropdownItem>-->
+                                <!--                                <DropdownItem name="2">基本资料</DropdownItem>-->
                                 <Dropdown placement="right-start">
                                     <DropdownItem>
                                         {{$t("m.Language")}}
@@ -106,7 +106,7 @@
                     </ul>
                     <!-- 标签栏相关功能 -->
                     <div class="div-icons">
-                        <div class="refresh-c" @click="reloadPage" >
+                        <div class="refresh-c" @click="reloadPage">
                             <Icon type="md-refresh"/>
                         </div>
                         <div class="tag-options">
@@ -127,7 +127,10 @@
                     <keep-alive :include="keepAliveData">
 
                         <transition name="fade-transform" mode="out-in">
-                            <router-view v-if="isShowRouter"/>
+                            <keep-alive>
+                                <router-view v-if="isShowRouter"/>
+
+                            </keep-alive>
                         </transition>
 
                         <!-- 子页面 -->
@@ -140,7 +143,8 @@
             </div>
         </section>
 
-        <el-dialog @close="resetForm('passwordForm')" @open="resetForm('passwordForm')" width="350px" title="修改密码" :visible.sync="dialogFormVisible">
+        <el-dialog @close="resetForm('passwordForm')" @open="resetForm('passwordForm')" width="350px" title="修改密码"
+                   :visible.sync="dialogFormVisible">
 
             <el-form :model="passwordForm" :rules="rules" ref="passwordForm" label-width="80px">
                 <el-form-item label="旧密码" prop="oldPassword">
@@ -154,7 +158,7 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-<!--                <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+                <!--                <el-button @click="dialogFormVisible = false">取 消</el-button>-->
                 <el-button @click="resetForm('passwordForm')">重 置</el-button>
                 <el-button type="primary" @click="submitForm('passwordForm')">提 交</el-button>
             </div>
@@ -200,8 +204,8 @@
                 },
                 rules: {
                     oldPassword: [{required: true, message: '请输入旧密码', trigger: 'blur'}],
-                    newPassword: [ { required: true,validator: validatePass, trigger: 'blur' }],
-                    checkPassword: [ { required: true,validator: validatePass2, trigger: 'blur' }],
+                    newPassword: [{required: true, validator: validatePass, trigger: 'blur'}],
+                    checkPassword: [{required: true, validator: validatePass2, trigger: 'blur'}],
                 },
                 dialogFormVisible: false,
                 data1: '',
@@ -343,17 +347,17 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        axios.post("/users/updateUserPassword",{
-                            rid:this.userData['rid'],
-                            passwordForm:this.passwordForm
-                        }).then((response)=>{
-                            if(response.status=='1'){
+                        axios.post("/users/updateUserPassword", {
+                            rid: this.userData['rid'],
+                            passwordForm: this.passwordForm
+                        }).then((response) => {
+                            if (response.status == '1') {
                                 this.$message({
                                     message: '修改成功！',
                                     type: 'success'
                                 });
                                 this.dialogFormVisible = false
-                            }else{
+                            } else {
                                 this.$message({
                                     message: '旧密码错误！',
                                     type: 'error'
@@ -468,26 +472,28 @@
                         break
                     case '4':
                         console.log("简体中文");
-                        this.$i18n.locale='zh-CN'
-                        this.$store.state.menuItems[0].text='主页'
-                        this.$store.state.menuItems[1].text='疫情地图'
-                        this.$store.state.menuItems[2].text='各地区病例'
-                        this.$store.state.menuItems[3].text='实时播报'
-                        this.$store.state.menuItems[4].text='迁徙数据'
-                        this.$nextTick(()=>{
+                        this.$i18n.locale = 'zh-CN'
+                        this.$store.state.menuItems[0].text = '主页'
+                        this.$store.state.menuItems[1].text = '疫情地图'
+                        this.$store.state.menuItems[2].text = '各地区病例'
+                        this.$store.state.menuItems[3].text = '实时播报'
+                        this.$store.state.menuItems[4].text = '迁徙数据'
+                        this.$store.state.menuItems[5].text = '辟谣与防护'
+                        this.$nextTick(() => {
                             this.reloadPage()
                         })
 
                         break
                     case '5':
                         console.log("English");
-                        this.$i18n.locale='en-US'
-                        this.$store.state.menuItems[0].text='Home'
-                        this.$store.state.menuItems[1].text='EpidemicMap'
-                        this.$store.state.menuItems[2].text='RegionCase'
-                        this.$store.state.menuItems[3].text='RealTimeBroadcast'
-                        this.$store.state.menuItems[4].text='MigrationData'
-                        this.$nextTick(()=>{
+                        this.$i18n.locale = 'en-US'
+                        this.$store.state.menuItems[0].text = 'Home'
+                        this.$store.state.menuItems[1].text = 'EpidemicMap'
+                        this.$store.state.menuItems[2].text = 'RegionCase'
+                        this.$store.state.menuItems[3].text = 'RealTimeBroadcast'
+                        this.$store.state.menuItems[4].text = 'MigrationData'
+                        this.$store.state.menuItems[5].text = 'Refutation'
+                        this.$nextTick(() => {
                             this.reloadPage()
                         })
 

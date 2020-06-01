@@ -35,7 +35,7 @@ export const m = {
     cure:'治愈',
     clicktodetail:'点击各地区查看疫情趋势图',
     publish:'以下数据来自各国(地区)官方通报',
-    detail:'查看详细报道',
+    detail:'点击查看详细报道',
 
     PopularImmigration:'热门迁入地',
     PopularEmigration:'热门迁出地',

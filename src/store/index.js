@@ -44,6 +44,12 @@ const store = new Vuex.Store({
                 name: 'moveList', // 要跳转的路由名称 不是路径
                 text: '迁徙数据', // 文本内容
             },
+            {
+                size: 18, // icon大小
+                type: 'md-help-circle',
+                name: 'susList', // 要跳转的路由名称 不是路径
+                text: '辟谣与防护', // 文本内容
+            },
             // {
             //     type: 'ios-grid',
             //     name: 'dormitoryInteriorList',

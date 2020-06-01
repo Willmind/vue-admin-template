@@ -145,12 +145,12 @@
                         text: ['高', '低'],//取值范围的文字
                         pieces: [
                             //自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
-                            {min: 10000, label: '>10000人', color: 'rgb(127,17,0)'},
-                            {min: 1000, max: 9999, label: '1000-9999人', color: 'rgb(189,19,22)'},
-                            {min: 500, max: 999, label: '500-999人', color: 'rgb(230,75,69)'},
-                            {min: 100, max: 499, label: '100-499人', color: 'rgb(255,140,113)'},
-                            {min: 10, max: 99, label: '10-99人', color: 'rgb(253,210,160)'},
-                            {min: 1, max: 9, label: '1-9人', color: 'rgb(255,242,207)'},
+                            {min: 100000, label: '>100000人', color: 'rgb(127,17,0)'},
+                            {min: 60000, max: 99999, label: '60000-99999人', color: 'rgb(189,19,22)'},
+                            {min: 10000, max: 59999, label: '10000-59999人', color: 'rgb(230,75,69)'},
+                            {min: 1000, max: 9999, label: '1000-9999人', color: 'rgb(255,140,113)'},
+                            {min: 100, max: 999, label: '100-999人', color: 'rgb(253,210,160)'},
+                            {min: 1, max: 99, label: '1-99人', color: 'rgb(255,242,207)'},
                             {min: 0, max: 0, label: '0', color: 'white'}                        // 不指定 min，表示 min 为无限大（-Infinity）。
                         ],
 
@@ -194,9 +194,9 @@
                     ]
                 };
                 myCharts2.setOption(option);
-                myCharts2.on('click', function (params) {
-                    alert(params.name);
-                });
+                // myCharts2.on('click', function (params) {
+                //     alert(params.name);
+                // });
 
 
             },
@@ -308,9 +308,9 @@
                     }
                 };
                 myCharts4.setOption(option);
-                myCharts4.on('click', function (params) {
-                    alert(params.name);
-                });
+                // myCharts4.on('click', function (params) {
+                //     alert(params.name);
+                // });
 
 
             },
@@ -415,9 +415,9 @@
                     ]
                 };
                 myCharts1.setOption(option);
-                myCharts1.on('click', function (params) {
-                    alert(params.name);
-                });
+                // myCharts1.on('click', function (params) {
+                //     alert(params.name);
+                // });
 
             },
             initCharts3() {
@@ -533,9 +533,9 @@
                     ]
                 };
                 myCharts3.setOption(option);
-                myCharts3.on('click', function (params) {
-                    alert(params.name);
-                });
+                // myCharts3.on('click', function (params) {
+                //     alert(params.name);
+                // });
 
             },
 

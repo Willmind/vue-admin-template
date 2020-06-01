@@ -69,6 +69,15 @@ export const asyncRoutes = {
         },
         component: () => import('../views/moveList.vue'),
     },
+    susList: {
+        path: 'susList',
+        name: 'susList',
+        meta: {
+            title: '辟谣与防护',
+            keepAlive: true
+        },
+        component: () => import('../views/susList.vue'),
+    },
 
 
     ////////////////////////////////////////
